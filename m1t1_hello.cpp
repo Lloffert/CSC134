@@ -11,6 +11,8 @@ First program.
 using namespace std;
 
 int main() {
+    cout << "Hello, World!" << endl; // "end-elle"
+    cout << "My foo is UFOlogy" << endl;
     return 0;
 }
 
