@@ -21,10 +21,13 @@ int main() {
     cout << "Welcome to the " << item_name << " store!" << endl;
     cout << "Each  " << item_name << " is $" << cost_per << endl;
     cout << "We have " << num_items << " total." << endl;
-    
+
     // do the processing
     double total_cost = num_items * cost_per;
-
+    
+    // Print the output
+    cout << "Buying them all will cost: $" << total_cost << endl;
+    cout << "Thanks for shopping with us!" << endl;
 
     // end program
     return 0;
