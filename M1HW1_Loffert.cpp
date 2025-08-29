@@ -17,7 +17,7 @@ int main() {
     int rls_date = 1989;
     double budget = 6.5;
 
-    // Write about movie
+    // Write about movie (broken up into different lines just so I can read it a little better in the terminal)
     cout << "\"" << title << "\"" ", also known as \"UFO Abduction\", is a " << rls_date << " sci-fi horror film about the" << endl;
     cout << "fictional Van Heese family's nightmarish encounter with extraterrestrials, all seen from the" << endl; 
     cout << "recovered VHS footage of the youngest son's camcorder." << endl;
@@ -26,6 +26,12 @@ int main() {
     cout << "The movie was made on a microbudget of $" << budget << "K dollars and was only ever released on video." << endl;
     cout << "It's considered to be one of the few early films utilizing the \"found footage\" genre before" << endl;
     cout << "it was popularised by The Blair Witch Project a decade later." << endl;
+    cout << endl;
+
+    cout << title << " director Dean Alioto's direction was heavily inspired by the famous" << endl;
+    cout << "Orson Welles \"War of The Worlds\" radio broadcast. Alioto wanted to create something that was " << endl;
+    cout << "scary all on its own, but also because you couldn't tell whether or not it was real." << endl;
+    cout << endl;
 
     // end program
     return 0;
