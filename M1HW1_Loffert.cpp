@@ -11,6 +11,11 @@ purpose: Talk about a favorite movie
 using namespace std;
 
 int main() {
+    // start program
+    // declare all variables ("whiteboards")
+    string title = "The McPherson Tape";
+    int rls_date = 1989;
+    double budget = 6.5;
 
     // end program
     return 0;
