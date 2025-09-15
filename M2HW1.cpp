@@ -11,7 +11,12 @@ using namespace std;
 
 void question1() {
     cout << "Question 1" << endl;
+    endl;
+    // Get name from user
+    cout << "Please enter your name:"
+    cin << user_name;
 }
+
 void question2() {
     cout << "Question 2" << endl;
 }
@@ -25,7 +30,7 @@ int main() {
     cout << "Example of printing out correct money values" << endl;
     double cost = 8.5; // $8.50
     // magic words for 2 decimal places
-    
+
     cout << setprecision(2) << fixed; // requires "#include <iomanip>"
     cout << "The cost is: $" << cost << endl;
     return 0; // no errors
