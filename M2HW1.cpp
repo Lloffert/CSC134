@@ -10,11 +10,28 @@ using namespace std;
 #include <iomanip>
 
 void question1() {
+    //  set up the variables
+    string user_name; 
+    double acc_balance, deposit_amnt, withdrawal_amnt; // Account information
+
     cout << "Question 1" << endl;
-    endl;
+
     // Get name from user
-    cout << "Please enter your name:"
-    cin << user_name;
+    cout << "Please enter your name: ";
+    cin >> user_name;
+    cout << endl;
+
+    // Ask user for account information
+    cout << setprecision(2) << fixed; // Set 2 decimal places 
+
+    cout << "What is your starting account balance? $";
+    cin >> acc_balance;
+
+    cout << "Amount of deposit: $";
+    cin >> deposit_amnt;
+
+    cout << "Amount of withdrawal $";
+    cin >> withdrawal_amnt;
 }
 
 void question2() {
