@@ -15,7 +15,7 @@ void question1() {
     double acc_balance, deposit_amnt, withdrawal_amnt; // Account information
     long int acc_num = 16485743680;
 
-    cout << "Question 1 \n" << endl;
+    cout << "Question 1: Banking Account \n" << endl;
 
     // Get name from user
     cout << "Please enter your name: ";
@@ -47,7 +47,7 @@ void question1() {
 }
 
 void question2() {
-    cout << "Question 2 \n" << endl;
+    cout << "Question 2: Updated Crate Program \n" << endl;
 
     //  set up the variables
     double length, width, height; // size of crate
@@ -84,7 +84,8 @@ void question2() {
 }
 
 void question3() {
-
+    cout << "Question 3: PIzza Party \n" << endl;
+        
 }
 
 int main() {
