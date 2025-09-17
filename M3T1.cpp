@@ -15,25 +15,29 @@ int main() {
     double length1, length2, width1, width2;
     double area1, area2;
 
-    cout << "Enter the length and width of the two rectangles." << endl;
-    cout << "First rectangle:";
+    cout << "Enter the length and width of the two rectangles. \n\n";
+    cout << "First rectangle:" << endl;
+    cout << "Length: ";
     cin >> length1;
-    cout << "Width: ";
+    cout << "Width:  ";
     cin >> width1;
     cout << endl;
     
     cout << "Second rectangle:" << endl;
     cout << "Length: ";
     cin >> length2;
-    cout << "Width: ";
+    cout << "Width:  ";
     cin >> width2;
+    cout << endl;
 
     // Calculate the area
     area1 = length1 * width1;
     area2 = length2 * width2;
 
     // Print the output
-
+    cout << "The first rectangle has an area of:   " << area1 << endl;
+    cout << "The second rectangle has an area of:  " << area2 << endl;
+    cout << endl;
 
     return 0;
 }
