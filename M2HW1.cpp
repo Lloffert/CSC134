@@ -83,9 +83,23 @@ void question2() {
     cout << "Profit        : $" << profit << endl;
 }
 
-void question3() {
-    cout << "Question 3: PIzza Party \n" << endl;
-        
+void question4() {
+    cout << "Question 4: School Cheer \n" << endl;
+
+    // Declare seperate string variables
+    string letsGo = "Let's go ";
+    string school = "FTCC";
+    string team = "Trojans";
+    // concat string variables
+    string cheerOne = letsGo + school;
+    string cheerTwo = letsGo + team;
+
+    // Print out cheer
+    cout << cheerOne << endl;
+    cout << cheerOne << endl;
+    cout << cheerOne << endl;
+    cout << cheerTwo << "\n\n";
+
 }
 
 int main() {
@@ -97,7 +111,7 @@ int main() {
     question2();
     cout << endl;
     */
-    question3();
+    question4();
 
 
     return 0; // no errors
