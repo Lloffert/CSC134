@@ -8,12 +8,15 @@ Lydia Loffert
 #include <iostream>
 using namespace std;
 #include <iomanip>
+#include <cstdlib>  // for rand() and srand()
+#include <ctime>    // for time()
 
 void question1() {
     //  set up the variables
     string user_name; 
     double acc_balance, deposit_amnt, withdrawal_amnt; // Account information
-    long int acc_num = 16485743680;
+    srand(time(0)); // seed the RNG
+    long int acc_num = rand() % 999999999; // number will be chopped to 9 digits
 
     cout << "Question 1: Banking Account \n" << endl;
 
@@ -104,15 +107,14 @@ void question4() {
 
 int main() {
     // Call each question as its own function
-    /*
+
     question1();
     cout << endl;
-
+    
     question2();
     cout << endl;
-    */
-    question4();
 
+    question4();
 
     return 0; // no errors
 }
