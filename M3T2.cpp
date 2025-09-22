@@ -7,8 +7,8 @@ Beginning of craps game
 */
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <cstdlib> // for rand() and srand()
+#include <ctime>   // for time()
 
 using namespace std;
 
@@ -24,15 +24,18 @@ int main() {
     - roll 2d6 (2-12)
     - branch based on win, lose, or point
     */
-    int roll1 = 3;
-    int roll2 = 5;
+    int roll1;
+    int roll2;
     int point;          // roll if it doesn't win/lose
+    // Seed RNG before roll
+    srand(time(0));
 
-    // Blatantly cheat
-    cout << "Enter two dice (press ENTER between) ";
-    cin >> roll1;
-    cin >> roll2;
+
+   // Roll the dice
+    roll1 = roll();
+    roll2 = roll();
     int sum = roll1+roll2;
+    cout << "ROLL: " << sum << endl;
 
     // win on 7 or 11
     if( (sum == 7) || (sum == 11) ) {
@@ -55,7 +58,7 @@ int main() {
 }
 // DEFINE Helper functions
 int roll() {
-    // rolls a six sided die
-    // TODO
-    return 6;
+    int my_roll = (rand() % 6) + 1; // 1-6
+    return my_roll;
+
 }
