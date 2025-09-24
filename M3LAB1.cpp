@@ -21,7 +21,9 @@ void gameOver();
 // **Main**
 int main()
 {
-    cout << "START PLACEHOLDER TEXT" << endl;
+    cout << "You wake up on the side of the road, unsure of how you got there. \n";
+    cout << "There's no cars in sight. It's an empty street riddled with pot holes, \n";
+    cout << "one of which you are currently standing in. \n\n";
 
     street();
 
@@ -32,8 +34,14 @@ int main()
 // The street (starting place)
 void street()
 {
-    cout << "STREET" << endl;
-    cout << "CHOICE 1 or 2? ";
+    cout << "Unsure of how to get home, you look to the horizon and see a lone \n";
+    cout << "merry-go-round off in the distance, and far in the other direction is a \n";
+    cout << "cube-like house. \n\n";
+    cout << "First of all you step out of the pothole, but after that where do you go? \n\n";
+
+    //Player chooses action
+    cout << "( Press 1 or 2: )\n";
+    cout << "(1)The merry-go-round  (2)The house \n";
 
     int ChoiceSt;
     cin >> ChoiceSt;
