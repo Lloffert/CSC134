@@ -14,9 +14,9 @@ using namespace std;
 void street();
 void merry_go_round();
 void white_room();
-void gameOver();
 void taxi();
-void getHome();
+void hatShop();
+void gameOver();
 
 // **Main**
 int main()
@@ -27,7 +27,7 @@ int main()
 
     return 0;
 }
-// LOCATION FUNCTIONS
+// _____LOCATION FUNCTIONS_____
 
 // The street (starting place)
 void street()
@@ -50,7 +50,7 @@ void street()
 
     }  
     else {
-        cout << "Please choose 1 or 2!";
+        cout << "Please choose 1 or 2!\n";
     }
 
 }
@@ -58,11 +58,103 @@ void street()
 // Merry go round scene
 void merry_go_round()
 {
-    cout << "PLACEHOLDER MGR" << endl;
+    cout << "MERRYGOROUND" << endl;
+    cout << "CHOICE 1 or 2? ";
+
+    int ChoiceMGR;
+    cin >> ChoiceMGR;
+
+    if (ChoiceMGR == 1) 
+    {
+        cout << "PLACEHOLDER TEXT GOTO TAXI \n";
+        taxi(); // take player to taxi function
+
+    }  
+    else if (ChoiceMGR == 2) {
+        cout << "PLACEHOLDER TEXT GOTO WHITE ROOM \n";
+        white_room(); // take player to white_room function
+
+    }  
+    else {
+        cout << "Please choose 1 or 2!\n";
+    }
 }
 
 // White room scene
 void white_room()
 {
-    cout << "PLACEHOLDER WHITE ROOM" << endl;
+    cout << "WHITE ROOM" << endl;
+    cout << "CHOICE 1 or 2? ";
+
+    int choiceWr;
+    cin >> choiceWr;
+
+    if (choiceWr == 1)
+    {
+        cout << "PLACEHOLDER TEXT DEATH \n";
+        gameOver(); // take player to game over screen
+    }
+    else if (choiceWr == 2)
+    {
+        cout << "PLACEHOLDER TEXT GOTO HAT SHOP \n";
+        hatShop(); // take player to hat shop function
+    }
+    else{
+        cout << "Please choose 1 or 2! \n";
+    }
+}
+
+// Taxi scene
+void taxi()
+{
+    cout << "TAXI" << endl;
+    cout << "CHOICE 1 or 2? ";
+
+    int choiceTaxi;
+    cin >> choiceTaxi;
+
+    if (choiceTaxi == 1)
+    {
+        cout << "PLACEHOLDER TAXI DEATH \n";
+        gameOver(); // Take player to game over screen
+    }
+    else if (choiceTaxi == 2)
+    {
+        cout << "PLACEHOLDER GET HOME WIN"; // Finish the game
+    }
+    else
+    {
+        cout << "Please choose 1 or 2! \n";
+    }
+}
+
+// Hat Shop scene
+void hatShop()
+{
+    cout << "HAT SHOP" << endl;
+    cout << "CHOICE 1 or 2? ";
+
+    int choiceHat;
+    cin >> choiceHat;
+
+    if (choiceHat == 1)
+    {
+        cout << "PLACEHOLDER HAT DEATH \n";
+        gameOver(); // take player to game over screen
+    }
+    else if (choiceHat == 2)
+    {
+        cout << "PLACEHOLDER WIN GO HOME SORTA \n";
+    }
+    else 
+    {
+        cout << "Please choose 1 or 2! \n";
+    }
+
+}
+
+// GAME OVER Screen
+void gameOver()
+{
+    cout << "Game over!";
 }
