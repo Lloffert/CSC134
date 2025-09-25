@@ -66,20 +66,42 @@ void street()
 // Merry go round scene
 void merry_go_round()
 {
-    cout << "MERRYGOROUND" << endl;
-    cout << "CHOICE 1 or 2? ";
+    cout << "As you approach it you see it's a bit run down, and seems to be the only attraction here for miles. The only\n";
+    cout << "other person here is the attendant skulking by the ride, having a smoke. He regards you briefly but doesn't\n";
+    cout << "speak.\n\n";
+
+    cout << "\"Hello\", You say, \"I'm lost, could you tell me where I am?\".\n\n";
+
+    cout << "\"Don't ask me, did you want to ride the merry-go-round?\" He clearly doesn't seem to care much about your\n";
+    cout << "predicament. \"It's only a quarter,\" he adds. \"And it's not very fun.\" he adds again. As you're about to\n";
+    cout << "decline he cuts in a third time \"-Also it's broken right now you can't ride it\". He lets out a puff of smoke\n";
+    cout << "politely away from your face \"You can spin around in a circle here if you want though, and you can do it for\n";
+    cout << "free\".\n\n";
+
+    cout << "Well, want to humor him?\n\n";
+    cout << "(Press 1 or 2:)\n";
+    cout << "(1) Spin around in a circle (2) This guy's weird let's go back...\n";
 
     int ChoiceMGR;
     cin >> ChoiceMGR;
 
-    if (ChoiceMGR == 1) 
+    if (ChoiceMGR == 1) // spin in a circle
     {
-        cout << "PLACEHOLDER TEXT GOTO TAXI \n";
+        cout << "\nYou start spinning in a circle in front of the attendant, feeling slightly embarrassed but no more than you\n";
+        cout << "did when you woke up here. But you start to spin too fast and make yourself sick. And then you throw up on the\n";
+        cout << "ground in front of him.\n\n";
+
+        cout << "\"Holy smokes!\" you hear him exclaim \"My keys!\" evidently not about the vomit. He bends over into your hunched\n";
+        cout << "view and picks out a pair of car keys you seem to have thrown up. \"Hey man I've been looking everywhere for \n";
+        cout << "these!\" He claps you on the back. \"Hey you said you were lost right? C'mon I'll give you a ride\".\n\n";
+
         taxi(); // take player to taxi function
 
     }  
-    else if (ChoiceMGR == 2) {
-        cout << "PLACEHOLDER TEXT GOTO WHITE ROOM \n";
+    else if (ChoiceMGR == 2) // leave and go to house
+    {
+        cout << "\nYou hurry away from the attendant as fast as is possible without looking rude. Not seeing anywhere else to\n";
+        cout << "go you make a U-turn towards the house you saw earlier across the street.\n\n";
         white_room(); // take player to white_room function
 
     }  
