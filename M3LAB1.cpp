@@ -88,30 +88,6 @@ void merry_go_round()
     }
 }
 
-// White room scene
-void white_room()
-{
-    cout << "WHITE ROOM" << endl;
-    cout << "CHOICE 1 or 2? ";
-
-    int choiceWr;
-    cin >> choiceWr;
-
-    if (choiceWr == 1)
-    {
-        cout << "PLACEHOLDER TEXT DEATH \n";
-        gameOver(); // take player to game over screen
-    }
-    else if (choiceWr == 2)
-    {
-        cout << "PLACEHOLDER TEXT GOTO WAITING RM \n";
-        waitRoom(); // take player to waitRoom function
-    }
-    else{
-        cout << "Please choose 1 or 2! \n";
-    }
-}
-
 // Taxi scene
 void taxi()
 {
@@ -136,6 +112,45 @@ void taxi()
     }
 }
 
+// White room scene
+void white_room()
+{
+    cout << "The house stands alone on a hill, with no real distinctive features except for a single door that's been\n"; 
+    cout << "conveniently left open. You try knocking just in case but when no one answers on the third try you enter \n";
+    cout << "the house.\n\n";
+
+    cout << "Inside it is a plain room with white walls and white floors, and a single couch in the center. On the far\n"; 
+    cout << "wall is a doggy door that seems too big for any dog and too inconvenient for any human.\n\n";
+
+    cout << "You could sit down for a moment on the couch, or maybe try the doggy door.\n";
+    cout << "(Press 1 or 2:)\n\n";
+    cout << "(1) Sit on the couch (2) Try to fit through the door\n\n";
+
+    int choiceWh;
+    cin >> choiceWh;
+
+    if (choiceWh == 1) // sit in chair
+    {
+        cout << "\nThe couch does look more comfortable than that concrete you were lying on earlier. You sit back into the\n";
+        cout << "cushion, and it is in fact only slightly more comfortable than the concrete. And then suddenly even less\n";
+        cout << "than that when the entire couch, and yourself, drops straight through the floor.\n\n";
+
+        cout << "Apparently there was a giant hole there, which isn't really your fault but the home designers', or\n";
+        cout << "whoever decided to move the couch precariously over the giant hole in the floor.\n\n";
+        cout << "Also you did die from the fall.";
+
+        gameOver(); // take player to game over screen
+    }
+    else if (choiceWh == 2) // go thru door
+    {
+        cout << "\nSeeing as no one's watching, you try to squeeze through the doggy door, and surprisingly enough you do.\n";
+        waitRoom(); // take player to waitRoom function
+    }
+    else{
+        cout << "Please choose 1 or 2! \n";
+    }
+}
+
 // Waiting Room scene
 void waitRoom()
 {
@@ -143,10 +158,9 @@ void waitRoom()
     cout << "outside of the building. In it's center is a large fountain, and sifting around in it is a woman, she seems\n";
     cout << "to be looking for something.\n\n";
 
-    cout << "\"I'm sorry, I seem to be lost, do you know where this is?\" You ask her, but she barely looks up, \"I'm \n";
-    cout << "waiting on my appointment- do you have a quarter? I wanna make a wish\"\n\n";
-
-    cout << "\"I don't have any money\" You inform her. She continues her search, \"Well then how'd you get an appointment?\".\n\n"; 
+    cout << "\"I'm sorry, I seem to be lost, do you know where this is?\" You ask, but she barely looks up, \"I'm \n";
+    cout << "waiting on my appointment- do you have a quarter? I wanna make a wish\". You inform her you really don't have\n";
+    cout << "any money. \"Well then how'd you get an appointment?\".\n\n"; 
 
     cout << "\"Lady I just came in through that dog door I don't know what to tell you\". She didn't either. You sit down\n";
     cout << "in one of the waiting room chairs and tuck your hands into your pockets, where you feel something metallic.\n";
@@ -177,11 +191,11 @@ void waitRoom()
     else if (choiceWRm == 2) // Don't throw coin
     {
         cout << "\nYou decide to hold onto your quarter and sit tight. You only have to wait for a moment before you hear your\n";
-        cout << "being called on the intercom telling you to head into the office at the end of the waiting area. You obey,\n";
-        cout << "not seeing anything better to do.\n\n";
+        cout << "name being called on the intercom telling you to head into the office at the end of the waiting area. You\n";
+        cout << "obey, not seeing anything better to do.\n\n";
 
         cout << "As you reach for the door handle however, it suddenly swings open and flattens you against the wall instantly.\n";
-        cout << "It seems these doors open outward, and that someone very strong (or very angry) was on their way out.\n\n";
+        cout << "It seems these doors open outward, and that someone very strong (or very angry) was on their way out.";
         gameOver(); // take player to game over screen
     }
     else 
@@ -209,5 +223,5 @@ void office()
 // GAME OVER Screen
 void gameOver()
 {
-    cout << "Sorry, Game over!";
+    cout << "\n\n| Sorry, Game over! |\n\n";
 }
