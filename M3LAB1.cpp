@@ -198,10 +198,10 @@ void white_room()
 void waitRoom()
 {
     cout << "\nYou squirm out onto what looks to be the floor of a waiting room, which you don't remember seeing from the \n"; 
-    cout << "outside of the building. In it's center is a large fountain, and sifting around in it is a woman, she seems\n";
-    cout << "to be looking for something.\n\n";
+    cout << "outside of the building. In it's center is a large fountain that's way too big for the room, and sifting around\n";
+    cout << "in it is a woman. She seems to be looking for something.\n\n";
 
-    cout << "\"I'm sorry, I seem to be lost, do you know where this is?\" You ask, but she barely looks up, \"I'm \n";
+    cout << "\"I'm sorry, I'm completely lost, do you know where this is?\" You ask, but she barely looks up, \"I'm \n";
     cout << "waiting on my appointment- do you have a quarter? I wanna make a wish\". You inform her you really don't have\n";
     cout << "any money. \"Well then how'd you get an appointment?\".\n\n"; 
 
@@ -226,8 +226,8 @@ void waitRoom()
        cout << "take mine- See you around!\" She gets down on all fours and crawls away through the doggy door you came in\n";
        cout << "from, trailing water behind her from the fountain.\n\n";
 
-       cout << "You don't really want her appointment, but when a woman's name is called and a door at the end of the waiting\n";
-       cout << "room is opened, you wander in anyway.\n";
+       cout << "You don't really want her appointment, but when a woman's name is called over the intercom and a door at the end\n";
+       cout << " of the waiting room is opened, you wander in anyway.\n";
        office(); // take player to office scene
   
     }
@@ -258,8 +258,8 @@ void office()
     cout << "then, I hope you enjoy the new property. Just take the way out behind me here and it'll be on your left in a\n";
     cout << "few miles\". He presents a pair of house keys and a property deed on the desk in front of you.\n\n";
 
-    cout << "You take them both and exit through the office backdoor. It seems you never made it home but I guess you just \n";
-    cout << "live here now. Its not so bad, Congratulations!\n";
+    cout << "You take them both and exit through the office backdoor. It seems you never made it home but I guess you can just \n";
+    cout << "live here now. That's not so bad, Congratulations!";
     endCard(); // Go to ending screen
 
 }
