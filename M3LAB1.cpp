@@ -6,6 +6,10 @@ Lydia Loffert
 Making a prototype adventure game
 */
 
+// NOTE ON ISSUE WITH PROGRAM:
+// "pause" function works irregularly, requiring cin.ignore to clear the cache (or whatever its called) before being called. If cin.ignore
+// is iincluded inside the "pause" function it does not work. Duct-taped solution used here works but isn't pretty. You'll be fine..
+
 #include <iostream>
 using namespace std;
 
@@ -20,17 +24,24 @@ void office();
 void gameOver();
 void endCard();
 
+void pause() // makes program stop and wait for user to press ENTER before continuing
+{
+    string wait;
+    cout << "*Press ENTER to continue*\n";
+    getline(cin, wait);
+}
 
 // **Main**
 int main()
 {
     cout << "You wake up on the side of the road, unsure of how you got there. There's no cars in sight. It's an empty \n";
-    cout << "street riddled with pot holes, one of which you are currently standing in. \n\n";
-
+    cout << "street riddled with pot holes, one of which you are currently standing in.\n\n";
+    pause();
     street();
 
     return 0;
 }
+
 // _____LOCATION FUNCTIONS_____
 
 // The street (starting place)
@@ -49,7 +60,7 @@ void street()
 
     if (ChoiceSt == 1) // go to merry go round
     {
-        cout << "\nYou make your way north towards the merry-go-round. \n\n";
+        cout << "\nYou make your way north towards the merry-go-round.\n\n";
         merry_go_round(); // take player to merry_go_round function
 
     }  
@@ -71,6 +82,8 @@ void merry_go_round()
     cout << "As you approach it you see it's a bit run down, and seems to be the only attraction here for miles. The only\n";
     cout << "other person here is the attendant skulking by the ride, having a smoke. He regards you briefly but doesn't\n";
     cout << "speak.\n\n";
+    cin.ignore(); // I don't know why but the cin doesnt read the pause without it...
+    pause();
 
     cout << "\"Hello\", You say, \"I'm lost, could you tell me where I am?\".\n\n";
 
@@ -96,6 +109,8 @@ void merry_go_round()
         cout << "\"Holy smokes!\" you hear him exclaim \"My keys!\" evidently not about the vomit. He bends over into your hunched\n";
         cout << "view and picks out a pair of car keys you seem to have thrown up. \"Hey man I've been looking everywhere for \n";
         cout << "these!\" He claps you on the back. \"Hey you said you were lost right? C'mon I'll give you a ride\".\n\n";
+        cin.ignore();
+        pause();
 
         taxi(); // take player to taxi function
 
@@ -140,6 +155,8 @@ void taxi()
         cout << "another cigarette and steer the wheel at the same time. Unsure of what to say, you ask him why an alien would\n";
         cout << "be driving a car and not a flying saucer. \"It got repo'd.\" he tells you curtly. Now you just feel kind of bad\n";
         cout << "for him.\n\n"; 
+        cin.ignore();
+        pause();
 
         cout << "You never told him where you lived but apparently he already knows as the car has ground to a halt in front of\n";
         cout << "your apartment steps. \"Thanks again for the keys\" he tells you. \"You should really wash those.\" you say back,\n";
@@ -161,6 +178,8 @@ void white_room()
     cout << "The house stands alone on a hill, with no real distinctive features except for a single door that's been\n"; 
     cout << "conveniently left open. You try knocking just in case but when no one answers on the third try you enter \n";
     cout << "the house.\n\n";
+    cin.ignore();
+    pause();
 
     cout << "Inside it is a plain room with white walls and white floors, and a single couch in the center. On the far\n"; 
     cout << "wall is a doggy door that seems too big for any dog and too inconvenient for any human.\n\n";
@@ -180,7 +199,7 @@ void white_room()
 
         cout << "Apparently there was a giant hole there, which isn't really your fault but the home designers', or\n";
         cout << "whoever decided to move the couch precariously over the giant hole in the floor.\n\n";
-        cout << "Also you did die from the fall.";
+        cout << "Also you died from the fall.";
 
         gameOver(); // take player to game over screen
     }
@@ -200,6 +219,8 @@ void waitRoom()
     cout << "\nYou squirm out onto what looks to be the floor of a waiting room, which you don't remember seeing from the \n"; 
     cout << "outside of the building. In it's center is a large fountain that's way too big for the room, and sifting around\n";
     cout << "in it is a woman. She seems to be looking for something.\n\n";
+    cin.ignore();
+    pause();
 
     cout << "\"I'm sorry, I'm completely lost, do you know where this is?\" You ask, but she barely looks up, \"I'm \n";
     cout << "waiting on my appointment- do you have a quarter? I wanna make a wish\". You inform her you really don't have\n";
@@ -208,6 +229,7 @@ void waitRoom()
     cout << "\"Lady I just came in through that dog door I don't know what to tell you\". She didn't either. You sit down\n";
     cout << "in one of the waiting room chairs and tuck your hands into your pockets, where you feel something metallic.\n";
     cout << "Okay apparently you do have a quarter.\n\n";
+
     cout << "Throw it into the fountain?\n";
     cout << "(Press 1 or 2:)\n\n";
     cout << "(1) Sure (2) Let's just leave her be\n";
@@ -219,15 +241,19 @@ void waitRoom()
     {
        cout << "\nYou give the quarter a well aimed toss towards the fountain, which the woman notices and quickly positions\n"; 
        cout << "herself in its way in time for the quarter to hit her on the head. \"Ow!\" she yelps. You're not sure why she\n"; 
-       cout << "did that. She picks up your coin and presents it back at you \"Look I just found one\", and proceeds to toss it\n";
-       cout << "into its originally intended destination: the fountain.\n\n"; 
+       cout << "did that.\n\n";
+       cout << "She picks up your coin and presents it back at you \"Look I just found one\", and proceeds to toss it into it's\n";
+       cout << "originally intended destination: the fountain.\n\n"; 
+       cin.ignore();
+       pause();
 
        cout << "\"Well to tell you the truth that was all I really wanted to do here, if you don't have an appointment just\n";
        cout << "take mine- See you around!\" She gets down on all fours and crawls away through the doggy door you came in\n";
        cout << "from, trailing water behind her from the fountain.\n\n";
 
        cout << "You don't really want her appointment, but when a woman's name is called over the intercom and a door at the end\n";
-       cout << " of the waiting room is opened, you wander in anyway.\n";
+       cout << " of the waiting room is opened, you wander in anyway.\n\n";
+       pause();
        office(); // take player to office scene
   
     }
@@ -253,7 +279,7 @@ void waitRoom()
 void office()
 {
     // It probably doesn't need to be its own function cause theres no choices/interaction, not sure
-    cout << "\nInside waiting for you is a man holding up a newspaper large enough that you can't make out any part of his \n";
+    cout << "Inside waiting for you is a man holding up a newspaper large enough that you can't make out any part of his \n";
     cout << "body except the hands holding it up. \"Are you Mrs. Maxwell?\" he asks. \"I guess so sir\". \"Well here you are\n"; 
     cout << "then, I hope you enjoy the new property. Just take the way out behind me here and it'll be on your left in a\n";
     cout << "few miles\". He presents a pair of house keys and a property deed on the desk in front of you.\n\n";
