@@ -151,7 +151,7 @@ void taxi()
     }
     else if (choiceTaxi == 2) // Stay in car
     {
-        cout << "You stare in stunned silence at what is clearly an alien driving the car, who is currently struggling to light\n";
+        cout << "\nYou stare in stunned silence at what is clearly an alien driving the car, who is currently struggling to light\n";
         cout << "another cigarette and steer the wheel at the same time. Unsure of what to say, you ask him why an alien would\n";
         cout << "be driving a car and not a flying saucer. \"It got repo'd.\" he tells you curtly. Now you just feel kind of bad\n";
         cout << "for him.\n\n"; 
