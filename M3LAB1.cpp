@@ -16,8 +16,10 @@ void merry_go_round();
 void white_room();
 void taxi();
 void waitRoom();
-void gameOver();
 void office();
+void gameOver();
+void endCard();
+
 
 // **Main**
 int main()
@@ -113,20 +115,39 @@ void merry_go_round()
 // Taxi scene
 void taxi()
 {
-    cout << "TAXI" << endl;
-    cout << "CHOICE 1 or 2? ";
+    cout << "You find yourself being shuffled into the passenger seat of a Subaru Forester that was apparently parked\n";
+    cout << "inconspicuously behind the merry-go-round. The man starts up the car with the disgusting keys and off you both go.\n\n";
+
+    cout << "As you debate with yourself whether or not you should tell him your address or jump out the car, you see him remove\n";
+    cout << "from his head what seems to be a rubbery human-faced mask, revealing beneath it a large gray bulbous head and even\n";
+    cout << "larger black eyes. He glances over at you nonchalantly \"Whew, that thing's stuffy\".\n\n";
+
+    cout << "Jump out the car? \n\n";
+    cout << "(Press 1 or 2:)\n";
+    cout << "(1) Yes (2) No\n";
 
     int choiceTaxi;
     cin >> choiceTaxi;
 
-    if (choiceTaxi == 1)
+    if (choiceTaxi == 1) // Jump out car
     {
-        cout << "PLACEHOLDER TAXI DEATH \n";
+        cout << "\nOkay I mean you jumped out the car but it did kill you he was driving really fast. \n";
         gameOver(); // Take player to game over screen
     }
-    else if (choiceTaxi == 2)
+    else if (choiceTaxi == 2) // Stay in car
     {
-        cout << "PLACEHOLDER GET HOME WIN"; // Finish the game
+        cout << "You stare in stunned silence at what is clearly an alien driving the car, who is currently struggling to light\n";
+        cout << "another cigarette and steer the wheel at the same time. Unsure of what to say, you ask him why an alien would\n";
+        cout << "be driving a car and not a flying saucer. \"It got repo'd.\" he tells you curtly. Now you just feel kind of bad\n";
+        cout << "for him.\n\n"; 
+
+        cout << "You never told him where you lived but apparently he already knows as the car has ground to a halt in front of\n";
+        cout << "your apartment steps. \"Thanks again for the keys\" he tells you. \"You should really wash those.\" you say back,\n";
+        cout << "but he just waves and drives off.\n\n";
+
+        cout << "Which reminds you that you also don't have the keys to your apartment, but the landlord can let you in. Anyhow,\n";
+        cout << "congratulations! You made it home!";
+        endCard(); // Go to ending screen
     }
     else
     {
@@ -144,8 +165,8 @@ void white_room()
     cout << "Inside it is a plain room with white walls and white floors, and a single couch in the center. On the far\n"; 
     cout << "wall is a doggy door that seems too big for any dog and too inconvenient for any human.\n\n";
 
-    cout << "You could sit down for a moment on the couch, or maybe try the doggy door.\n";
-    cout << "(Press 1 or 2:)\n\n";
+    cout << "You could sit down for a moment on the couch, or maybe try the doggy door.\n\n";
+    cout << "(Press 1 or 2:)\n";
     cout << "(1) Sit on the couch (2) Try to fit through the door\n\n";
 
     int choiceWh;
@@ -239,7 +260,14 @@ void office()
 
     cout << "You take them both and exit through the office backdoor. It seems you never made it home but I guess you just \n";
     cout << "live here now. Its not so bad, Congratulations!\n";
+    endCard(); // Go to ending screen
 
+}
+
+// WIN Screen
+void endCard()
+{
+    cout << "\n\n| You won! THE END |\n\n";
 }
 
 // GAME OVER Screen
