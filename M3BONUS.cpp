@@ -23,41 +23,73 @@ void displayTitle() {
     cout << "================================\n\n";
 }
 
+// GIANT SPOT TO MESS WITH ACSII IN FUNCTIONS
+/*
+HAND ALTOGETHER:
+    cout << "\n--- PLACEHOLDER ---\n";
+    cout << "     _ _ _ _ \n";
+    cout << "    | | | | |\n";
+    cout << "_   | | | | |\n";
+    cout << "\\ \\ | - - - |\n";
+    cout << "\\          /\n";
+    cout << " \\       /\n";
+    cout <<    |     |\n\n";
+*My hand is 7 lines... needs to vary 5 different ways each time
 
-// Function to display current items in bag
-void displayBag(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, bool hasPinky) {
-    cout << "\n--- YOUR BAG ---\n";
-    
-    if (hasThumb) {
-        cout << "1. Thumb\n";
-    } else {
-        cout << "1. Lost your thumb\n";
-    }
-    
-    if (hasPointer) {
-        cout << "2. Pointer\n";
-    } else {
-        cout << "2. Lost your pointer finger\n";
-    }
-    
-    if (hasMiddle) {
-        cout << "3. Middle\n";
-    } else {
-        cout << "3. Lost your middle finger\n";
-    }
-    
-    if (hasRing) {
-        cout << "4. Ring\n";
-    } else {
-        cout << "4. Lost your ring finger\n";
-    }
-    
-    if (hasPinky) {
-        cout << "5. Lucky Pinky\n";
-    } else {
-        cout << "5. Lost your pinky finger\n";
-    }
-    
+void displayHand(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, bool hasPinky) {
+
+// Line 1
+    cout << "     ";
+    if (hasPointer) { cout << "_ "; } else { cout << "  ";}
+    if (hasMiddle) { cout << "_ "; } else { cout << "  "; }
+    if (hasRing) { cout << "_ "; } else { cout << "  "; }
+    if (hasPinky) { cout << "_ \n"; } else { cout << "  \n"; }
+ // Line 2   
+}
+// CLOSE
+*/
+
+// Function to display your hand *(This is the only code that's really mine, cause I wanted the ACSII to change w each finger)*
+// Its a bit much... The only thing I could think of to make it draw dynamically was to generate line by line. there's
+// probably a better way to do this.
+void displayHand(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, bool hasPinky) {
+/*
+REFERENCE FOR FULL ASCII HAND:
+    cout << "     _  _  _  _ \n";
+    cout << "    | || || || |\n";
+    cout << "_   | || || || |\n";
+    cout << "\\ \\ |   - - -  |\n";
+    cout << " \\             /\n";
+    cout << "   \\          /\n";
+    cout << "    |        |\n\n";
+*/
+
+// Line 1
+    cout << "     ";
+    if (hasPointer) { cout << "_  "; } else { cout << "   ";}
+    if (hasMiddle) { cout << "_  "; } else { cout << "   "; }
+    if (hasRing) { cout << "_  "; } else { cout << "   "; }
+    if (hasPinky) { cout << "_  \n"; } else { cout << "  \n"; }
+// Line 2
+    cout << "    ";
+    if (hasPointer) { cout << "| |"; } else { cout << "   ";}
+    if (hasMiddle) { cout << "| |"; } else { cout << "   "; }
+    if (hasRing) { cout << "| |"; } else { cout << "   "; }
+    if (hasPinky) { cout << "| |\n"; } else { cout << "  \n"; }
+// Line 3 (thumb begins on this line)
+    if (hasThumb) { cout << "_   "; } else { cout << "    ";} 
+    if (hasPointer) { cout << "| |"; } else { cout << " _ ";}
+    if (hasMiddle) { cout << "| |"; } else { cout << " _ "; }
+    if (hasRing) { cout << "| |"; } else { cout << " _ "; }
+    if (hasPinky) { cout << "| |\n"; } else { cout << " _\n"; }
+// Line 4
+    if (hasThumb) { cout << "\\ \\ |"; } else { cout << "      |";} 
+
+// rest is the same
+    cout << "   - - -  |\n";
+    cout << " \\             /\n";
+    cout << "   \\          /\n";
+    cout << "    |        |\n\n";
     cout << "----------------\n\n";
 }
 
@@ -90,15 +122,13 @@ int countItems(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, boo
 }
 
 // Function to simulate taking a step
-void takeStep(int& steps, bool& hasThumb, bool& hasPointer, bool& hasMiddle, bool& hasRing, bool& hasPinky) {
+void takeStep(bool& hasThumb, bool& hasPointer, bool& hasMiddle, bool& hasRing, bool& hasPinky) {
     cout << "You take a step forward...\n";
-    steps = steps + 1;
     
     // Rolls for 30% chance to lose a finger
     int dropChance = rand() % 100 + 1;
     
     if (dropChance <= 30) {
-        cout << "Oh no! Something fell out of your bag!\n";
         
         // Pick which finger is lost (only if you still have it)
         int attempts = 0;
@@ -147,7 +177,7 @@ void takeStep(int& steps, bool& hasThumb, bool& hasPointer, bool& hasMiddle, boo
             attempts = attempts + 1;
         }
     } else {
-        cout << "Your bag is secure. Nothing fell out!\n";
+        cout << "It just missed you- You're safe!\n";
     }
 }
 
@@ -157,7 +187,7 @@ int getMenuChoice() {
     
     cout << "\nWhat would you like to do?\n";
     cout << "1. Take a step\n";
-    cout << "2. Check your bag\n";
+    cout << "2. Check your hand\n";
     cout << "3. Quit game\n";
     cout << "Enter your choice (1-3): ";
     cin >> choice;
@@ -177,14 +207,12 @@ int main() {
     bool hasRing = true;
     bool hasPinky = true;
     
-    int steps = 0;
     int choice;
     bool playing = true;
     
     displayTitle();
-    cout << "You're walking home with 5 items in your bag.\n";
-    cout << "Be careful! Items might fall out as you walk!\n";
-    cout << "Try to keep as many items as possible!\n";
+    cout << "PLACEHOLDER\n";
+
     
     // Main game loop
     while (playing) {
@@ -193,8 +221,7 @@ int main() {
         // Check if all items are lost
         if (itemsLeft == 0) {
             cout << "\n================================\n";
-            cout << "GAME OVER! You lost all your items!\n";
-            cout << "You took " << steps << " steps.\n";
+            cout << "GAME OVER! You lost all your fingers!\n";
             cout << "================================\n";
             playing = false;
         } else {
@@ -202,20 +229,18 @@ int main() {
             
             switch (choice) {
                 case 1:
-                    takeStep(steps, hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
+                    takeStep(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
                     break;
                 case 2:
-                    displayBag(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
+                    displayHand(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
                     cout << "Items remaining: " << itemsLeft << "/5\n";
-                    cout << "Steps taken: " << steps << "\n";
                     break;
                 case 3:
                     playing = false;
                     cout << "Thanks for playing!\n";
                     cout << "\nFinal Results:\n";
-                    cout << "Steps taken: " << steps << "\n";
                     cout << "Items saved: " << itemsLeft << "/5\n";
-                    displayBag(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
+                    displayHand(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
                     break;
                 default:
                     cout << "Invalid choice! Please enter 1, 2, or 3.\n";
