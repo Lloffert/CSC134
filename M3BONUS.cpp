@@ -1,7 +1,7 @@
 /*
 M3BONUS
 Lydia Loffert
-Modified Claude "Lost items Game"
+Knife game/Modified Claude "Lost items Game"
 */
 
 
