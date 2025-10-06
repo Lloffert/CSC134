@@ -1,58 +1,45 @@
+/*
+M3BONUS
+Lydia Loffert
+Modified Claude "Lost items Game"
+*/
+
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
 using namespace std;
 
 /*
+Modified to be a game of Five Finger Fillet but works exactly the same, with "items" replaced with fingers on the table
+chance to lose one each turn until all are lost etc
+
 Claude's lost items game I think uses 3 major operations to work:
 *A function to count the current items,
 *A function to take a step
 *A menu function to keep the gameplay loop looping
 (Theres also an option to show the player what they have left but I think this doesn't affect gameplay, more for the player.)
 
-*Stepping is the most complicated cause it is rolling dice sort of every time you do it, and flagging what falls (or in my
+*Stepping/Stabbing  is the most complicated cause it is rolling dice sort of every time you do it, and flagging what falls (or in my
 case what finger you lose).
-*The counting, displaying and stepping actions also have to pass the boolean variables of each item/finger cause it carries 
+*The counting, displaying and stabbing actions also have to pass the boolean variables of each item/finger cause it carries 
 over throughout the game.
 */
 
 // Function to display the game title
 void displayTitle() {
     cout << "================================\n";
-    cout << "         PLACEHOLDER\n";
+    cout << "      FIVE FINGER FILLET\n";
     cout << "================================\n\n";
 }
 
-// GIANT SPOT TO MESS WITH ACSII IN FUNCTIONS
-/*
-HAND ALTOGETHER:
-    cout << "\n--- PLACEHOLDER ---\n";
-    cout << "     _ _ _ _ \n";
-    cout << "    | | | | |\n";
-    cout << "_   | | | | |\n";
-    cout << "\\ \\ | - - - |\n";
-    cout << "\\          /\n";
-    cout << " \\       /\n";
-    cout <<    |     |\n\n";
-*My hand is 7 lines... needs to vary 5 different ways each time
-
+// Function to display your hand 
 void displayHand(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, bool hasPinky) {
 
-// Line 1
-    cout << "     ";
-    if (hasPointer) { cout << "_ "; } else { cout << "  ";}
-    if (hasMiddle) { cout << "_ "; } else { cout << "  "; }
-    if (hasRing) { cout << "_ "; } else { cout << "  "; }
-    if (hasPinky) { cout << "_ \n"; } else { cout << "  \n"; }
- // Line 2   
-}
-// CLOSE
-*/
-
-// Function to display your hand *(This is the only code that's really mine, cause I wanted the ACSII to change w each finger)*
+// (This is the only code that's really mine, cause I wanted the ACSII to change w each finger)
 // Its a bit much... The only thing I could think of to make it draw dynamically was to generate line by line. there's
-// probably a better way to do this.
-void displayHand(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, bool hasPinky) {
+// probably a better way to do this but since most/all of the game is AI I'd rather hit myself on the head on my own with this
+
 /*
 REFERENCE FOR FULL ASCII HAND:
     cout << "     _  _  _  _ \n";
@@ -83,18 +70,17 @@ REFERENCE FOR FULL ASCII HAND:
     if (hasRing) { cout << "| |"; } else { cout << " _ "; }
     if (hasPinky) { cout << "| |\n"; } else { cout << " _\n"; }
 // Line 4
-    if (hasThumb) { cout << "\\ \\ |"; } else { cout << "      |";} 
+    if (hasThumb) { cout << "\\ \\ |   - - -  |\n"; } else { cout << " __     - - -  |\n";} 
 
 // rest is the same
-    cout << "   - - -  |\n";
     cout << " \\             /\n";
     cout << "   \\          /\n";
     cout << "    |        |\n\n";
     cout << "----------------\n\n";
 }
 
-// Function to count how many items are left (L: I think this lets it know when there is nothing left so the game can end)
-int countItems(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, bool hasPinky) {
+// Function to count how many fingers are left (L: I think this lets it know when there is nothing left so the game can end)
+int countFingers(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, bool hasPinky) {
 
     int count = 0; // count is loaded as zero but really starts at 5 because you have every finger/item at the beginning  
     /* ⬆️ *** Important note from claude *** is that this "int count = 0" happens EVERY time its called so it does a 
@@ -121,14 +107,14 @@ int countItems(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, boo
     return count;
 }
 
-// Function to simulate taking a step
-void takeStep(bool& hasThumb, bool& hasPointer, bool& hasMiddle, bool& hasRing, bool& hasPinky) {
-    cout << "You take a step forward...\n";
+// Function to stab the knife
+void stabKnife(bool& hasThumb, bool& hasPointer, bool& hasMiddle, bool& hasRing, bool& hasPinky) {
+    cout << "You stab the knife rapidly between each of your fingers aaand...\n";
     
-    // Rolls for 30% chance to lose a finger
+    // Rolls for 45% chance to lose a finger
     int dropChance = rand() % 100 + 1;
     
-    if (dropChance <= 30) {
+    if (dropChance <= 45) {
         
         // Pick which finger is lost (only if you still have it)
         int attempts = 0;
@@ -177,7 +163,7 @@ void takeStep(bool& hasThumb, bool& hasPointer, bool& hasMiddle, bool& hasRing, 
             attempts = attempts + 1;
         }
     } else {
-        cout << "It just missed you- You're safe!\n";
+        cout << "You're safe!\n";
     }
 }
 
@@ -186,7 +172,7 @@ int getMenuChoice() {
     int choice;
     
     cout << "\nWhat would you like to do?\n";
-    cout << "1. Take a step\n";
+    cout << "1. Play the game\n";
     cout << "2. Check your hand\n";
     cout << "3. Quit game\n";
     cout << "Enter your choice (1-3): ";
@@ -200,7 +186,7 @@ int main() {
     // Seed the random number generator
     srand(time(0));
     
-    // Track which items player has
+    // Track which fingers player has
     bool hasThumb = true;
     bool hasPointer = true;
     bool hasMiddle = true;
@@ -211,35 +197,40 @@ int main() {
     bool playing = true;
     
     displayTitle();
-    cout << "PLACEHOLDER\n";
-
     
     // Main game loop
     while (playing) {
-        int itemsLeft = countItems(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
+        int fingersLeft = countFingers(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
         
-        // Check if all items are lost
-        if (itemsLeft == 0) {
-            cout << "\n================================\n";
+        // Check if all fingers are lost
+        if (fingersLeft == 0) {
+            cout << "\n===================================\n";
             cout << "GAME OVER! You lost all your fingers!\n";
-            cout << "================================\n";
+            cout << "====================================\n\n";
+
+            // Show stump...
+            cout << "     _  _  _  _\n";
+            cout << " __ |   - - -  |\n";
+            cout << " \\             /\n";
+            cout << "   \\          /\n";
+            cout << "    |        |\n\n";
             playing = false;
         } else {
             choice = getMenuChoice();
             
             switch (choice) {
                 case 1:
-                    takeStep(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
+                    stabKnife(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
                     break;
                 case 2:
                     displayHand(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
-                    cout << "Items remaining: " << itemsLeft << "/5\n";
+                    cout << "Fingers remaining: " << fingersLeft << "/5\n";
                     break;
                 case 3:
                     playing = false;
                     cout << "Thanks for playing!\n";
                     cout << "\nFinal Results:\n";
-                    cout << "Items saved: " << itemsLeft << "/5\n";
+                    cout << "Fingers left: " << fingersLeft << "/5\n";
                     displayHand(hasThumb, hasPointer, hasMiddle, hasRing, hasPinky);
                     break;
                 default:
