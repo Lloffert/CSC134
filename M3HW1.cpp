@@ -15,7 +15,7 @@ void ChatBot() { // chatbot brace start
     cout << "   &&&&&&&&\n";
     cout << "&&&&&&&&&&&&&&\n";
     cout << "///        \\\\\\ \n";
-    cout << " | [.]--[.] |\n";
+    cout << " |-[.]--[.]-|\n";
     cout << "(|    (     |)\n";
     cout << "  \\    __  /\n";
     cout << "   \\______/\n\n";
@@ -28,7 +28,7 @@ void ChatBot() { // chatbot brace start
         cout << "   &&&&&&&&\n";
         cout << "&&&&&&&&&&&&&&\n";
         cout << "///        \\\\\\ \n";
-        cout << " | [^]--[^] |\n";
+        cout << " |-[^]--[^]-|\n";
         cout << "(|    (     |)\n";
         cout << "  \\   ___< /\n";
         cout << "   \\______/\n\n";
@@ -39,7 +39,7 @@ void ChatBot() { // chatbot brace start
         cout << "   &&&&&&&&\n";
         cout << "&&&&&&&&&&&&&&\n";
         cout << "/// \\    / \\\\\\ \n";
-        cout << " | [*]--[*] |\n";
+        cout << " |-[*]--[*]-|\n";
         cout << "(|    (     |)\n";
         cout << "  \\  ____  /\n";
         cout << "   \\______/\n\n";
@@ -50,7 +50,7 @@ void ChatBot() { // chatbot brace start
         cout << "   &&&&&&&&\n";
         cout << "&&&&&&&&&&&&&&\n";
         cout << "///  _   _ \\\\\\ \n";
-        cout << " | [-]--[-] |\n";
+        cout << " |-[-]--[-]-|\n";
         cout << "(|    (     |)\n";
         cout << "  \\    __  /\n";
         cout << "   \\______/\n\n";
@@ -62,14 +62,22 @@ void ChatBot() { // chatbot brace start
 
 
 // *** QUESTION 3 CHOOSE YOUR OWN ADVENTURE ***
+// using booleans?
 void CYOA() {
+    cout << "PLACEHOLDER START";
     
+    cin >> Choice1;
+
 }
+
 
 // *** MAIN ***
 int main() { // main brace start
     cout << "Question 1: Chat Bot:\n\n";
     ChatBot();
+
+    cout << "Question 3: Choose Your Own Adventure:\n\n";
+    CYOA();
 
     return 0;
 } // main brace end
