@@ -1,4 +1,5 @@
 /*
+CSC 134
 M3BONUS
 Lydia Loffert
 Knife game/Modified Claude "Lost items Game"
@@ -111,10 +112,10 @@ int countFingers(bool hasThumb, bool hasPointer, bool hasMiddle, bool hasRing, b
 void stabKnife(bool& hasThumb, bool& hasPointer, bool& hasMiddle, bool& hasRing, bool& hasPinky) {
     cout << "You stab the knife rapidly between each of your fingers aaand...\n";
     
-    // Rolls for 45% chance to lose a finger
+    // Rolls for 50% chance to lose a finger
     int dropChance = rand() % 100 + 1;
     
-    if (dropChance <= 45) {
+    if (dropChance <= 50) {
         
         // Pick which finger is lost (only if you still have it)
         int attempts = 0;
