@@ -6,6 +6,8 @@ Lydia Loffert
 */
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime> // for making random number
 using namespace std;
 
 void pause() // second attempt at a pause feature to wait for user input before continuing
@@ -143,9 +145,32 @@ void ChatBot() { // chatbot start
         }
     } // branch2 end
 
+// *** QUESTION 4 MATH PRACTICE ***
+
+void Math_Practice() 
+{
+    int RandomNum1 = rand() % 9 + 0; // generates the random number from 0-9
+    int RandomNum2 = rand() % 9 + 0; // has to have two diff randnum variables or else it prints the same num)
+    cout << "What is " << RandomNum1 << " plus " << RandomNum2 << " ?\n";
+    int answer;
+    cin >> answer;
+
+    if (answer != RandomNum1 + RandomNum2) {
+        cout << "Incorrect\n\n";
+    }
+    else {
+        cout << "Correct!\n\n";
+    }
+}
 
 // *** MAIN ***
 int main() { // main start
+
+    // I think this program could use a main menu but I have to get other work done...
+
+    // Seed the random number generator
+    srand(time(0));
+
     cout << "=========================\n";
     cout << "  Question 1: Chat Bot:\n";
     cout << "=========================\n\n";
@@ -157,6 +182,13 @@ int main() { // main start
     cout << "Question 3: Choose Your Own Adventure:\n";
     cout << "======================================\n\n";
     Branch_1();
+
+    pause();
+
+    cout << "===========================\n";
+    cout << " Question 4: Math Practice\n";
+    cout << "===========================\n\n";
+    Math_Practice();
 
     return 0;
 
