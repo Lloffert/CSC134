@@ -1,0 +1,226 @@
+:: StoryTitle
+Untitled Story
+
+
+:: StoryData
+{
+  "ifid": "54BE81CF-B1D3-4B26-9A9E-6A083D34994C",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: Merry Go Round {"position":"450,175","size":"100,100"}
+You make your way north towards the merry-go-round.
+
+As you approach it you see it's a bit run down, and seems to be the only
+attraction here for miles. The only other person here is the attendant
+skulking by the ride, having a smoke. He regards you briefly but doesn't speak.
+
+"Hello", You say, "I'm lost, could you tell me where I am?".
+
+"Don't ask me, did you want to ride the merry-go-round?" He clearly doesn't
+seem to care much about your predicament. "It's only a quarter," he adds.
+"And it's not very fun." he adds again. As you're about to decline he cuts
+in a third time "-Also it's broken right now you can't ride it". He lets out
+a puff of smoke politely away from your face "You can spin around in a circle
+here if you want though, and you can do it for free".
+
+Well, want to humor him?
+
+[[Spin around in a circle|Merry Spin]]
+
+[[This guy's weird, let's go back...|White Room]]
+
+
+:: Merry Spin {"position":"325,450","size":"100,100"}
+You start spinning in a circle in front of the attendant, feeling slightly
+embarrassed but no more than you did when you woke up here. But you start
+to spin too fast and make yourself sick. And then you throw up on the ground
+in front of him.
+
+"Holy smokes!" you hear him exclaim "My keys!" evidently not about the vomit.
+He bends over into your hunched view and picks out a pair of car keys you seem
+to have thrown up. "Hey man I've been looking everywhere for these!" He claps
+you on the back. "Hey you said you were lost right? C'mon I'll give you a ride".
+
+[[Get in the car|Taxi]]
+
+
+:: Office {"position":"550,425","size":"100,100"}
+Inside waiting for you is a man holding up a newspaper large enough that you
+can't make out any part of his body except the hands holding it up. "Are you
+Mrs. Maxwell?" he asks. "I guess so sir". "Well here you are then, I hope you
+enjoy the new property. Just take the way out behind me here and it'll be on
+your left in a few miles". He presents a pair of house keys and a property deed
+on the desk in front of you.
+
+You take them both and exit through the office backdoor. It seems you never made
+it home but I guess you can just live here now. That's not so bad, Congratulations!
+
+**| You won! THE END |**
+
+[[Play again|Start]]
+
+
+:: Start {"position":"25,25","size":"100,100"}
+You wake up on the side of the road, unsure of how you got there.
+There's no cars in sight. It's an empty street riddled with pot holes,
+one of which you are currently standing in.
+
+[[Continue...|Street]]
+
+
+:: Street {"position":"350,50","size":"100,100"}
+Unsure of how to get home, you look to the horizon and see a lone
+merry-go-round off in the distance, and far in the other direction
+is a cube-like house.
+
+First of all you step out of the pothole, but after that where do you go?
+
+[[Head to the merry-go-round|Merry Go Round]]
+
+[[Walk towards the house|White Room]]
+
+
+:: Taxi {"position":"325,625","size":"100,100"}
+You find yourself being shuffled into the passenger seat of a Subaru Forester
+that was apparently parked inconspicuously behind the merry-go-round. The man
+starts up the car with the disgusting keys and off you both go.
+
+As you debate with yourself whether or not you should tell him your address or
+jump out the car, you see him remove from his head what seems to be a rubbery
+human-faced mask, revealing beneath it a large gray bulbous head and even larger
+black eyes. He glances over at you nonchalantly "Whew, that thing's stuffy".
+
+Jump out the car?
+
+[[Yes, jump out!|Taxi Jump]]
+
+[[No, stay in the car|Taxi Stay]]
+
+
+:: Taxi Jump {"position":"200,725","size":"100,100"}
+Okay I mean you jumped out the car but it did kill you he was driving
+really fast.
+
+**| Sorry, Game over! |**
+
+[[Start over|Start]]
+
+
+:: Taxi Stay {"position":"75,650","size":"100,100"}
+You stare in stunned silence at what is clearly an alien driving the car,
+who is currently struggling to light another cigarette and steer the wheel
+at the same time. Unsure of what to say, you ask him why an alien would be
+driving a car and not a flying saucer. "It got repo'd." he tells you curtly.
+Now you just feel kind of bad for him.
+
+You never told him where you lived but apparently he already knows as the car
+has ground to a halt in front of your apartment steps. "Thanks again for the keys"
+he tells you. "You should really wash those." you say back, but he just waves
+and drives off.
+
+Which reminds you that you also don't have the keys to your apartment, but the
+landlord can let you in. Anyhow, congratulations! You made it home!
+
+**| You won! THE END |**
+
+[[Play again|Start]]
+
+
+:: Wait Room {"position":"675,250","size":"100,100"}
+Seeing as no one's watching, you try to squeeze through the doggy door, and
+surprisingly enough you do.
+
+You squirm out onto what looks to be the floor of a waiting room, which you
+don't remember seeing from the outside of the building. In it's center is a
+large fountain that's way too big for the room, and sifting around in it is
+a woman. She seems to be looking for something.
+
+"I'm sorry, I'm completely lost, do you know where this is?" You ask, but she
+barely looks up, "I'm waiting on my appointment- do you have a quarter? I wanna
+make a wish". You inform her you really don't have any money. "Well then how'd
+you get an appointment?".
+
+"Lady I just came in through that dog door I don't know what to tell you". She
+didn't either. You sit down in one of the waiting room chairs and tuck your hands
+into your pockets, where you feel something metallic. Okay apparently you do have
+a quarter.
+
+Throw it into the fountain?
+
+[[Sure, throw the quarter|Wait Room Throw]]
+
+[[Let's just leave her be|Wait Room Keep]]
+
+
+:: Wait Room Keep {"position":"500,600","size":"100,100"}
+You decide to hold onto your quarter and sit tight. You only have to wait for a
+moment before you hear your name being called on the intercom telling you to head
+into the office at the end of the waiting area. You obey, not seeing anything
+better to do.
+
+As you reach for the door handle however, it suddenly swings open and flattens you
+against the wall instantly. It seems these doors open outward, and that someone
+very strong (or very angry) was on their way out.
+
+**| Sorry, Game over! |**
+
+[[Start over|Start]]
+
+
+:: Wait Room Throw {"position":"800,450","size":"100,100"}
+You give the quarter a well aimed toss towards the fountain, which the woman
+notices and quickly positions herself in its way in time for the quarter to hit
+her on the head. "Ow!" she yelps. You're not sure why she did that.
+
+She picks up your coin and presents it back at you "Look I just found one", and
+proceeds to toss it into it's originally intended destination: the fountain.
+
+"Well to tell you the truth that was all I really wanted to do here, if you don't
+have an appointment just take mine- See you around!" She gets down on all fours
+and crawls away through the doggy door you came in from, trailing water behind
+her from the fountain.
+
+You don't really want her appointment, but when a woman's name is called over the
+intercom and a door at the end of the waiting room is opened, you wander in anyway.
+
+[[Enter the office|Office]]
+
+
+:: White Couch {"position":"875,50","size":"100,100"}
+The couch does look more comfortable than that concrete you were lying on
+earlier. You sit back into the cushion, and it is in fact only slightly more
+comfortable than the concrete. And then suddenly even less than that when the
+entire couch, and yourself, drops straight through the floor.
+
+Apparently there was a giant hole there, which isn't really your fault but the
+home designers', or whoever decided to move the couch precariously over the
+giant hole in the floor.
+
+Also you died from the fall.
+
+**| Sorry, Game over! |**
+
+[[Start over|Start]]
+
+
+:: White Room {"position":"550,50","size":"100,100"}
+You head towards the house.
+
+The house stands alone on a hill, with no real distinctive features except
+for a single door that's been conveniently left open. You try knocking just
+in case but when no one answers on the third try you enter the house.
+
+Inside it is a plain room with white walls and white floors, and a single
+couch in the center. On the far wall is a doggy door that seems too big for
+any dog and too inconvenient for any human.
+
+You could sit down for a moment on the couch, or maybe try the doggy door.
+
+[[Sit on the couch|White Couch]]
+
+[[Try to fit through the doggy door|Wait Room]]
