@@ -1,0 +1,72 @@
+:: StoryTitle
+Sample1
+
+
+:: StoryData
+{
+  "ifid": "00646118-97CD-4A1A-AA27-C3B372F3381B",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "START (Boss's office)",
+  "zoom": 1
+}
+
+
+:: "SHIP DEALER-SHIP" {"position":"450,150","size":"100,100"}
+
+
+
+:: BUY CRAPPY SHIP {"position":"550,275","size":"100,100"}
+
+
+
+:: CAR WASH {"position":"450,400","size":"100,100"}
+
+
+
+:: COFFEE SHOP {"position":"875,150","size":"100,100"}
+
+
+
+:: CROSS THE STREET or smth {"position":"900,400","size":"100,100"}
+
+
+
+:: DONT GO IN {"position":"550,525","size":"100,100"}
+
+
+
+:: GET CAUGHT IN WASHER {"position":"325,525","size":"100,100"}
+
+
+
+:: GOTO COFFEE OR ENDGAME {"position":"450,675","size":"100,100"}
+
+
+
+:: GOTO DEALERSHIP OR ENDGAME {"position":"900,675","size":"100,100"}
+
+
+
+:: RIGHT ORDER {"position":"975,275","size":"100,100"}
+
+
+
+:: SPILL COFFEE {"position":"800,525","size":"100,100"}
+
+
+
+:: START (Boss's office) {"position":"650,25","size":"100,100"}
+<img src="https://lloffert.github.io/image.jpg" width="400px" height="300px"alt="place holder image dont worry about it" />
+
+
+:: STEAL NICE SHIP {"position":"350,275","size":"100,100"}
+
+
+
+:: SURVIVED! {"position":"1000,525","size":"100,100"}
+
+
+
+:: WRONG ORDER {"position":"775,275","size":"100,100"}
+
