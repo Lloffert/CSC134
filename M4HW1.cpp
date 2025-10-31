@@ -17,6 +17,11 @@ int main() {
     // so it needs to go until num2 becomes 12
     // OK..............
 
+    
+    // ---------------
+    // *** BRONZE ***
+    // ---------------
+    /*
     int num1 = 5;
     int num2 = 1;
     int answer;
@@ -28,6 +33,25 @@ int main() {
         num2++;
         cout << answer << endl;
     }
-    
+    */
+
+    // ---------------
+    // *** SILVER ***
+    // ---------------
+
+    int num1;
+    int num2 = 1;
+    int answer;
+    cout << "Enter a number from 1 to 12: ";
+    cin >> num1;
+    cout << endl;
+
+    while (num2 <= 12) {
+
+        cout << num1 << " times " << num2 << " is ";
+        answer = num1 * num2;
+        num2++;
+        cout << answer << endl;
+    }   
 }
 
