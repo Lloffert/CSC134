@@ -1,0 +1,209 @@
+:: StoryTitle
+M4BONUS_structure
+
+
+:: StoryData
+{
+  "ifid": "00646118-97CD-4A1A-AA27-C3B372F3381B",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "START (Boss's office)",
+  "zoom": 1
+}
+
+
+:: BASIC WIN {"position":"750,850","size":"100,100"}
+You re-enter the boss’ office, keys and coffee ready in hand. “Huh, I guess you can do something right” he says, you’re not sure if he’s talking to you or the person on the phone. 
+
+As you leave the building to head home you think you’ve almost got off scott-free, but you hear him yell angrily from the parking lot when he presumably found the car you bought him. Well hopefully you still have a job tomorrow. 
+
+But congratulations, for today at least, you won!
+
+
+
+:: BUY CRAPPY SHIP {"position":"600,175","size":"100,100"}
+<img src="https://lloffert.github.io/pic3_crappycar.png"/>
+Well… It’ll do. Let’s just take it to the ship-wash, maybe if it’s really, really clean he won’t be mad.
+{(set: $havecar to true)}
+
+[[Go to the ship-wash|CAR WASH]]
+
+
+:: CAR WASH {"position":"450,400","size":"100,100"}
+{
+  (if: ($havenicecar is true)) [
+  <img src="https://lloffert.github.io/pic6_WASH_niceshipver.png"/>
+  ]
+  (else:)[
+  <img src="https://lloffert.github.io/pic6_WASH_trashcanver.png"/>
+  ]
+}
+You drive up to the Ship-wash. There’s no attendant but it looks like there's two options: a regular wash, and for a few more credits you can use that new “turbo-cleaner” feature you’ve been seeing on TV. The boss probably would appreciate the extra polish. 
+
+What’ll it be?
+
+[[Use the turbo-cleaner!|CAUGHT IN WASHER]]
+
+[[He's not worth it, just use the regular|DONT GO IN]]
+
+
+:: CAUGHT IN WASHER {"position":"325,525","size":"100,100"}
+<img src="https://lloffert.github.io/pic7_WASHDEATH.png"/>
+You power on the turbo-cleaner and put the ship in neutral. The tunnel whirs loudly and dozens of LED lights flash around you as you’re railed along. But as you get closer to the grinding soap bristles and seeing just how fast they’re going, you start to wonder if this hasn’t been properly tested yet. And you’d be right! Both you and your ship are ground to bits in the wash.
+
+You’re not alive, but you are clean.
+
+GAME OVER!
+
+
+
+:: COFFEE SHOP {"position":"900,150","size":"100,100"}
+<img src="https://lloffert.github.io/pic9_COFFEESHOP.png"/>
+You pop in to the local coffee chain and place your order with the barista, “Sure, one Xorthop dark roast and one Zeemo coming up!” She pulls a series of levers behind her and tubes of dark goop release into the cups. 
+
+But she put them all on the counter at once, which ones are yours? She disappears into the kitchen before you can ask.
+
+[[Take the drinks on the left |WRONG ORDER]]
+
+[[take the drinks on the right |RIGHT ORDER]]
+
+
+:: CROSS THE STREET or smth {"position":"900,400","size":"100,100"}
+You exit the coffee shop and stop at the street, the traffic is pretty bad. The conveyer belt can take you right over the road but it’s pretty bustling. There’s always the crosswalk but some people just drive right through it these days.
+
+What should you do?
+
+[[Use the conveyer belt|SPILL COFFEE]]
+
+[[Use the crosswalk|SURVIVED!]]
+
+
+:: DONT GO IN {"position":"525,600","size":"100,100"}
+{
+  (if: ($havenicecar is true)) [
+  <img src="https://lloffert.github.io/pic8_FINWASH_nicecarver.png"/>
+  ]
+  (else:)[
+  <img src="https://lloffert.github.io/pic8_FINWASH_crappycarver.png"/>
+  ]
+}
+No need to go out of your way, he barely gave you enough credits for the coffee as is, you power on the regular wash and drive on through.
+
+Clean as a whistle! That's that done!
+
+{
+  (if: ($havenicecar is true) and ($havecoffee is true)) [
+  [[Head on back to the office|TRUE WIN]]
+  ]
+  (else-if: ($havecoffee is true) and ($havecar is true)) [
+  [[Head on back to the office|BASIC WIN]]
+  ]
+  (else:) [
+  [[Go get the coffee|COFFEE SHOP]]
+  ]
+}
+
+
+:: RIGHT ORDER {"position":"1000,275","size":"100,100"}
+<img src="https://lloffert.github.io/pic11_RIGHTORDER.png"/>
+You reach for the right-most coffees and let out a sigh of relief when you don’t hear anyone yell at you. Looks like these are yours! 
+
+{
+(set: $havecoffee to true)
+}
+[[Leave shop|CROSS THE STREET or smth]]
+
+
+
+
+:: SHIP DEALER-SHIP {"position":"450,150","size":"100,100"}
+<img src="https://lloffert.github.io/pic2_DEALERSHIP.png"/>
+You head down to Bleegargh (and Son’s) Luxury Spaceships, where you’re greeted by the man himself (son absent). “Howdy! What can I do for you today?” You hand him your employer’s order slip and earn yourself a sizing up from Mr. Bleegargh. “Hmmm, no I don’t think that’s right I think this car is a little out of your price range son, I think this is the car you're looking for” He unveils behind him what's clearly a re-purposed trashcan with a rocket strapped to it.
+
+Bleegargh just won’t listen to you, what should you do? You do need to pick up a car.
+
+[[Just buy the stupid trashcan|BUY CRAPPY SHIP]]
+
+{
+  (if: $havecoffee is true) [
+  [[Throw coffee on Bleegargh|STEAL NICE SHIP]]
+  ]
+  (else:) [
+  [[Steal the nice ship|STEAL NICE SHIP FAIL]]
+  ]
+}
+
+
+:: SPILL COFFEE {"position":"1075,500","size":"100,100"}
+You decide it’s safer just to use the conveyer belt. You squeeze in among your fellow pedestrians but everyone’s pushing and shoving to make room. You’re knocked to and fro in the crowd and spill one of the coffees on your space suit. Uh-oh! That's not good! The hot Zorthop or whatever roast eats right through the ventilator and you pop in an instant.
+
+It hurts, but not as much as everyone in the crowd ignoring you dying in front of them does. Ouch!
+
+GAME OVER!
+
+
+
+:: START (Boss's office) {"position":"650,25","size":"100,100"}
+<img src="https://lloffert.github.io/pic1_START.png"/>
+{
+(set: $havecoffee to false)
+(set: $havecar to false)
+(set: $havenicecar to false)
+}
+It's your first day on the job as the new intern at Glarblax Industries, and it’s not off to a great start. Your boss is already mad today and you’re the first thing in his line of fire.
+
+“Kid why don’t you go make yourself useful and go get me a coffee! And I need you to pick up my new ship at the dealership too while you’re at it! Make it snappy!”
+
+He shoos you out of his office. What should you do first? 
+
+[[Pick up the car|SHIP DEALER-SHIP]]   
+
+[[Go get the coffee|COFFEE SHOP]]
+
+
+:: STEAL NICE SHIP {"position":"350,275","size":"100,100"}
+<img src="https://lloffert.github.io/pic5_STEALNICECAR.png"/>
+You toss your extra hot coffee onto Bleegargh’s unsuspecting face! That’s horrible! But it works, and he hollers in pain as you sprint to your boss’s cruiser and make your getaway. He’ll probably be fine. Let's go get this thing washed.
+{(set: $havenicecar to true)}
+
+[[Go to the ship-wash|CAR WASH]]
+
+
+:: STEAL NICE SHIP FAIL {"position":"200,275","size":"100,100"}
+<img src="https://lloffert.github.io/pic4_CARDEATH.png"/>
+As Bleegargh turns to get the keys to your new trashcan, you sprint to your boss’ shiny red cruiser. “Hey!” you hear Bleegargh yell. But before you can reach for the wireless-bluetooth-enabled-AI-integrated key FOB Mr. Bleegargh has already blown the brown out the back of your eyes with his phaser. 
+
+Woof! Guess they don’t have to lock up the keys with that kind of security. Wasn’t a terrible plan but he’s quick on the draw, if only there was some way to distract him first…
+
+GAME OVER!
+
+
+
+:: SURVIVED! {"position":"825,600","size":"100,100"}
+You press the crosswalk button and wait for your chance- and surprisingly, you don’t get run over. Another day not on the news! And you’ve got your boss’ coffee too.
+
+{
+  (if: $havecar is true) [
+  [[Head on back to the office|BASIC WIN]]
+  ]
+  (else:) [
+  [[Go pick up the car|SHIP DEALER-SHIP]]
+  ]
+}
+
+
+:: TRUE WIN {"position":"575,850","size":"100,100"}
+You re-enter the boss’ office, keys and coffee ready in hand. “Say, not bad kid! I guess you can do something right” he says, and he even put the phone down when he said it. “I think you’ll go far in this business”. You’re not so sure about that but it makes you happy to hear it anyway, you’re not really sure what Glarblax Industries even does. 
+
+But not bad for a first day! Congratulations! You won!
+
+
+
+:: WRONG ORDER {"position":"750,175","size":"100,100"}
+<img src="https://lloffert.github.io/pic10_WRONGORDER.png"/>
+You reach for the left-most coffees, and hear someone exclaim “Hey! Those are mine!” from behind you. Before you can explain yourself the angry customer whips his phaser out and blasts a hole through your belly, spilling your lunch, amongst other things, onto the nice floor. 
+
+Man people are so violent in this town… 
+
+GAME OVER!
+
