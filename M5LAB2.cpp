@@ -70,13 +70,13 @@ double getWidth() {
 //getArea - This function should take two arguments, length and width. It will calculate the area and return that value as a double.
 double getArea(double length, double width) {
     double area;
-    area = length * width; // because area is *calulated* not input.
+    area = length * width; // because area is *calculated* not input.
     return area;
 }
 
 // displayData - Void function, simply outputs the values in a readable format.
 void   displayData(double length, double width, double area) {
     cout << "Rectangle is " << length << " by " << width << "." << endl;
-    cout << "Area is: " << area << endl;
+    cout << "Area is: " << area << endl << endl;
     return; // for a void function, "return" is assumed at the end
 }
