@@ -24,102 +24,37 @@ a printAnswerLine() function that prints one line of the answer (void)
 */
 
 
-
-//beginning with the magic words
-
 #include <iostream>
 using namespace std;
 
-int square();
-void printAnswerLine();
 
+// ---- I think i still overcomplicated it but passing the variables properly is still confusing me.
+// ---- this works but I dont think i can do it cleaner until I really understand where things are
+// ---- going and being held as theyre passed...
+
+int square(int orig_num);
+void printAnswerLine(int sqr_num, int orig_num);
 
 int main() {
-    int orig_num;
+    int orig_num = 1;
     int sqr_num;
 
-    printAnswerLine();
+    while (orig_num <= 10) {
+        sqr_num = square(orig_num);
+        printAnswerLine(sqr_num, orig_num);
+        orig_num++;
+    }
+
 }
 
-int square(int sqr_num, int orig_num) { // function that takes an int, and returns the square of that int (value returning)
+int square(int orig_num) { // function that takes an int, and returns the square of that int (value returning)
+    int sqr_num;
     sqr_num = orig_num * orig_num;
+    return sqr_num;
 }
 
 void printAnswerLine(int sqr_num, int orig_num) { // function that prints one line of the answer (void)
 
-    cout << "THe number " << orig_num << " squared is: " << sqr_num << endl;
-    /*
-    while (orig_num <= 10) {
-        cout << orig_num << " ";
-        square();
-    }
-    */
+    cout << "The number " << orig_num << " squared is: " << sqr_num << endl;
 
-    /* BRONZE M4HW1 CODE I GUESS:
-
-    while (num2 <= 12) {
-
-        cout << num1 << " times " << num2 << " is ";
-        answer = num1 * num2;
-        num2++;
-        cout << answer << endl;
-    }
-
-    */
-   return;
 }
-
-
-
-/*
-COLLAB SCATTERBRAINED STUFF:
-    void printanswerline(double num, double sqr) {
-        // prints line of numbers
-
-        /* hard coding no bueno
-        cout << "1\n";
-        cout << "2\n";
-        cout << "3\n";
-        cout << "4\n";
-        cout << "5\n";
-        cout << "6\n";
-        cout << "7\n";
-        cout << "8\n";
-        cout << "9\n";
-        cout << "10\n";
-
-
-        for (int i = 1; i <= 10; i++) {
-            int sq = square(i);
-            printanswerline(i, sq);
-        }
-
-
-    }
-
-
-    double square(double num){
-        // squares the number 
-        return num * num;
-
-
-    }
-
-
-
-    int main()
-    {
-    //calculations and printing 
-
-        cout << "Numbers: " << endl;
-        printanswerline(num, sqr);
-
-        cout << "Squares: " << endl;
-
-
-    //output
-        return 0; //no errors
-            
-        
-    }
-*/
