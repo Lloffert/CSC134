@@ -31,7 +31,7 @@ a printAnswerLine() function that prints one line of the answer (void)
 using namespace std;
 
 int square();
-int printAnswerLine();
+void printAnswerLine();
 
 
 int main() {
@@ -45,13 +45,15 @@ int square(int sqr_num, int orig_num) { // function that takes an int, and retur
     sqr_num = orig_num * orig_num;
 }
 
-int printAnswerLine(int sqr_num, int orig_num) { // function that prints one line of the answer (void)
+void printAnswerLine(int sqr_num, int orig_num) { // function that prints one line of the answer (void)
 
+    cout << "THe number " << orig_num << " squared is: " << sqr_num << endl;
+    /*
     while (orig_num <= 10) {
         cout << orig_num << " ";
         square();
     }
-
+    */
 
     /* BRONZE M4HW1 CODE I GUESS:
 
@@ -64,6 +66,7 @@ int printAnswerLine(int sqr_num, int orig_num) { // function that prints one lin
     }
 
     */
+   return;
 }
 
 
