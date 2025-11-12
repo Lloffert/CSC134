@@ -46,3 +46,7 @@ void exercise1_healthRegen() {
     cout << "Fully rested." << endl;    
 }
 
+void exercise2_levelUpStats() {
+    
+}
+
