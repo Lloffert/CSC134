@@ -30,20 +30,27 @@ a printAnswerLine() function that prints one line of the answer (void)
 #include <iostream>
 using namespace std;
 
-int orig_num;
-int sqr_num;
+int square();
+int printAnswerLine();
 
 
-main() {
+int main() {
+    int orig_num;
+    int sqr_num;
 
+    printAnswerLine();
 }
 
-void square() { // function that takes an int, and returns the square of that int (value returning)
-    
+int square(int sqr_num, int orig_num) { // function that takes an int, and returns the square of that int (value returning)
+    sqr_num = orig_num * orig_num;
 }
 
-void PrintAnswerLine() { // function that prints one line of the answer (void)
+int printAnswerLine(int sqr_num, int orig_num) { // function that prints one line of the answer (void)
 
+    while (orig_num <= 10) {
+        cout << orig_num << " ";
+        square();
+    }
 
 
     /* BRONZE M4HW1 CODE I GUESS:
