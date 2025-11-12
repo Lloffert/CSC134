@@ -10,10 +10,16 @@ Learn some prompting and familiarity with loops, arrays, and functions
 #include <string>
 using namespace std;
 
-
+void exercise1_healthRegen();
+void exercise2_levelUpStats();
+void exercise3_inventorySystem();
 
 int main() {
-    // TODO: Put healing code into its own function
+    exercise1_healthRegen();
+}
+
+void exercise1_healthRegen() {
+
     int maxHP = 100;
     int hp    = 10;
     const int healing = 10;
@@ -37,6 +43,6 @@ int main() {
         }
         cout << " HP: " << hp << "/" << maxHP << endl;
     }
-    cout << "Fully rested." << endl;
-
+    cout << "Fully rested." << endl;    
 }
+
