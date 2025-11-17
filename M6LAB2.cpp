@@ -27,31 +27,34 @@ const string DIRECTION_NAMES[NUM_DIRECTIONS] = {
 
 // Define constants for rooms
 enum Room {
-    ENTRANCE_HALL = 0,
-    LIBRARY = 1,
-    KITCHEN = 2,
-    GARDEN = 3,
-    BASEMENT = 4,
-    NUM_ROOMS = 5
+    FOYER = 0,
+    ARCHIVE = 1,
+    LAB = 2,
+    STAIRWELL = 3,
+    POOL = 4,
+    CELL = 5,
+    NUM_ROOMS = 6,
 };
 
 int main() {
     // Room names array
     string roomNames[NUM_ROOMS] = {
-        "Entrance Hall",
-        "Library",
-        "Kitchen",
-        "Garden",
-        "Basement"
+        "Foyer",
+        "Archive",
+        "Laboratory",
+        "Stairwell",
+        "Swimming Pool",
+        "Holding Cell",
     };
     
     // Room descriptions array
     string roomDescriptions[NUM_ROOMS] = {
-        "A grand entrance hall with a dusty chandelier hanging above.",
-        "Walls lined with ancient books. The air smells of old paper.",
-        "A spacious kitchen with an old stove and wooden counter.",
-        "An overgrown garden with stone pathways and a small fountain.",
-        "A dark, damp basement with cobwebs in the corners."
+        "A humble entryway to the building. Weathered concrete walls and floors to match.",
+        "An enormous underground chamber lined wall to wall with steel file cabinets.",
+        "An old yellowed laboratory, not much equipment here. Looks more like a dentists office.",
+        "An creaky stairwell. Leads up and down.",
+        "A large empty swimming pool grown over with algea. There's a sewer grate in its center leading below"
+        "A holding room of some sort, plated with iron bars. The doors locked but it's not holding anyone anymore."
     };
     
     // Adjacency list using a 2D array
@@ -66,38 +69,44 @@ int main() {
     }
     
     // Define the connections between rooms using the Room enum
-    // Entrance Hall connections
-    connections[ENTRANCE_HALL][NORTH] = LIBRARY;    // Entrance Hall -> North -> Library
-    connections[ENTRANCE_HALL][EAST] = KITCHEN;     // Entrance Hall -> East -> Kitchen
-    connections[ENTRANCE_HALL][SOUTH] = -1;         // No connection south
-    connections[ENTRANCE_HALL][WEST] = GARDEN;      // Entrance Hall -> West -> Garden
+    // Foyer connections
+    connections[FOYER][NORTH] = -1;          // No connection north
+    connections[FOYER][EAST] = CELL;         // Foyer -> East -> Holding Cell
+    connections[FOYER][SOUTH] = -1;          // No connection south
+    connections[FOYER][WEST] = STAIRWELL;    // Foyer -> West -> Stairwell
     
-    // Library connections
-    connections[LIBRARY][NORTH] = -1;               // No connection north
-    connections[LIBRARY][EAST] = -1;                // No connection east
-    connections[LIBRARY][SOUTH] = ENTRANCE_HALL;    // Library -> South -> Entrance Hall
-    connections[LIBRARY][WEST] = -1;                // No connection west
+    // Archive connections
+    connections[ARCHIVE][NORTH] = POOL;      // Archive -> North -> Swimming Pool
+    connections[ARCHIVE][EAST] = -1;         // No connection east
+    connections[ARCHIVE][SOUTH] = -1;        // No connection south
+    connections[ARCHIVE][WEST] = -1;         // No connection west
     
-    // Kitchen connections
-    connections[KITCHEN][NORTH] = -1;               // No connection north
-    connections[KITCHEN][EAST] = -1;                // No connection east
-    connections[KITCHEN][SOUTH] = BASEMENT;         // Kitchen -> South -> Basement
-    connections[KITCHEN][WEST] = ENTRANCE_HALL;     // Kitchen -> West -> Entrance Hall
+    // Laboratory connections
+    connections[LAB][NORTH] = -1;            // No connection north
+    connections[LAB][EAST] = -1;             // No connection east
+    connections[LAB][SOUTH] = STAIRWELL;     // Laboratory -> South -> Stairwell
+    connections[LAB][WEST] = -1;             // No conncetion west
     
-    // Garden connections
-    connections[GARDEN][NORTH] = -1;                // No connection north
-    connections[GARDEN][EAST] = ENTRANCE_HALL;      // Garden -> East -> Entrance Hall
-    connections[GARDEN][SOUTH] = -1;                // No connection south
-    connections[GARDEN][WEST] = -1;                 // No connection west
+    // Stairwell connections
+    connections[STAIRWELL][NORTH] = LAB;     // Stairwell -> noth -> Laboratory
+    connections[STAIRWELL][EAST] = FOYER;    // Stairwell -> East -> Foyer
+    connections[STAIRWELL][SOUTH] = POOL;    // Stairwell -> East -> Swimming Pool
+    connections[STAIRWELL][WEST] = -1;       // No connection west
     
-    // Basement connections
-    connections[BASEMENT][NORTH] = KITCHEN;         // Basement -> North -> Kitchen
-    connections[BASEMENT][EAST] = -1;               // No connection east
-    connections[BASEMENT][SOUTH] = -1;              // No connection south
-    connections[BASEMENT][WEST] = -1;               // No connection west
+    // Pool connections
+    connections[POOL][NORTH] = STAIRWELL;    // Swimming Pool -> North -> Stairwell
+    connections[POOL][EAST] = -1;            // No connection east
+    connections[POOL][SOUTH] = ARCHIVE;      // Swimming Pool -> south -> Archive
+    connections[POOL][WEST] = -1;            // No connection west
+
+    // Holding Cell connections
+    connections[CELL][NORTH] = -1;           // No connection north
+    connections[CELL][EAST] = -1;            // No connection east
+    connections[CELL][SOUTH] = -1;           // No connection south
+    connections[CELL][WEST] = FOYER;         // Holding Cell -> west -> Foyer
     
     // Game state
-    int currentRoom = ENTRANCE_HALL; // Start in the Entrance Hall
+    int currentRoom = FOYER; // Start in the Foyer
     bool gameRunning = true;
     
     // Game loop
