@@ -44,9 +44,9 @@ __________________________________________________________________
    /                  \|__________________|/                  \
   /                                                            \
  /                                                              \
-/________________________________________________________________\
-  )";
-  cout << "Two doors stand before you..." << endl;
+/________________________________________________________________\)";
+
+  cout << "\nTwo doors stand before you..." << endl;
   cout << "Do you:" << endl;
   cout << "1. Try the door on the left" << endl;
   cout << "2. Try the door on the right" << endl;
@@ -87,10 +87,9 @@ _____________________________________________________________
    /        |   |    /            //                     \            
   /                 /____________//                       \                
  /                 |____________|/                         \  
-/___________________________________________________________\
+/___________________________________________________________\)";
 
-  )";
-  cout << "It's your bedroom. Not really what you're looking for though."
+  cout << "\n\nIt's your bedroom. Not really what you're looking for though.\n\n";
 
   cout << "Wanna play again?" << endl;
   cout << "1. Yes" << endl;
@@ -113,18 +112,17 @@ _____________________________________________________________
 
 void choice_left_door() { 
       cout << R"(
-_____________________________________________________________
-    |                                    _________      |                                
-    |                   ____________    |____|____|     |                    
-    |        ____      |___________||   |____|____|     |                                   
-    |_______/___/|____/ /__/ /__/  //___________________|                                               
-   /        |   |    /            //                     \            
-  /                 /____________//                       \                
- /                 |____________|/                         \  
-/___________________________________________________________\
+___________________________________________________________
+                |              ||                   ||
+                |              ||                   ||
+                |      ________||___________________||_____
+                |_____|__________________|
+            ____|____________________|
+       ____|______________________|
+  ____|________________________|
+_|_________________________|_______________________________)";
 
-  )";
-  cout << "It's your bedroom. Not really what you're looking for though."
+  cout << "\n\nIt's the stairs that lead down to the basement. Not really what you're looking for though.\n\n";
 
   cout << "Wanna play again?" << endl;
   cout << "1. Yes" << endl;
@@ -146,4 +144,36 @@ _____________________________________________________________
 
 }
 
-void choice_wall() { cout << "TODO: Write something here" << endl; }
+void choice_wall() { 
+  cout << R"(
+___________________________________________________________
+                |              ||                   ||
+                |              ||                   ||
+                |      ________||___________________||_____
+                |_____|__________________|
+            ____|____________________|
+       ____|______________________|
+  ____|________________________|
+_|_________________________|_______________________________)";
+
+  cout << "\n\nIt's the stairs that lead down to the basement. Not really what you're looking for though.\n\n";
+
+  cout << "Wanna play again?" << endl;
+  cout << "1. Yes" << endl;
+  cout << "2. No thanks..." << endl;
+
+  int choice;
+  cout << "Choose: ";
+  cin >> choice;
+  if (1 == choice) {
+    main_menu();
+  } else if (2 == choice) {
+    cout << "OK Byeeee\n\n";
+  }
+   else {
+    cout << "That's not a valid choice, please try again." << endl;
+    cin.ignore(); // clear the user input
+    main_menu();  // try again
+  }
+
+}
