@@ -17,9 +17,9 @@ using namespace std;
 // room for them in the final program.
 
 void main_menu();
-void choice_front_door();
-void choice_back_door();
-void choice_go_home();
+void choice_right_door();
+void choice_left_door();
+void choice_wall();
 // TODO: add more choices here
 
 int main() {
@@ -34,26 +34,37 @@ int main() {
 void main_menu() {
   // Write a simple menu that lets the user choose 1,2, or 3, or 4 to quit.
 
-  cout << "Main Menu" << endl;
-  cout << "You're in front of a spooky old house..." << endl;
+    cout << R"(
+__________________________________________________________________
+      |     |      |   |                  |   |      |     |
+      |   o | o    |   |                  |   |    o | o   |
+      |_____|______|   |                  |   |______|_____|
+     /              \  |                  |  /              \
+    /                \ |                  | /                \ 
+   /                  \|__________________|/                  \
+  /                                                            \
+ /                                                              \
+/________________________________________________________________\
+  )";
+  cout << "Two doors stand before you..." << endl;
   cout << "Do you:" << endl;
-  cout << "1. Try the front door" << endl;
-  cout << "2. Sneak around back" << endl;
-  cout << "3. Forget it, and go home" << endl;
+  cout << "1. Try the door on the left" << endl;
+  cout << "2. Try the door on the right" << endl;
+  cout << "3. Inspect the wall" << endl;
   cout << "4. [Quit]" << endl;
   cout << "Choose: ";
 
   int choice;
   cin >> choice;
   if (1 == choice) {
-    choice_front_door();
+    choice_left_door();      // -> GOTO Right door
   } else if (2 == choice) {
-    // call choice 2 here
+    choice_right_door();       // -> GOTO Left door
   } else if (3 == choice) {
-    // call choice 3 here
+    choice_wall();            // -> GOTO Wall
   } else if (4 == choice) {
     cout << "Ok, quitting game" << endl;
-    return; // go back to main()
+    return; main_menu();      // -> back to main_menu (doesn't really make sense here cause thats the screen you're already on. but keep if it was bigger I guess)
   } else {
     cout << "That's not a valid choice, please try again." << endl;
     cin.ignore(); // clear the user input
@@ -66,24 +77,73 @@ void main_menu() {
 // now we have to actually write the functions.
 // They go here, after main().
 
-void choice_front_door() {
-  cout << "Try the front door." << endl;
-  cout << "It's locked. " << endl;
-  cout << "Do you:" << endl;
-  cout << "1. Check around back" << endl;
-  cout << "2. Give up and go home" << endl;
+void choice_right_door() {
+      cout << R"(
+_____________________________________________________________
+    |                                    _________      |                                
+    |                   ____________    |____|____|     |                    
+    |        ____      |___________||   |____|____|     |                                   
+    |_______/___/|____/ /__/ /__/  //___________________|                                               
+   /        |   |    /            //                     \            
+  /                 /____________//                       \                
+ /                 |____________|/                         \  
+/___________________________________________________________\
+
+  )";
+  cout << "It's your bedroom. Not really what you're looking for though."
+
+  cout << "Wanna play again?" << endl;
+  cout << "1. Yes" << endl;
+  cout << "2. No thanks..." << endl;
+
   int choice;
   cout << "Choose: ";
   cin >> choice;
   if (1 == choice) {
-    choice_back_door();
+    main_menu();
   } else if (2 == choice) {
-    choice_go_home();
+    cout << "OK Byeeee\n\n";
+  }
+   else {
+    cout << "That's not a valid choice, please try again." << endl;
+    cin.ignore(); // clear the user input
+    main_menu();  // try again
   }
 }
 
-void choice_back_door() { cout << "TODO: Write something here" << endl; }
+void choice_left_door() { 
+      cout << R"(
+_____________________________________________________________
+    |                                    _________      |                                
+    |                   ____________    |____|____|     |                    
+    |        ____      |___________||   |____|____|     |                                   
+    |_______/___/|____/ /__/ /__/  //___________________|                                               
+   /        |   |    /            //                     \            
+  /                 /____________//                       \                
+ /                 |____________|/                         \  
+/___________________________________________________________\
 
-void choice_go_home() { cout << "TODO: Write something here" << endl; }
+  )";
+  cout << "It's your bedroom. Not really what you're looking for though."
 
-// any new choices go here
+  cout << "Wanna play again?" << endl;
+  cout << "1. Yes" << endl;
+  cout << "2. No thanks..." << endl;
+
+  int choice;
+  cout << "Choose: ";
+  cin >> choice;
+  if (1 == choice) {
+    main_menu();
+  } else if (2 == choice) {
+    cout << "OK Byeeee\n\n";
+  }
+   else {
+    cout << "That's not a valid choice, please try again." << endl;
+    cin.ignore(); // clear the user input
+    main_menu();  // try again
+  }
+
+}
+
+void choice_wall() { cout << "TODO: Write something here" << endl; }
