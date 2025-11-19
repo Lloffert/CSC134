@@ -1,5 +1,5 @@
 /*
-M5HW1 - Silver
+M5HW1 - Bronze
 CSC 134
 Lydia Loffert
 11/3/2025
@@ -38,17 +38,17 @@ int main() {
     cout << "\nEnter month: ";
     cin >> month2;
     cout << "Enter rainfall for " << month2 << " (in inches): ";
-    cin >> rainfall1;
+    cin >> rainfall2;
 
     cout << "\nEnter month: ";
     cin >> month3;
     cout << "Enter rainfall for " << month3 << " (in inches): ";
-    cin >> rainfall1;
+    cin >> rainfall3;
 
     
-    // Calculate rainfall avergae restricted to 2 decimal points
-    rainAvg = (rainfall1 + rainfall2 + rainfall3) / 3;
-    cout << "\nThe average rainfall for " << month1 << ", " << month2 << ", and " << month3 << " is " << setprecision(2) << rainAvg << " inches.\n\n";
+    // Calculate rainfall average restricted to 2 decimal points
+    rainAvg = (rainfall1 + rainfall2 + rainfall3) / 3.0;
+    cout << "\nThe average rainfall for " << month1 << ", " << month2 << ", and " << month3 << " is " << setprecision(3) << rainAvg << " inches.\n\n";
 
 }
 
