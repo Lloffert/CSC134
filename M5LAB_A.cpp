@@ -14,11 +14,61 @@ void exercise1_healthRegen();
 void exercise2_levelUpStats();
 void exercise3_inventorySystem();
 
+
 int main() {
-    exercise1_healthRegen();
+
+    //MAIN MENU
+    int choice;
+    cout << "==================================" << endl;
+    cout << " LAB 7: LOOP FUNDAMENTALS " << endl;
+    cout << "==================================" << endl;
+    cout << "1. Exercise 1: Health Regeneration" << endl;
+    cout << "2. Exercise 2: Level Up Stats" << endl;
+    cout << "3. Exercise 3: Inventory System" << endl;
+    cout << "4. Run All Exercises" << endl;
+    cout << "5. Exit" << endl;
+    cout << "==================================" << endl;
+
+    cout << "Choice: ";
+    cin >> choice;
+
+    switch(choice)
+    {
+        case 1:
+            exercise1_healthRegen();
+            break;
+
+        case 2:
+            exercise2_levelUpStats();
+            break;
+
+        case 3:
+            exercise3_inventorySystem();
+            break;
+
+        case 4:
+            exercise1_healthRegen();
+            cout << endl;
+            exercise2_levelUpStats();
+            cout << endl;
+            exercise3_inventorySystem();
+            break;
+
+        case 5:
+            cout << "Goodbye!" << endl;
+            break;
+
+        default:
+        cout << "Invalid choice!" << endl;
+    }
+        return 0;
 }
 
+
 void exercise1_healthRegen() {
+
+    cout << "EXCERCISE 1 HEALTH REGENERATION";
+    cout << "-------------------------------";
 
     int maxHP = 100;
     int hp    = 10;
@@ -43,10 +93,51 @@ void exercise1_healthRegen() {
         }
         cout << " HP: " << hp << "/" << maxHP << endl;
     }
-    cout << "Fully rested." << endl;    
+    cout << "Fully rested.\n\n" << endl;    
 }
 
 void exercise2_levelUpStats() {
-    
+    cout << "\nEXERCISE 2: LEVEL UP STATS\n";
+    cout << "--------------------------\n";
+
+    // Base stats at level 0
+    const int BASE_STR = 10;
+    const int BASE_DEX = 8;
+    const int BASE_INT = 12;
+
+    // TODO: Display table header
+    cout << "\nLevel |  STR  |  DEX  |   INT" << endl;
+    cout << "------|-------|-------|-------" << endl;
+
+    // TODO: Implement your for loop here
+    for (int level = 1; level <= 10; level++)
+    {
+        int strength = 10 + (level * 2);
+        int dexterity = 8 + (level * 3);
+        int intelligence = 12 + (level * 1);
+
+        cout << "   " << level << "  |  " << strength << "   |  " << dexterity << "   |   " << intelligence << endl;
+    }
+
+    // Level 10 stats:
+    int finalStr = 10 + (10 * 2); // = 30
+    int finalDex = 8 +  (10 * 3); // = 38
+    int finalInt = 12 + (10 * 1); // = 22
+
+    // Level 1 stats:
+    int startStr = 10 + (1 * 2);  // = 12
+    int startDex = 8 +  (1 * 3);  // = 11
+    int startInt = 12 + (1 * 1);  // = 13
+
+    // Growth:
+    int strGrowth = finalStr - startStr;
+    int dexGrowth = finalDex - startDex;
+    int intGrowth = finalInt - startInt;
+    cout << "Total Growth: STR +" << strGrowth << ", DEX +" << dexGrowth << ", INT +" << intGrowth << endl;
+
+}
+
+void exercise3_inventorySystem() {
+    cout << "PLACEHOLDER";
 }
 
