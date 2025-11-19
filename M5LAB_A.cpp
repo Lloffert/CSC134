@@ -133,11 +133,56 @@ void exercise2_levelUpStats() {
     int strGrowth = finalStr - startStr;
     int dexGrowth = finalDex - startDex;
     int intGrowth = finalInt - startInt;
-    cout << "Total Growth: STR +" << strGrowth << ", DEX +" << dexGrowth << ", INT +" << intGrowth << endl;
+    cout << "Total Growth: STR +" << strGrowth << ", DEX +" << dexGrowth << ", INT +" << intGrowth << endl << endl;
 
 }
 
 void exercise3_inventorySystem() {
-    cout << "PLACEHOLDER";
+
+    cout << "\nEXERCISE 3: INVENTORY SYSTEM\n";
+    cout << "----------------------------\n\n";
+
+    string equipment[5] = 
+    {
+    "Flat Soda",
+    "Rubber Band",
+    "Safety Helmet",
+    "Key Card",
+    "Gross Lunch"
+    };
+
+    cout << "=== YOUR INVENTORY ===" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << (i + 1) << ". " << equipment[i] << endl;
+        // ^^^^^^^
+        // Add 1 so users see 1-5 instead of 0-4
+    }
+
+    string searchTerm;
+    cout << "Enter item to search for: ";
+    cin.ignore(); // Important! Clears leftover newline
+    getline(cin, searchTerm);
+
+    bool found = false;
+    int position = -1;
+    for (int i = 0; i < 5; i++) 
+    {
+        if (equipment[i] == searchTerm) 
+        {
+            found = true;
+            position = i;
+            break; // Stop looking once we find it
+        }
+    }
+
+    if (found) {
+        cout << "Found \"" << searchTerm << "\" in slot "
+        << (position + 1) << "!" << endl;
+        // ^^^^^^^^^^^^^
+        // Add 1 to show users slot 1-5 instead of 0-4
+    } 
+    else {
+        cout << "\"" << searchTerm << "\" not found in inventory." << endl;
+    }
 }
 
