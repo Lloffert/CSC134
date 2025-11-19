@@ -9,8 +9,8 @@ using namespace std;
 // ============================================================================
 // GLOBAL VARIABLES - Accessible to all functions
 // ============================================================================
-// The super soaker's cartridges ('W' = Water, 'S' = Slime)
-vector<char> superSoaker;
+// The staple gun's cartridges ('C' = Clippy, 'S' = Staple)
+vector<char> stapleGun;
 
 // Player scores
 int playerScore = 3;
@@ -24,10 +24,10 @@ bool gameOver = false;
 // FUNCTION PROTOTYPES
 // ============================================================================
 void setupGame();
-void loadSuperSoaker(int waterCount, int slimeCount);
-void shuffleSuperSoaker();
+void load_stapleGun(int clippyCount, int stapleCount);
+void shuffle_stapleGun();
 void displayGameState();
-void displaySuperSoaker(bool showContents);
+void display_stapleGun(bool showContents);
 char fireShot();
 void playerTurn();
 void opponentTurn();
@@ -39,13 +39,13 @@ void checkGameOver();
 int main() {
     srand(time(0));  // Seed random number generator
     
-    cout << "╔════════════════════════════════════════╗" << endl;
-    cout << "║     SLIME ROULETTE: SUPER SOAKER      ║" << endl;
-    cout << "║    The Work-Safe Russian Roulette     ║" << endl;
-    cout << "╚════════════════════════════════════════╝" << endl;
+    cout << "╔═══════════════════════════════════════════╗" << endl;
+    cout << "║              STAPLE ROULETTE:             ║" << endl;
+    cout << "║  (Crappy but non-lethal Russian Roulette) ║" << endl;
+    cout << "╚═══════════════════════════════════════════╝" << endl;
     cout << "\nRules:" << endl;
-    cout << "🔵 Blue cartridges = Harmless water (you get another turn!)" << endl;
-    cout << "🟢 Green cartridges = Slime (lose a point!)" << endl;
+    cout << "📎 Harmless Clippy = He'll bounce right off you he's a pacifist (you get another turn!)" << endl;
+    cout << "💥 Staple hit! = (lose a point!)" << endl;
     cout << "First to 0 points loses!\n" << endl;
     
     setupGame();
@@ -60,9 +60,9 @@ int main() {
         
         checkGameOver();
         
-        // If super soaker is empty, reload for next round
-        if (superSoaker.empty() && !gameOver) {
-            cout << "\n💦 Super soaker is empty! Reloading for next round..." << endl;
+        // If staple gun is empty, reload for next round
+        if (stapleGun.empty() && !gameOver) {
+            cout << "\n[...] Staple gun is empty! Reloading for next round..." << endl;
             cout << "Press Enter to continue...";
             cin.ignore();
             cin.get();
@@ -76,9 +76,9 @@ int main() {
     cout << "╚════════════════════════════════════════╝" << endl;
     
     if (playerScore <= 0) {
-        cout << "💚 You got slimed! Opponent wins!" << endl;
+        cout << "🚑 You're Out! Opponent wins!" << endl;
     } else {
-        cout << "🎉 You win! Opponent got slimed!" << endl;
+        cout << "🎉 You win! Opponent loses!" << endl;
     }
     
     return 0;
@@ -90,34 +90,34 @@ int main() {
 
 void setupGame() {
     // Clear any existing cartridges
-    superSoaker.clear();
+    stapleGun.clear();
     
-    // Load the super soaker with random cartridges
-    int waterCount = 2 + rand() % 3;  // 2-4 water cartridges
-    int slimeCount = 2 + rand() % 2;  // 2-3 slime cartridges
+    // Load the staple gun with random cartridges
+    int clippyCount = 2 + rand() % 3;  // 2-4 clippy cartridges
+    int stapleCount = 2 + rand() % 2;  // 2-3 staple cartridges
     
-    loadSuperSoaker(waterCount, slimeCount);
-    shuffleSuperSoaker();
+    load_stapleGun(clippyCount, stapleCount);
+    shuffle_stapleGun();
     
-    cout << "\n🔫 Super soaker loaded!" << endl;
-    displaySuperSoaker(false);  // Show counts but not order
+    cout << "\n🔫 Staple gun loaded!" << endl;
+    display_stapleGun(false);  // Show counts but not order
 }
 
-void loadSuperSoaker(int waterCount, int slimeCount) {
-    // Add water cartridges
-    for (int i = 0; i < waterCount; i++) {
-        superSoaker.push_back('W');
+void load_stapleGun(int clippyCount, int stapleCount) {
+    // Add staple cartridges
+    for (int i = 0; i < clippyCount; i++) {
+        stapleGun.push_back('C');
     }
     
-    // Add slime cartridges
-    for (int i = 0; i < slimeCount; i++) {
-        superSoaker.push_back('S');
+    // Add staple cartridges
+    for (int i = 0; i < stapleCount; i++) {
+        stapleGun.push_back('S');
     }
 }
 
-void shuffleSuperSoaker() {
+void shuffle_stapleGun() {
     // Shuffle the cartridges so players don't know the order
-    random_shuffle(superSoaker.begin(), superSoaker.end());
+    random_shuffle(stapleGun.begin(), stapleGun.end());
 }
 
 // ============================================================================
@@ -125,31 +125,31 @@ void shuffleSuperSoaker() {
 // ============================================================================
 
 void displayGameState() {
-    cout << "\n┌─────────────────────────────────────┐" << endl;
+    cout << "\n┌─────────────────────────────────────────┐" << endl;
     cout << "│  Player: " << playerScore << " points   Opponent: " << opponentScore << " points  │" << endl;
-    cout << "└─────────────────────────────────────┘" << endl;
+    cout << "└─────────────────────────────────────────┘" << endl;
 }
 
-void displaySuperSoaker(bool showContents) {
-    int waterCount = 0;
-    int slimeCount = 0;
+void display_stapleGun(bool showContents) {
+    int clippyCount = 0;
+    int stapleCount = 0;
     
     // Count each type using a range-based for loop
-    for (char cartridge : superSoaker) {
-        if (cartridge == 'W') waterCount++;
-        else slimeCount++;
+    for (char cartridge : stapleGun) {
+        if (cartridge == 'C') clippyCount++;
+        else stapleCount++;
     }
     
-    cout << "Super Soaker contents: ";
-    cout << "🔵 " << waterCount << " water, ";
-    cout << "🟢 " << slimeCount << " slime";
-    cout << " (" << superSoaker.size() << " total)" << endl;
+    cout << "Staple gun contents: ";
+    cout << "📎 " << clippyCount << " Clippys, ";
+    cout << "💥 " << stapleCount << " Staples";
+    cout << " (" << stapleGun.size() << " total)" << endl;
     
     // For debugging/demonstration - show actual order
     if (showContents) {
         cout << "Actual order: ";
-        for (char cartridge : superSoaker) {
-            cout << (cartridge == 'W' ? "🔵" : "🟢") << " ";
+        for (char cartridge : stapleGun) {
+            cout << (cartridge == 'C' ? "📎" : "💥") << " ";
         }
         cout << endl;
     }
@@ -163,15 +163,15 @@ char fireShot() {
     // Fire the next cartridge (remove from front of vector)
     // This is why we use a vector - easy to remove from front!
     
-    if (superSoaker.empty()) {
+    if (stapleGun.empty()) {
         return 'E';  // Empty!
     }
     
     // Get the first cartridge
-    char cartridge = superSoaker.front();
+    char cartridge = stapleGun.front();
     
-    // Remove it from the super soaker
-    superSoaker.erase(superSoaker.begin());
+    // Remove it from the staple gun
+    stapleGun.erase(stapleGun.begin());
     
     return cartridge;
 }
@@ -182,7 +182,7 @@ char fireShot() {
 
 void playerTurn() {
     displayGameState();
-    displaySuperSoaker(false);
+    display_stapleGun(false);
     
     cout << "\n>>> YOUR TURN <<<" << endl;
     cout << "Fire at: [1] Yourself  [2] Opponent" << endl;
@@ -197,34 +197,34 @@ void playerTurn() {
         cin >> choice;
     }
     
-    cout << "\n💦 *SPLASH!* ";
+    cout << "\n *CHA-CHUNK!!* ";
     char result = fireShot();
     
-    if (result == 'W') {
-        cout << "🔵 Water! " << endl;
+    if (result == 'C') {
+        cout << "📎 Clippy! " << endl;
         if (choice == 1) {
-            cout << "You're wet but safe! You get another turn!" << endl;
+            cout << "Clippy bounces right off! You get another turn!" << endl;
             // Player keeps their turn (currentPlayer stays "Player")
         } else {
-            cout << "Opponent is soaked but unharmed." << endl;
+            cout << "Opponent is annoyed but unharmed." << endl;
             currentPlayer = "Opponent";  // Switch turns
         }
     } else if (result == 'S') {
-        cout << "🟢 SLIME!" << endl;
+        cout << "💥 Stapled!!" << endl;
         if (choice == 1) {
-            cout << "You got slimed! -1 point!" << endl;
+            cout << "You got stapled! -1 point!" << endl;
             playerScore--;
         } else {
-            cout << "Opponent got slimed! -1 point!" << endl;
+            cout << "Opponent got stapled! -1 point!" << endl;
             opponentScore--;
         }
-        currentPlayer = "Opponent";  // Switch turns after slime
+        currentPlayer = "Opponent";  // Switch turns after staple
     }
 }
 
 void opponentTurn() {
     displayGameState();
-    displaySuperSoaker(false);
+    display_stapleGun(false);
     
     cout << "\n>>> OPPONENT'S TURN <<<" << endl;
     cout << "Press Enter to see opponent's choice...";
@@ -240,28 +240,28 @@ void opponentTurn() {
         cout << "Opponent fires at you!" << endl;
     }
     
-    cout << "\n💦 *SPLASH!* ";
+    cout << "\n *CHA-CHUNK!* ";
     char result = fireShot();
     
-    if (result == 'W') {
-        cout << "🔵 Water!" << endl;
+    if (result == 'C') {
+        cout << "📎 Clippy!" << endl;
         if (choice == 1) {
-            cout << "Opponent is wet but gets another turn!" << endl;
+            cout << "Opponent is annoyed but unharmed!" << endl;
             // Opponent keeps their turn
         } else {
-            cout << "You're soaked but unharmed." << endl;
+            cout << "Clippy bounces right off!" << endl;
             currentPlayer = "Player";  // Switch turns
         }
     } else if (result == 'S') {
-        cout << "🟢 SLIME!" << endl;
+        cout << "💥 Stapled!" << endl;
         if (choice == 1) {
-            cout << "Opponent got slimed! -1 point!" << endl;
+            cout << "Opponent got stapled! -1 point!" << endl;
             opponentScore--;
         } else {
-            cout << "You got slimed! -1 point!" << endl;
+            cout << "You got stapled! -1 point!" << endl;
             playerScore--;
         }
-        currentPlayer = "Player";  // Switch turns after slime
+        currentPlayer = "Player";  // Switch turns after staple
     }
 }
 
