@@ -142,20 +142,21 @@ void exercise3_inventorySystem() {
     cout << "\nEXERCISE 3: INVENTORY SYSTEM\n";
     cout << "----------------------------\n\n";
 
-    string equipment[5] = 
+    string equipment[6] = 
     {
     "Flat Soda",
     "Rubber Band",
     "Safety Helmet",
     "Key Card",
-    "Gross Lunch"
+    "Gross Lunch",
+    "Old Shoe"
     };
 
     cout << "=== YOUR INVENTORY ===" << endl;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         cout << (i + 1) << ". " << equipment[i] << endl;
         // ^^^^^^^
-        // Add 1 so users see 1-5 instead of 0-4
+        // Add 1 so users see 1-6 instead of 0-5
     }
 
     string searchTerm;
@@ -165,7 +166,7 @@ void exercise3_inventorySystem() {
 
     bool found = false;
     int position = -1;
-    for (int i = 0; i < 5; i++) 
+    for (int i = 0; i < 6; i++) 
     {
         if (equipment[i] == searchTerm) 
         {
@@ -179,7 +180,7 @@ void exercise3_inventorySystem() {
         cout << "Found \"" << searchTerm << "\" in slot "
         << (position + 1) << "!" << endl;
         // ^^^^^^^^^^^^^
-        // Add 1 to show users slot 1-5 instead of 0-4
+        // Add 1 to show users slot 1-6 instead of 0-5
     } 
     else {
         cout << "\"" << searchTerm << "\" not found in inventory." << endl;
