@@ -17,7 +17,7 @@ int main() {
 
     // Question1();
     Question2();
-
+    Question3();
 
     return 0;
 }   
@@ -84,17 +84,33 @@ Input Validation: no side can be zero or less.
     // Get dimensions from user
     cout << "Enter rectangle width: ";
     cin >> width;
+    if (width <= 0) {
+        cout << "No side can be zero or less, please enter a valid dimension\n\n";
+        Question2();
+    }
 
     cout << "Enter rectangle length: ";
     cin >> length;
+    if (length <= 0) {
+        cout << "No side can be zero or less, please enter a valid dimension\n\n";
+        Question2();
+    }
 
     cout << "Enter rectangle height: ";
     cin >> height;
+    if (height <= 0) {
+        cout << "No side can be zero or less, please enter a valid dimension\n\n";
+        Question2();
+    }
 
     // calculate volume
     volume = length * width * height;
     cout << "The volume of the rectangle is: " << volume << " inches\n\n";
 
+}
+
+void Question3() {
+    cout << "PLACEHOLDER";
 }
 
 
