@@ -1,3 +1,9 @@
+/*
+CSC 134
+M6LAB1
+Lydia Loffert
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
