@@ -1,0 +1,109 @@
+:: StoryTitle
+Final_Project
+
+
+:: StoryData
+{
+  "ifid": "19540068-885D-45BE-9E5A-C38CDE644DD3",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "PROLOGUE",
+  "zoom": 1
+}
+
+
+:: ABDUCTEE {"position":"900,700","size":"100,100"}
+
+
+
+:: BOSSOFFICE {"position":"700,100","size":"100,100"}
+
+
+
+:: CARNSTAND {"position":"1200,100","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->FAIRGROUND]]
+
+
+:: EATFOOD {"position":"1300,100","size":"100,100"}
+
+
+
+:: ELEVATOR {"position":"700,300","size":"100,100"}
+
+
+
+:: FAIRGROUND {"position":"1000,100","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->CARNSTAND]]
+
+
+:: HANGAR {"position":"500,300","size":"100,100"}
+
+
+
+:: INSIDE_WS {"position":"1200,275","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->WEATHERSTATION]]
+
+
+:: LAB {"position":"1000,700","size":"100,100"}
+
+
+
+:: OFFICEBUILDING {"position":"700,525","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->RECEPTION]]
+
+
+:: OFFICES {"position":"700,200","size":"100,100"}
+
+
+
+:: PHONEBOOTH {"position":"1000,400","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->POOL]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->FAIRGROUND]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->OFFICEBUILDING]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->WEATHERSTATION]]
+
+
+:: POOL {"position":"1000,600","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+
+:: PROLOGUE {"position":"900,300","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+
+
+
+:: RECEPTION {"position":"700,400","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->OFFICEBUILDING]]
+
+
+:: RIDE {"position":"1000,0","size":"100,100"}
+
+
+
+:: THROWUP {"position":"900,0","size":"100,100"}
+I think we can get away with just one illustration of the throwup and the attendant speaking to you
+
+Maybe you can do a more comic book style second panels that pop up after the text.
+
+
+:: WEATHERSTATION {"position":"1200,400","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->INSIDE_WS]]
+
+
+:: StoryStylesheet [stylesheet]
+body {
+ background-color: white;
+ color: darkgrey;
+ font-family: Futura,Impact,Helvetica,sans-serif;
+ font-size: 90%;
+}
