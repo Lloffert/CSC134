@@ -51,6 +51,10 @@ enum Room {
 };
 
 int main() {
+
+    // Items
+    bool hasKey = false;
+
     // Room names array
     string roomNames[NUM_ROOMS] = {
         "Foyer",
@@ -118,6 +122,24 @@ int main() {
     connections[CELL][EAST] = -1;            // No connection east
     connections[CELL][SOUTH] = -1;           // No connection south
     connections[CELL][WEST] = FOYER;         // Holding Cell -> west -> Foyer
+
+    // Create objects here
+
+    // Item names array
+    const int NUM_ITEMS = 2;
+    string itemName[NUM_ITEMS] = {
+        "Key",
+        "NPC"
+    };
+
+    // Item location array
+    int itemLoc[NUM_ITEMS] = {
+        ARCHIVE,
+        POOL
+    };
+
+    // array of string itemname[] 
+    // array of int itemloc[] -> has the room # it's found in.
     
     // Game state
     int currentRoom = FOYER; // Start in the Foyer
@@ -129,6 +151,20 @@ int main() {
         cout << "\nYou are in the " << roomNames[currentRoom] << endl;
         cout << roomDescriptions[currentRoom] << endl;
         
+        // Put events either before or after exits.
+        /*
+            pseudocode for items:
+            - Array of item names, and item locations
+              example: itemname[KEY] = "key";
+                       itemloc[KEY]  = ARCHIVE;
+            for (i in itemloc) {
+                if (itemloc[i] == current_room) {
+                    // item is here
+                    cout << itemname[i] << endl;
+                }
+            }
+        */
+
         // Show available exits
         cout << "Exits: ";
         bool hasExits = false;
@@ -142,6 +178,12 @@ int main() {
             cout << "none";
         }
         cout << endl;
+
+        // EXAMPLE EVENT (terrible)
+        if (currentRoom == ARCHIVE) {
+            // if the key's still here, show it, otherwise don't
+            cout << "There's a key here or something" << endl;
+        }
         
         // Get player input
         string command;
