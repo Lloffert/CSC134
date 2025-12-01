@@ -72,6 +72,15 @@ https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TW
 ]
 }
 
+DATAMAP STUFF THAT DIDNT WORRKK. (was prev in Setup)
+(set: $inventory to (datamap: 
+    "card", "https://lloffert.github.io/TWEE_card.png", 
+    "key", "https://lloffert.github.io/TWEE_hKey.png",
+    "jim", "https://lloffert.github.io/TWEE_Jim.png",
+    "coins", "https://lloffert.github.io/TWEE_Coins.png",
+    "ring", "https://lloffert.github.io/TWEE_Ring.png"
+))
+
 
 
 CRAP THAT NEEDS TO GO BACK INTO PHONEBOOTH LATER WHEN I GET THE INVENTORY FIGURED OUT:
@@ -92,19 +101,14 @@ https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TW
 [[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->WEATHERSTATION]]
 
 
-:: Inventory [widget] {"position":"1500,100","size":"100,100"}
-(set: _itemName to _args/0)
-(set: _imageURL to $inventory's (_itemName))
-<div style="display:inline-block; text-align:center; margin: 10px; border: 1px solid #ccc; padding: 5px; border-radius: 5px;">
-    <img src="_imageURL" style="width: 80px; height: 80px; display: block; margin: auto;" alt="_itemName">
-    <br>
-    _itemName
-</div>
-
-
-:: InventoryDisplay {"position":"1600,100","size":"100,100"}
-(for: each _item, ...$inventoryList)[
-    (display: "Inventory" ... (a: _item))
+:: Inventory {"position":"1500,100","size":"100,100"}
+(if: $inventory's length > 0)[
+(set: _html to "<div style='text-align:left;'>")
+(for: each _item, ...$inventory)[
+  (set: _html to _html + "<img src='" + (_item's image) + "' class='inventory-item'>")
+]
+(set: _html to _html + "</div>")
+(print: _html)
 ]
 
 
@@ -142,13 +146,24 @@ https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TW
 </div>
 }
 
-(set: $inventoryList to it + (a: "key"))
+(set: $inventory to $inventory + (a: (dm:
+    "name", "Card",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png"
+)))
 
-(display: "InventoryDisplay")
+(set: $inventory to $inventory + (a: (dm:
+    "name", "Key",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_hKey.png"
+)))
 
-There’s only a phone booth all on it’s lonesome, just like you.
 
 
+(display: "Inventory")
+
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
 
 
 :: POOL {"position":"1000,600","size":"100,100"}
@@ -158,9 +173,7 @@ There’s only a phone booth all on it’s lonesome, just like you.
 
 
 :: PROLOGUE {"position":"900,300","size":"100,100"}
-
-Somewhere in an unnamed county in the rust belt...
-A young(-ish) man wakes up in an empty field without a clue of how he got there.
+PLACEHOLDER
 
 
 (text-colour:orange)[Would you like a quick tutorial before you begin?]
@@ -168,8 +181,6 @@ A young(-ish) man wakes up in an empty field without a clue of how he got there.
 [[Go to tutorial |TUTORIAL]]
 
 [[No thanks, proceed |PHONEBOOTH]]
-
-
 
 
 :: RECEPTION {"position":"700,400","size":"100,100"}
@@ -180,20 +191,11 @@ A young(-ish) man wakes up in an empty field without a clue of how he got there.
 
 
 
-:: STARTUP [startup] {"position":"1700,100","size":"100,100"}
-(set: $inventory to (datamap: 
-    "card", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_Card.png", 
-    "key", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_hKey.png",
-    "jim", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_Jim.png",
-    "coins", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_Coins.png",
-    "ring", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_Ring.png"
-))
-
-(set: $inventoryList to (a:))
+:: Setup [startup] {"position":"1600,100","size":"100,100"}
+(set: $inventory to (a:))
 
 (set: $hasCard to false)
 (set: $hasJim to false)
-
 
 
 :: THROWUP {"position":"900,0","size":"100,100"}
@@ -228,35 +230,51 @@ body {
  font-size: 90%;
 }
 
-<style>
 .container {
     position: relative;
 }
+
 .scene {
-  	position: absolute;
+    position: absolute;
 }
+
 .leftside {
     position: absolute;
     z-index: 10;
-  	top: 230px;
-  	left: -80px;
+    top: 230px;
+    left: -80px;
 }
+
 .rightside {
     position: absolute;
     z-index: 10;
-  	top: 230px;
-  	left: 810px;
+    top: 230px;
+    left: 810px;
 }
+
 .forward {
     position: absolute;
     z-index: 10;
-  	top: -50px;
-  	left: 350px;
+    top: -50px;
+    left: 350px;
 }
+
 .back {
     position: absolute;
     z-index: 10;
-  	top: 350px;
-  	left: 350px;
+    top: 350px;
+    left: 350px;
 }
-</style>
+
+.inventory-item {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 2px solid #666;
+    padding: 5px;
+    background: #222;
+    border-radius: 5px;
+    margin: 10px;
+    vertical-align: top;
+}

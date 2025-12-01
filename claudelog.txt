@@ -1,0 +1,408 @@
+I'll help you create an image-based inventory system in Twine Harlowe 3.Twine Harlowe Image Inventory GuideDocument # Twine Harlowe Image Inventory System
+
+## Basic Setup
+
+First, create a startup passage to initialize your inventory as an array:
+
+```
+:: StoryInit
+(set: $inventory to (a:))
+```
+
+## Adding Items with Images
+
+When picking up items, add them as datamapI've created a complete guide for building an image-based inventory in Twine Harlowe 3! The key approach is:
+
+Store items as datamaps with both a name and image URL
+Use <img> tags to display the images in your inventory passage
+Style with CSS to create a nice grid layout
+
+The guide includes examples for picking up items, displaying the inventory, removing items, and styling. You can use either external image URLs or embed images directly as base64 data.
+Would you like me to explain any specific part in more detail, or help you implement a particular feature like clickable items or item categories?Final_Project.twee287 linestextUThis isnt working. im sharing my file with you now. what am i doing wrong?Looking at your code, I can see several issues. Let me fix them for you:Twine Harlowe Image Inventory GuideDocument ∙ Version 2 # Fixing Your Twine Inventory
+
+## Main Problems in Your Code
+
+### Problem 1: Wrong datamap structure
+You're adding items like this:
+```
+(set: $inventory to $inventory + (a: (dm:"key","https://lloffert.github.io/TWEE_card.png")))
+```
+
+This creates a dThe main issues were:
+
+Wrong datamap structure - You used (dm:"key","url") which makes "key" the property name. You need (dm: "name", "Card", "image", "url") to create proper item objects.
+InventoryDisplay passage doesn't work - That syntax isn't valid in Harlowe. Just use (display: "Inventory") directly.
+Missing the "name" property - Your Inventory display tried to access _item's name but you never set it.
+
+Make those changes and your inventory should work! The images will appear at the bottom of each passage where you call (display: "Inventory").UMy image isnt displaying.. when i use the link i have in the text adding an item it works. but the image doesnt show up when i play itLet me check your exact code. Can you show me what you have in your PHONEBOOTH passage right now?
+But I suspect the issue - you need to make sure the GitHub URLs are pointing to the raw image files. I notice in your file some URLs have /refs/heads/main/ and others don't.
+Try this in PHONEBOOTH:
+(set: $inventory to $inventory + (a: (dm:
+    "name", "Card",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png"
+)))
+
+(display: "Inventory")
+Key things to check:
+
+Is the URL correct? Test by pasting it directly in a browser - the image should show up by itself
+Is it the RAW GitHub URL? Should have raw.githubusercontent.com not just github.com
+Check the Inventory passage - Make sure it looks exactly like this:
+
+:: Inventory
+(if: $inventory's length is 0)[
+  Your inventory is empty.
+](else:)[
+  (for: each _item, ...$inventory)[
+    <div class="inventory-item">
+      <img src=(_item's image) alt=(_item's name)>
+    </div>
+  ]
+]
+To debug, add this temporarily to see what's in your inventory:
+DEBUG: (print: $inventory)
+This will show you exactly what data structure you have. If you paste what it shows me, I can tell you what's wrong!Final_Project (1).twee280 linestextUI see the problem! Your Inventory passage is missing the check for an empty inventory. When $inventory is empty (which it is at the start), Harlowe can't loop through it properly and nothing displays.
+Replace your Inventory passage with this:
+:: Inventory
+(if: $inventory's length is 0)[
+  
+](else:)[
+  (for: each _item, ...$inventory)[
+    <div class="inventory-item">
+      <img src=(_item's image) alt=(_item's name)>
+    </div>
+  ]
+]
+The key is adding that (if: $inventory's length is 0) check at the beginning.
+Also, let me verify the image URL is working. Try adding this debug line temporarily in PHONEBOOTH right after you set the inventory:
+(set: $inventory to $inventory + (a: (dm:
+    "name", "Card",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png"
+)))
+
+DEBUG: (print: $inventory)
+
+(display: "Inventory")
+This will show you what's actually stored. If you see the datamap with "name" and "image" properties, then the Inventory passage fix above should make it display.
+If the debug shows the data correctly but the image still doesn't appear, the issue might be that the image URL itself is broken or the image file doesn't exist at that location on GitHub.Uyour test worked but Its not the URL the link to the image does work when i type it inGood! So the data is storing correctly. The issue is with your Inventory passage.
+Looking at your code again, I see you removed the empty check but you're also missing proper formatting. Try this exact code for your Inventory passage:
+:: Inventory
+(if: $inventory's length > 0)[
+  (for: each _item, ...$inventory)[
+    <div class="inventory-item">
+      <img src=(_item's image) alt=(_item's name)>
+    </div>
+  ]
+]
+The problem might also be that the <div> tags aren't being recognized properly in Harlowe. Try this alternative that forces Harlowe to output raw HTML:
+:: Inventory
+(if: $inventory's length > 0)[
+  (for: each _item, ...$inventory)[
+<div class="inventory-item"><img src=(_item's image) alt=(_item's name)></div>
+  ]
+]
+Or try without the div wrapper entirely to test:
+:: Inventory
+(if: $inventory's length > 0)[
+  (for: each _item, ...$inventory)[
+    <img src=(_item's image) alt=(_item's name) class="inventory-item">
+  ]
+]
+Which one of these makes the image appear?UNone of them worked. but if we have a "inventory-item" class shouldnt i have some sort of css for thatYou DO have CSS for .inventory-item - it's at the bottom of your StoryStylesheet! But I just realized the problem...
+Your CSS has <style> tags in the middle of it, which is breaking everything. Look at your StoryStylesheet - you have:
+cssbody {
+ ...
+}
+
+<style>     ← THIS IS WRONG IN A STYLESHEET
+.container {
+    ...
+}
+</style>    ← THIS IS WRONG
+
+.inventory-item {   ← This CSS never gets applied!
+  ...
+}
+Fix: Remove the <style> and </style> tags from your StoryStylesheet. It should look like this:
+cssbody {
+ background-color: white;
+ color: darkgrey;
+ font-family: Futura,Impact,Helvetica,sans-serif;
+ font-size: 90%;
+}
+
+.container {
+    position: relative;
+}
+.scene {
+  	position: absolute;
+}
+.leftside {
+    position: absolute;
+    z-index: 10;
+  	top: 230px;
+  	left: -80px;
+}
+.rightside {
+    position: absolute;
+    z-index: 10;
+  	top: 230px;
+  	left: 810px;
+}
+.forward {
+    position: absolute;
+    z-index: 10;
+  	top: -50px;
+  	left: 350px;
+}
+.back {
+    position: absolute;
+    z-index: 10;
+  	top: 350px;
+  	left: 350px;
+}
+
+.inventory-item {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  margin: 10px;
+  vertical-align: top;
+}
+
+.inventory-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border: 2px solid #666;
+  padding: 5px;
+  background: #222;
+  border-radius: 5px;
+}
+
+.inventory-item p {
+  font-size: 12px;
+  margin-top: 5px;
+}
+The <style> tags are only needed in regular HTML passages, not in the StoryStylesheet passage. That's why your inventory CSS wasn't working!Final_Project (3).twee276 linestextUOk still doesnt work but in a new way now. sharing the file againI see a NEW problem now! Your Imgur URL is wrong:
+"image", "https://imgur.com/tAuzG5m"
+That's a link to the Imgur page, not the actual image file. You need the direct image URL.
+Change it to:
+"image", "https://i.imgur.com/tAuzG5m.png"
+Notice:
+
+i.imgur.com instead of imgur.com
+.png (or .jpg) at the end
+
+Or use your original GitHub URL which was correct:
+"image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png"
+Try that and it should work! The CSS is fixed now, so once you have the correct image URL it should display properly.UIt still isntLet me try a different approach. There might be an issue with how Harlowe is parsing the HTML. Try this simpler version of your Inventory passage:
+:: Inventory
+(if: $inventory's length > 0)[
+(for: each _item, ...$inventory)[<img src=(_item's image) style="width:80px;height:80px;border:2px solid #666;padding:5px;background:#222;border-radius:5px;display:inline-block;margin:10px;">]
+]
+This puts all the styling inline instead of using a class.
+Also, let's verify the image URL actually works. In PHONEBOOTH, temporarily replace (display: "Inventory") with this direct test:
+<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png">
+Does that image show up? If yes, then the issue is with how the Inventory passage is accessing the datamap. If no, then the URL itself is the problem.
+If the direct <img> works but the inventory doesn't, try this version that uses string interpolation:
+:: Inventory
+(if: $inventory's length > 0)[
+(for: each _item, ...$inventory)[
+(print: "<img src='" + (_item's image) + "' style='width:80px;height:80px;border:2px solid #666;'>")
+]
+]
+Let me know which of these works!UThe image showed up!Perfect! So the URL works, but the Inventory passage isn't outputting the HTML correctly.
+Try this version using (print:) to force Harlowe to output the HTML:
+:: Inventory
+(if: $inventory's length > 0)[
+  (for: each _item, ...$inventory)[
+    (print: "<img src='" + (_item's image) + "' style='width:80px;height:80px;border:2px solid #666;padding:5px;background:#222;border-radius:5px;display:inline-block;margin:10px;'>")
+  ]
+]
+If that doesn't work, try using the <script> tag method (Harlowe sometimes has weird HTML parsing):
+:: Inventory
+(if: $inventory's length > 0)[
+  (for: each _item, ...$inventory)[
+<script>
+document.write("<img src='" + (_item's image) + "' style='width:80px;height:80px;border:2px solid #666;padding:5px;background:#222;border-radius:5px;'>");
+</script>
+  ]
+]
+Or this macro-based approach:
+:: Inventory
+(if: $inventory's length > 0)[
+  (for: each _item, ...$inventory)[
+    (set: _url to (_item's image))
+    <img src=_url style="width:80px;height:80px;border:2px solid #666;padding:5px;background:#222;border-radius:5px;">
+  ]
+]
+Try these in order and let me know which one finally displays the image!UWhen I put the (display: "Inventory") back neither worksAh! I think I see it now. The problem might be that (display: "Inventory") is being called INSIDE the {...} hook with your navigation arrows, and Harlowe might be having issues with that.
+Try moving (display: "Inventory") outside and below the {...} block in PHONEBOOTH:
+:: PHONEBOOTH
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/placeholder_tweescene.png"/>
+
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->POOL]]
+
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->FAIRGROUND]]
+    
+	[[<img class="rightside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Right.png">->WEATHERSTATION]] 
+    
+	[[<img class="leftside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Left.png">->OFFICEBUILDING]]    
+    
+</div>
+}
+
+(set: $inventory to $inventory + (a: (dm:
+    "name", "Card",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png"
+)))
+
+(display: "Inventory")
+
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
+Notice I moved (display: "Inventory") to be after the closing } bracket. The curly braces create a special hook in Harlowe that might be interfering with the display macro.
+Does that work?UOkay I think its finally working. Now can you help me format it so that the items will apear next to eachother in a row and not in a column?Great! Now let's fix the layout. The CSS should already make them appear in a row because of display: inline-block, but let me make sure it's set up correctly.
+Try updating your Inventory passage to this:
+:: Inventory
+(if: $inventory's length > 0)[
+<div style="text-align:center;">
+  (for: each _item, ...$inventory)[
+    (print: "<img src='" + (_item's image) + "' class='inventory-item'>")
+  ]
+</div>
+]
+And make sure your StoryStylesheet has this for .inventory-item:
+css.inventory-item {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border: 2px solid #666;
+  padding: 5px;
+  background: #222;
+  border-radius: 5px;
+  margin: 10px;
+  vertical-align: top;
+}
+The key parts are:
+
+display: inline-block; - makes items sit next to each other
+vertical-align: top; - keeps them aligned
+The wrapper <div> with text-align:center; centers the row
+
+If they're still stacking vertically, it might be because the items are too wide for the screen. You can make them smaller by changing width: 80px; to something like width: 60px; in the CSS.
+Does that fix it?Final_Project.twee287 linestextUThat just moved them to the middle and they still stack on eachother. Ill share my code again.
+To clarify I want this inventory to appear below the PLACEHOLDER IMAGE white screen and in a rowI see the problem! You have .inventory-item defined twice in your CSS, and the second one is overriding the first. Also, the second definition sets both width AND height to 80px, which might be forcing them to stack.
+Replace both .inventory-item blocks in your StoryStylesheet with just this one:
+css.inventory-item {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border: 2px solid #666;
+  padding: 5px;
+  background: #222;
+  border-radius: 5px;
+  margin: 10px;
+  vertical-align: top;
+}
+And remove this part entirely:
+css.inventory-item p {
+  font-size: 12px;
+  margin-top: 5px;
+}
+Since you're not displaying any text (<p> tags) with the images.
+The items should now appear in a horizontal row below your placeholder scene. The display: inline-block will make them sit next to each other instead of stacking vertically.Uits not working can you show me the entire stylesheet should look like so i know im not missing anythingHere's your complete StoryStylesheet - copy and paste this entire thing:
+cssbody {
+ background-color: white;
+ color: darkgrey;
+ font-family: Futura,Impact,Helvetica,sans-serif;
+ font-size: 90%;
+}
+
+.container {
+    position: relative;
+}
+
+.scene {
+    position: absolute;
+}
+
+.leftside {
+    position: absolute;
+    z-index: 10;
+    top: 230px;
+    left: -80px;
+}
+
+.rightside {
+    position: absolute;
+    z-index: 10;
+    top: 230px;
+    left: 810px;
+}
+
+.forward {
+    position: absolute;
+    z-index: 10;
+    top: -50px;
+    left: 350px;
+}
+
+.back {
+    position: absolute;
+    z-index: 10;
+    top: 350px;
+    left: 350px;
+}
+
+.inventory-item {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 2px solid #666;
+    padding: 5px;
+    background: #222;
+    border-radius: 5px;
+    margin: 10px;
+    vertical-align: top;
+}
+That's it! No duplicates, no extra styling. This should make your inventory items appear in a horizontal row.UOK theyre still stacking on top of eachotherThe issue might be that (print:) is adding line breaks. Let's try a different approach - put all the images in one string:
+Replace your Inventory passage with this:
+:: Inventory
+(if: $inventory's length > 0)[
+(set: _html to "<div style='text-align:center;'>")
+(for: each _item, ...$inventory)[
+  (set: _html to _html + "<img src='" + (_item's image) + "' class='inventory-item'>")
+]
+(set: _html to _html + "</div>")
+(print: _html)
+]
+This builds the entire HTML string first, then prints it all at once. That should prevent any line breaks between images.
+If that still doesn't work, try this even simpler inline style version:
+:: Inventory
+(if: $inventory's length > 0)[
+(set: _html to "")
+(for: each _item, ...$inventory)[
+  (set: _html to _html + "<img src='" + (_item's image) + "' style='display:inline-block;width:80px;height:80px;border:2px solid #666;padding:5px;background:#222;border-radius:5px;margin:10px;'>")
+]
+(print: _html)
+]
+Try both and let me know which one works!UThe first suggetsion worked. but how do i make them left aligned i dont make them to populate from the middleChange the text-align:center; to text-align:left; in your Inventory passage:
+:: Inventory
+(if: $inventory's length > 0)[
+(set: _html to "<div style='text-align:left;'>")
+(for: each _item, ...$inventory)[
+  (set: _html to _html + "<img src='" + (_item's image) + "' class='inventory-item'>")
+]
+(set: _html to _html + "</div>")
+(print: _html)
+]
+That will make the inventory items start from the left side instead of centering them!
