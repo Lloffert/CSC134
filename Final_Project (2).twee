@@ -1,0 +1,256 @@
+:: StoryTitle
+Final_Project
+
+
+:: StoryData
+{
+  "ifid": "19540068-885D-45BE-9E5A-C38CDE644DD3",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "PROLOGUE",
+  "tag-colors": {
+    "startup": "yellow",
+    "data": "yellow",
+    "widget": "purple"
+  },
+  "zoom": 1
+}
+
+
+:: ABDUCTEE {"position":"1000,725","size":"100,100"}
+
+
+
+:: BOSSOFFICE {"position":"700,100","size":"100,100"}
+
+
+
+:: CARNSTAND {"position":"1200,100","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->FAIRGROUND]]
+
+
+:: EATFOOD {"position":"1300,100","size":"100,100"}
+
+
+
+:: ELEVATOR {"position":"700,300","size":"100,100"}
+
+
+
+:: FAIRGROUND {"position":"1000,100","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->CARNSTAND]]
+
+
+:: HANGAR {"position":"500,300","size":"100,100"}
+
+
+
+:: HATCH {"position":"1125,600","size":"100,100"}
+This (link-repeat: "bird")[(dialog: "The bird has black and white feathers and glowing red eyes.", "Dismiss")] is strange.
+
+This (link-repeat: "bird")[(dialog: "<img src='https://thumbs.dreamstime.com/b/shock-6260616.jpg' >The bird has black and white feathers and glowing red eyes.", "Dismiss")] is strange.
+
+THIS ONE TAKES YOU TO PASSAGE AFTER POP-UP: what we need
+(link-reveal-goto: "Fight the King of England", "POOL")[(dialog:"You asked for it!")] 
+
+
+TEST TO MAKE DIFF POPUPS DEPENDING ON BOOL
+(set: $hasItem to true)
+
+{
+(if: $hasItem)[
+    (link-reveal: "<img src='
+https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_ring.png'>")[
+        (dialog: "HAS IT", "Dismiss")]
+]
+(else:)[
+    (link-reveal: "<img src='
+https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_ring.png'>")[
+        (dialog: "DOESN'T HAVE IT", "Dismiss")]
+]
+}
+
+
+
+CRAP THAT NEEDS TO GO BACK INTO PHONEBOOTH LATER WHEN I GET THE INVENTORY FIGURED OUT:
+
+{
+(if: $hasJim)[(text-style:"sway")+(text-size:0.8)[Jim: "Hey, what about me?"]]
+}
+
+{
+(if: $hasCard)[
+    (link-reveal: "<img src='
+https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png'>")[
+        (text-colour:orange)(dialog: "You call the number on the card", "Dismiss")]]
+}
+
+
+:: INSIDE_WS {"position":"1200,275","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->WEATHERSTATION]]
+
+
+:: Inventory [widget] {"position":"1500,100","size":"100,100"}
+(set: _itemName to _args/0)
+(set: _imageURL to $inventory's (_itemName))
+<div style="display:inline-block; text-align:center; margin: 10px; border: 1px solid #ccc; padding: 5px; border-radius: 5px;">
+    <img src="_imageURL" style="width: 80px; height: 80px; display: block; margin: auto;" alt="_itemName">
+    <br>
+    _itemName
+</div>
+
+
+:: InventoryDisplay {"position":"1600,100","size":"100,100"}
+(for: each _item, ...$inventoryList)[
+    (display: "Inventory" ... (a: _item))
+]
+
+
+:: JIM JOINS {"position":"1325,275","size":"100,100"}
+
+
+
+:: LAB {"position":"1125,725","size":"100,100"}
+
+
+
+:: OFFICEBUILDING {"position":"700,525","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->RECEPTION]]
+
+
+:: OFFICES {"position":"700,200","size":"100,100"}
+
+
+
+:: PHONEBOOTH {"position":"1000,400","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/placeholder_tweescene.png"/>
+
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->POOL]]
+
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->FAIRGROUND]]
+    
+	[[<img class="rightside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Right.png">->WEATHERSTATION]] 
+    
+	[[<img class="leftside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Left.png">->OFFICEBUILDING]]    
+    
+</div>
+}
+
+(set: $inventoryList to it + (a: "key"))
+
+(display: "InventoryDisplay")
+
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
+PLACEHOLDER TEXT
+
+
+:: POOL {"position":"1000,600","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->HATCH]]
+
+
+:: PROLOGUE {"position":"900,300","size":"100,100"}
+PLACEHOLDER
+
+
+(text-colour:orange)[Would you like a quick tutorial before you begin?]
+
+[[Go to tutorial |TUTORIAL]]
+
+[[No thanks, proceed |PHONEBOOTH]]
+
+
+:: RECEPTION {"position":"700,400","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->OFFICEBUILDING]]
+
+
+:: RIDE {"position":"1000,0","size":"100,100"}
+
+
+
+:: Setup [startup] {"position":"1700,100","size":"100,100"}
+(set: $inventory to (datamap: 
+    "card", "https://lloffert.github.io/TWEE_card.png", 
+    "key", "https://lloffert.github.io/TWEE_hKey.png",
+    "jim", "https://lloffert.github.io/TWEE_Jim.png",
+    "coins", "https://lloffert.github.io/TWEE_Coins.png",
+    "ring", "https://lloffert.github.io/TWEE_Ring.png"
+))
+
+(set: $hasCard to false)
+(set: $hasJim to false)
+
+
+:: THROWUP {"position":"900,0","size":"100,100"}
+I think we can get away with just one illustration of the throwup and the attendant speaking to you
+
+Maybe you can do a more comic book style second panels that pop up after the text.
+
+
+:: TUTORIAL {"position":"850,175","size":"100,100"}
+Navigate by clicking on the directional arrows:
+
+When you obtain an item, it will appear below your screen like this: 
+
+To use an item, click on it's icon in the inventory when inside the room you'd like to use it in.
+
+Note: Some interactions that are not a part of your inventory that you can perform may also appear in this area
+
+Good luck!
+
+
+:: WEATHERSTATION {"position":"1200,400","size":"100,100"}
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->PHONEBOOTH]]
+
+[[<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/arrow.png">->INSIDE_WS]]
+
+
+:: StoryStylesheet [stylesheet]
+body {
+ background-color: white;
+ color: darkgrey;
+ font-family: Futura,Impact,Helvetica,sans-serif;
+ font-size: 90%;
+}
+
+<style>
+.container {
+    position: relative;
+}
+.scene {
+  	position: absolute;
+}
+.leftside {
+    position: absolute;
+    z-index: 10;
+  	top: 230px;
+  	left: -80px;
+}
+.rightside {
+    position: absolute;
+    z-index: 10;
+  	top: 230px;
+  	left: 810px;
+}
+.forward {
+    position: absolute;
+    z-index: 10;
+  	top: -50px;
+  	left: 350px;
+}
+.back {
+    position: absolute;
+    z-index: 10;
+  	top: 350px;
+  	left: 350px;
+}
+</style>
