@@ -21,7 +21,6 @@ class Restaurant {
 	Restaurant(string n, double r) {
 		name = n;
 		rating = r;
-        }
 	}
 	// getters and setters
     void setName(string n) {
@@ -31,12 +30,19 @@ class Restaurant {
         // only valid ratings allowed
         if (r >=0 && r <=5) {
         rating = r; // o - 5 stars
+        }
     }
     string getName() const {
         return name;
     }
     double getRating() const {
         return rating;
+    }
+
+    void printInfo() {
+        // print all info about the restaurant
+        cout << "Restaurant Name: " << name << endl;
+        cout << "Rating: " << rating << "(out of 5)" << endl;
     }
   
 };
@@ -49,8 +55,8 @@ int main() {
     // breakfast.name = "Biscuitville";
     // breakfast.rating = 3.5;
 
-    Restaurant breakfast = new Restaurant("Biscuitville", 3.5);
-    Restaurant lunch     = new Restaurant("Mi Casita", 4.0);
+    Restaurant breakfast = Restaurant("Biscuitville", 3.5);
+    Restaurant lunch     = Restaurant("Mi Casita", 4.0);
 
     // We'll use a new function, printInfo(), to display restaurant info
     breakfast.printInfo();
