@@ -1,17 +1,19 @@
 :: StoryTitle
-Final_Project
+Final_Project 1
 
 
 :: StoryData
 {
-  "ifid": "19540068-885D-45BE-9E5A-C38CDE644DD3",
+  "ifid": "74e689b6-1abf-49b5-b68d-ac55cbc723a4",
   "format": "Harlowe",
   "format-version": "3.3.9",
   "start": "PROLOGUE",
   "tag-colors": {
     "startup": "yellow",
     "data": "yellow",
-    "widget": "purple"
+    "widget": "purple",
+    "footer": "purple",
+    "header": "blue"
   },
   "zoom": 1
 }
@@ -96,12 +98,30 @@ Final_Project
 
 :: Inventory {"position":"1500,100","size":"100,100"}
 (if: $inventory's length > 0)[
-(set: _html to "<div style='text-align:left;'>")
-(for: each _item, ...$inventory)[
-  (set: _html to _html + "<img src='" + (_item's image) + "' class='inventory-item'>")
+<div class='inventory-bar'>
+(for: each _itemName, ...$inventory)[
+(set: _itemData to ($items's _itemName))\
+(set: _itemImage to (_itemData's image))\
+(if: _itemName is "Card")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Card")]\
+]\
+(else-if: _itemName is "Key")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Key")]\
+]\
+(else-if: _itemName is "Jim")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Jim")]\
+]\
+(else-if: _itemName is "Coins")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Coins")]\
+]\
+(else-if: _itemName is "Ring")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Ring")]\
+]\
+(else:)[\
+(link-reveal: "<img src='" + _itemImage + "' class='inventory-item'>")[(dialog: "You can't use this item yet.", "Dismiss")]\
+]\
 ]
-(set: _html to _html + "</div>")
-(print: _html)
+</div>
 ]
 
 
@@ -132,7 +152,7 @@ Final_Project
 
 
 
-:: PHONEBOOTH {"position":"1000,400","size":"100,100"}
+:: PHONEBOOTH {"position":"975,375","size":"100,100"}
 {
 <div class="container">
 	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/placeholder_tweescene.png"/>
@@ -148,19 +168,13 @@ Final_Project
 </div>
 }
 
+(set: $inventory to $inventory + (a: "Ring"))
+
 (display: "Inventory")
 
 
-{
-(if: $hasJim)[(text-style:"sway")+(text-size:0.8)[Jim: "Hey, what about me?"]]
-}
+:: PHONECALL {"position":"1050,275","size":"100,100"}
 
-{
-(if: $hasCard)[
-    (link-reveal: "<img src='
-https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png'>")[
-        (text-colour:orange)(dialog: "You call the number on the card", "Dismiss")]]
-}
 
 
 :: POOL {"position":"1000,600","size":"100,100"}
@@ -178,8 +192,7 @@ https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TW
 (display: "Inventory")
 
 
-
-:: PROLOGUE {"position":"900,300","size":"100,100"}
+:: PROLOGUE {"position":"875,275","size":"100,100"}
 {<img style="top: -80px"; src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/placeholder_tweescene.png"/>
 }
 Somewhere in an unnamed county in the rust belt...
@@ -202,6 +215,7 @@ A young(-ish) man wakes up in an empty field without a clue of how he got there.
 	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/placeholder_tweescene.png"/>
 
 	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->OFFICEBUILDING]]
+    
 (if: $lucyLeft)[
 	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->ELEVATOR]]  
 ]    
@@ -218,15 +232,40 @@ A young(-ish) man wakes up in an empty field without a clue of how he got there.
 :: Setup [startup] {"position":"1600,100","size":"100,100"}
 (set: $inventory to (a:))
 
+(set: $cardData to (dm:
+    "name", "Card",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png"
+))
+(set: $keyData to (dm:
+    "name", "Key",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_hKey.png"
+))
+(set: $jimData to (dm:
+    "name", "Jim",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_jim.png"
+))
+(set: $coinsData to (dm:
+    "name", "Coins",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_coins.png"
+))
+(set: $ringData to (dm:
+    "name", "Ring",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_ring.png"
+))
+(set: $items to (dm: 
+    "Card", $cardData,
+    "Key", $keyData,
+    "Jim", $jimData,
+    "Coins", $coinsData,
+    "Ring", $ringData
+))
+
 (set: $hasCard to false)
-(set: $hasKey to true)
-(set: $hasJim to false)
+(set: $hatchOpen to false)
 (set: $lucyLeft to false)
-(set: $hatchOpen to true)
-(set: $hasEaten to false)
 
 
-:: THROWAWAY TEST SHEET {"position":"1800,100","size":"100,100"}
+:: THROWAWAY TEST SHEET {"position":"1700,100","size":"100,100"}
 How to add a item:
 
 (set: $inventory to $inventory + (a: (dm:
@@ -264,18 +303,26 @@ https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TW
 ]
 }
 
-
-CRAP THAT NEEDS TO GO BACK INTO PHONEBOOTH LATER WHEN I GET THE INVENTORY FIGURED OUT:
-
+POPUP that both lead back to same passage, AKA different dialogue but nothing changes
 {
-(if: $hasJim)[(text-style:"sway")+(text-size:0.8)[Jim: "Hey, what about me?"]]
-}
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
 
-{
-(if: $hasCard)[
-    (link-reveal: "<img src='
-https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png'>")[
-        (text-colour:orange)(dialog: "You call the number on the card", "Dismiss")]]
+(if: _passageOrigin is "PHONEBOOTH")[
+    (set: $inventory to it - (a: "Card"))
+    (set: $hasCard to false)
+    (set: _message to "You dial the number on the card...")
+]
+(else:)[
+    (set: _message to "You pull out the card, but calling the number here won't help you.")
+]
+
+(dialog: _message, "OK")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _passageOrigin)
+]
 }
 
 
@@ -285,7 +332,7 @@ I think we can get away with just one illustration of the throwup and the attend
 Maybe you can do a more comic book style second panels that pop up after the text.
 
 
-:: TUTORIAL {"position":"850,175","size":"100,100"}
+:: TUTORIAL {"position":"825,150","size":"100,100"}
 Navigate by clicking on the directional arrows:
 
 When you obtain an item, it will appear below your screen like this: 
@@ -295,6 +342,98 @@ To use an item, click on it's icon in the inventory when inside the room you'd l
 Note: Some interactions that are not a part of your inventory that you can perform may also appear in this area
 
 Good luck!
+
+
+:: USE_Card {"position":"1500,300","size":"100,100"}
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+(set: _nextPassage to _passageOrigin)
+
+(if: _passageOrigin is "PHONEBOOTH")[
+    (set: $inventory to it - (a: "Card"))
+    (set: $hasCard to true)
+    (set: _message to "You call the number on the card.")
+    (set: _nextPassage to "PHONECALL")
+]
+(else:)[
+    (set: _message to "Your(?) boss' card. It's got his phone number on it. Doesn't do you much good here")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(dialog: _message, "Dismiss")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _nextPassage)
+]
+}
+
+
+:: USE_Coins {"position":"1500,400","size":"100,100"}
+
+
+
+:: USE_Jim {"position":"1700,300","size":"100,100"}
+
+
+
+:: USE_Key {"position":"1600,300","size":"100,100"}
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+(set: _nextPassage to _passageOrigin)
+
+(if: _passageOrigin is "HATCH")[
+    (set: $inventory to it - (a: "Key"))
+    (set: $hatchOpen to true)
+    (set: _message to "The Key fits into the hatch... And opens.")
+    (set: _nextPassage to _passageOrigin)
+]
+(else:)[
+    (alert: "Well it's not going to unlock anything here. But don't feel bad for trying.")
+    (set: _nextPassage to _passageOrigin)
+]
+(dialog: _message, "Dismiss")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _nextPassage)
+]
+}
+
+
+:: USE_Ring {"position":"1700,400","size":"100,100"}
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+(set: _nextPassage to _passageOrigin)
+
+(if: _passageOrigin is "RECEPTION")[
+    (set: $inventory to it - (a: "Ring"))
+    (set: $lucyLeft to true)
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/placeholder_tweescene.png' 
+    
+    
+Her eyes light up, you weren’t exactly trying to propose with it but you’re not sure how else she could have interpreted that. 
+
+“Oh what the heck- if Louie hasn’t proposed at this rate then maybe I can at least teach him a lesson! Yes- I do! I do!” 
+
+She tears off down the office hall, to celebrate, you assume. The coast is clear.
+")
+    (set: _nextPassage to _passageOrigin)
+]
+(else:)[
+    (alert: "Well it's not going to unlock anything here. But don't feel bad for trying.")
+    (set: _nextPassage to _passageOrigin)
+]
+(dialog: _message, "Dismiss")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _nextPassage)
+]
+}
 
 
 :: WEATHERSTATION {"position":"1200,400","size":"100,100"}
@@ -320,6 +459,19 @@ body {
  color: darkgrey;
  font-family: Futura,Impact,Helvetica,sans-serif;
  font-size: 90%;
+}
+
+.inventory-bar {
+    position: fixed; /* Keep it locked to the screen position */
+    bottom: 0px;     /* Pin it to the bottom edge */
+    left: 0;         /* Start from the left edge */
+    width: 100%;     /* Stretch across the full width */
+    height: 120px;   /* Give it a fixed height */
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in height */
+    background: rgba(0, 0, 0, 0.7); /* Dark, semi-transparent background */
+    z-index: 1000;   /* Ensure it appears above all other elements */
+    text-align: center; /* Center the items within the bar */
 }
 
 .container {
