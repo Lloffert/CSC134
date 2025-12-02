@@ -168,7 +168,7 @@ Final_Project 1
 </div>
 }
 
-(set: $inventory to $inventory + (a: "Ring"))
+(set: $inventory to $inventory + (a: "Key"))
 
 (display: "Inventory")
 
@@ -361,7 +361,7 @@ Good luck!
     (set: _nextPassage to _passageOrigin)
 ]
 
-(dialog: _message, "Dismiss")
+(dialog: _message, "OK")
 
 (live: 0.1s)[
     (stop:)
@@ -391,10 +391,10 @@ Good luck!
     (set: _nextPassage to _passageOrigin)
 ]
 (else:)[
-    (alert: "Well it's not going to unlock anything here. But don't feel bad for trying.")
+    (set: _message to "Well it's not going to unlock anything here. But don't feel bad for trying.")
     (set: _nextPassage to _passageOrigin)
 ]
-(dialog: _message, "Dismiss")
+(dialog: _message, "OK")
 
 (live: 0.1s)[
     (stop:)
@@ -424,10 +424,10 @@ She tears off down the office hall, to celebrate, you assume. The coast is clear
     (set: _nextPassage to _passageOrigin)
 ]
 (else:)[
-    (alert: "Well it's not going to unlock anything here. But don't feel bad for trying.")
+    (set: _message to "It sparkles, but that's about all it does here.")
     (set: _nextPassage to _passageOrigin)
 ]
-(dialog: _message, "Dismiss")
+(dialog: _message, "OK")
 
 (live: 0.1s)[
     (stop:)
