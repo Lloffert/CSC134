@@ -540,6 +540,9 @@ I think we can get away with just one illustration of the throwup and the attend
 
 Maybe you can do a more comic book style second panels that pop up after the text if thats more straightforward
 
+(set: $louieLeft to true)
+(set: $inventory to $inventory + (a: "Ring"))
+
 
 :: TO HANGAR {"position":"500,400","size":"100,100"}
 {
