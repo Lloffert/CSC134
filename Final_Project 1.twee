@@ -1,0 +1,1314 @@
+:: StoryTitle
+Final_Project 1
+
+
+:: StoryData
+{
+  "ifid": "74e689b6-1abf-49b5-b68d-ac55cbc723a4",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "PROLOGUE",
+  "tag-colors": {
+    "startup": "yellow",
+    "data": "yellow",
+    "widget": "purple",
+    "footer": "purple",
+    "header": "blue"
+  },
+  "zoom": 1
+}
+
+
+:: BOSSOFFICE {"position":"700,100","size":"100,100"}
+{
+<div class="container">
+(if: $bossLeft is true)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc15_BOSSOFFICE_empty.png"/>
+    ]
+(else:)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc15_BOSSOFFICE.png"/>
+]
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->OFFICES]] 
+ 
+</div>
+}
+(display: "Inventory")
+(if: $bossLeft is false)[
+	(if: $inventory contains "Card")[
+"That was all Mrs. Maxwell! Scram!"
+    ]   
+    (else:)[    
+Inside is a man holding up a newspaper large enough that you can’t make out any part of his body except the hands holding it up. There's a key on the desk but you can't take it with him right here.
+
+(link: "Talk to man:")[
+    (set: _message to "
+“Are you Mrs. Maxwell?” 
+
+
+|dialoguebox>[
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “I guess so sir”] 
+
+“Hmm, right then. Have we found him yet?” 
+
+
+|dialoguebox>[
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“No sir?”]
+
+“Well he can’t have gone far. Very well, take my card then- call me if anything comes up.”
+
+
+He reaches from under the newspaper to pass you a business card, never lowering it.")
+	(set: $speakBoss to true)
+    (set: $inventory to $inventory + (a: "Card"))
+    (dialog: _message, "Dismiss")
+    (go-to: "OFFICES")
+    ]]
+]
+(else:) [    
+(link: "Grab key")[
+    (set: _message to "You take the key off the desk.")
+    (set: $inventory to $inventory + (a: "Key"))
+    (dialog: _message, "OK")
+    (go-to: "OFFICES")
+ ]]
+
+
+:: CARNSTAND {"position":"1200,100","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc6_CARNSTAND.png"/>
+    
+	[[<img class="leftside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Left.png">->FAIRGROUND]]    
+    
+</div>
+}
+(display: "Inventory")
+A bored looking woman greets you “Hey. Wanna buy a funnel cake? Maybe a hot dog? Cause we got em’ ”. It doesn’t look very appetizing but you are starving. Not that you have any money to buy anything.
+
+
+:: EATFOOD {"position":"1300,100","size":"100,100"}
+(set: $inventory to $inventory + (a: "Coins"))
+
+(set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box9_EAT.png' style='display: block; margin: 0 auto;'>
+
+(text-colour:grey)[You eat your hot dog as Jim talks at you.]
+
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'> “You don’t have to believe me but I saw it. Last night there was a real UFO above the Gracen building, nothing like I’ve ever seen before- and I HAVE seen one before. It dropped you right out of the sky.”
+
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Thank you for the hot dog Jim.”
+
+
+(text-colour:grey)[You sure feel like you got dropped out of the sky, but you’re not sure you buy his theory for it.]
+
+“Yeah no problem.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>
+
+(text-colour:grey)[The carnival stand woman closes up shop. Jim lets you keep his change.]
+")
+
+(dialog: _message, "OK")
+(goto: "FAIRGROUND")
+
+
+:: ELEVATOR {"position":"700,300","size":"100,100"}
+{
+<div class="container">
+<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc11_ELEVATOR.png"/>
+
+[[<img class="up" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Invisible.png">->ELEVATOR]]
+</div>
+}
+<div class="text-content">
+The elevator has buttons leading to an office floor and reception. You could have sworn there were more floors from the outside but you don’t see any way to get to them. Below the buttons is a keypad to enter a passcode.
+
+You can see your reflection in the elevator door.
+</div>
+(button:)[[Reception|RECEPTION]]
+(button:)[[Offices|OFFICES]]
+(button:)[(link-repeat: "Look at self")[(dialog: "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box6_REFLECTION.png'style='display: block; margin: 0 auto;'>
+
+You slowly lift your shirt and stare at your reflection. Jim might not be crazy.", "Dismiss")]]
+
+(link: "Use Keypad:")[
+  (set: $password to (prompt: "Enter Access Code:", ""))
+  (if: $password is "64482")[
+    (go-to: "TO HANGAR")
+  ]
+  (else:)[
+  (dialog: "*BEEP*! Didn't work.", "OK")
+  ]
+]
+
+
+:: END {"position":"500,0","size":"100,100"}
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc20_END.png' 
+
+(text-colour:red)[(text_size:3)[Thank you for playing!]]
+
+
+:: FAIRGROUND {"position":"1000,100","size":"100,100"}
+{
+<div class="container">
+(if: $louieLeft is true)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc2_FAIRGROUND_empty (1).png"/>
+]
+(else:)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc2_FAIRGROUND.png"/>
+]
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->PHONEBOOTH]]
+    
+(if: $hasEaten is false) [    
+	[[<img class="rightside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Right.png">->CARNSTAND]] 
+ ]
+ 
+</div>
+}
+(display: "Inventory")
+{
+(if: $louieLeft is true)[
+Looks like there’s a carnival in town. But everyone’s already left.
+]
+
+(else:)[
+Looks like there’s a carnival in town. There’s not many people here though, except that attendant eyeballing you.
+
+“Hey there you” he says, and he says it like he knows you, “Wanna go on the merry-go-round? I’ll let you ride for free just cause I like ya’ ”
+
+    (link: "Ride Merry-go-round")[
+    (go-to: "RIDE")
+	]
+]
+}
+
+
+:: GOODBYE {"position":"500,75","size":"100,100"}
+{
+<div class="container">
+<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc19_GOODBYE.png"/>
+
+[[<img class="up" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Invisible.png">->GOODBYE]]
+</div>
+}
+<div class="text-content">
+Down below you see Jim (and that other guy) waving from the ground. You feel kind of bad that Jim doesn’t get to see the inside of this thing but he seems happy enough down there judging by the amount of pictures he’s taking.
+</div>
+
+(link: "FLY OFF")[
+(go-to:"END")
+    ]
+
+
+:: HANGAR {"position":"500,300","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc17_HANGAR.png"/>
+
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->INSIDEUFO]]
+    
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->ELEVATOR]]    
+    
+</div>
+}
+The hallway opens up at the end to an enormous aircraft hangar. The saucer-like ship in its center immediately catches your eye.
+
+
+:: HATCH {"position":"1000,700","size":"100,100"}
+{
+<div class="container">
+(if: $hatchOpen)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc5_HATCH_open.png"/>
+]
+(else:)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc5_HATCH.png"/>
+]
+(if: $hatchOpen)[
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->LAB]]  
+]
+[[<img class="up" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Up.png">->POOL]]
+</div>
+}
+{
+(display: "Inventory")
+}
+{
+(if: $hatchOpen)[
+A large hatch. It's open.
+]
+
+(else:)[
+A large hatch. It's locked, must be a maintenance tunnel or something. 
+
+
+There's a slot above the crank for a key.
+]
+}
+
+
+:: INSIDESTATION {"position":"1200,275","size":"100,100"}
+{
+<div class="container">
+(if: $inventory contains "Jim")[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc8_INSIDESTATION_empty.png"/>
+]
+(else:)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc8_INSIDESTATION.png"/>
+]
+(if: $inventory contains "Jim" or $speakJim is false)[
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->WEATHERSTATION]]
+ ]
+ (else:)[
+ 	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->JIM JOINS]]
+]
+</div>
+}
+(display: "Inventory")
+{
+(if: $inventory contains "Jim")[
+It’s Jim’s weather station. It’s kinda dirty, you don’t think anyone works here except him. 
+]
+}
+(else:)[
+The weather station doesn’t look much better on the inside. There’s a man at one of the monitoring stations deeply engrossed in what he’s seeing.
+	(if: $speakJim is true)[
+    	(link: "Talk to man:")[
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box1_JIMTALK.png'style='display: block; margin: 0 auto;'>    
+|dialoguebox>[
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “I really am lost though, can I use your phone?”]
+
+|dialoguebox>[“Huh? I don’t got one, there’s a phone booth some ways west of here but it only does local calls, sorry. It’s free though”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+")
+
+	(dialog: _message, "Dismiss")
+    (go-to: "INSIDESTATION")
+    ]]
+    
+    (else:)[
+	(link: "Talk to man:")[
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box1_JIMTALK.png'style='display: block; margin: 0 auto;'>    
+|dialoguebox>[        
+“H-hey- it’s you! I just saw you up there!”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+
+|dialoguebox>[
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Excuse me?”]
+
+
+|dialoguebox>[“They dropped you from the sky- I saw it!”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Who did? I don’t even know where I am.”]
+
+(text-colour:grey)[|dialoguebox>[The man urges you frantically towards some of his equipment and points at it like it should mean something to you.]]
+
+|dialoguebox>[“Yeah I’d think not! The aliens took you!”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+
+(text-colour:grey)[You don’t think this guy’s going to be much help… You try to explain your situation to him but it only seems to convince him further.]
+
+")
+	(set: $speakJim to true)
+	(dialog: _message, "Dismiss")
+    (go-to: "INSIDESTATION")
+    ]]
+]
+
+
+:: INSIDEUFO {"position":"500,200","size":"100,100"}
+{
+<div class="container">
+<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc18_INSIDEUFO.png"/>
+
+[[<img class="up" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Invisible.png">->INSIDEUFO]]
+</div>
+}
+<div class="text-content">
+Inside the ship is an array of harrowing-looking navigation controls, you don’t know where to begin with them. 
+</div>
+{
+(button:)[
+	(link-repeat: "Pull lever")
+    [
+    (set: _message to "You pull the lever, and a tap dispenses coffee into a cup in front of you. Ok that’s not it.")
+    	(dialog: _message, "Dismiss")
+        (go-to: "INSIDEUFO") 
+    ]
+]
+}
+{
+(button:)[
+	(link-repeat: "Flip switch")
+    [
+    	(dialog: "You flip a switch, and you feel the air conditioning come on. OK that’s not it.", "Dismiss")
+        (go-to: "INSIDEUFO") 
+    ]
+]
+}
+{
+(button:)[
+	(link-repeat: "Mash keyboard")
+    [
+    	(dialog: "You mash the keyboard, and accidentally send a crude message to someone’s manager. OK that’s not it", "Dismiss")
+        (go-to: "INSIDEUFO") 
+    ]
+]
+}
+{
+(button:)[
+	(link-repeat: "Spin dial")
+    [
+    	(dialog: "You spin the dial, and you hear a phone ring. Someone’s mother picks up the phone “Ohhh finally you CALLED!” You hang up. OK that’s not it.", "Dismiss")
+        (go-to: "INSIDEUFO") 
+    ]
+]
+}
+{
+(button:)[
+	(link-repeat: "Adjust seat")
+    [
+    	(dialog: "You adjust the uncomfortably high seat, and hear a click. The hangar rumbles and the bay doors above you grind open.
+        
+The screen in front of you lights up and asks you for your destination. You’re not sure you should be giving this thing your home address but you figure at this point if they abducted you they probably already know where you live.
+
+You enter your address and the ship takes off.
+", "OK")
+        (go-to: "GOODBYE") 
+    ]
+]
+}
+
+
+:: Inventory {"position":"1500,100","size":"100,100"}
+(if: $inventory's length > 0)[
+<div class='inventory-bar'>
+(for: each _itemName, ...$inventory)[
+(set: _itemData to ($items's _itemName))\
+(set: _itemImage to (_itemData's image))\
+(if: _itemName is "Card")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Card")]\
+]\
+(else-if: _itemName is "Key")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Key")]\
+]\
+(else-if: _itemName is "Jim")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Jim")]\
+]\
+(else-if: _itemName is "Coins")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Coins")]\
+]\
+(else-if: _itemName is "Ring")[\
+(link: "<img src='" + _itemImage + "' class='inventory-item'>")[(go-to: "USE_Ring")]\
+]\
+(else:)[\
+(link-reveal: "<img src='" + _itemImage + "' class='inventory-item'>")[(dialog: "You can't use this item yet.", "Dismiss")]\
+]\
+]
+</div>
+]
+
+
+:: JIM JOINS {"position":"1325,275","size":"100,100"}
+(set: $inventory to $inventory + (a: "Jim"))
+
+(set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box2_JIMJOINS.png'style='display: block; margin: 0 auto;'>
+
+|dialoguebox>[“You’re leaving? Hey I’ll come with you, I’m telling you they abducted you man- you’ll see, c’mon.”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+
+(text-colour:grey)[|dialoguebox>[Great.]]
+
+|dialoguebox>[“I’m Jim by the way, what’s your name?”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+
+(text-colour:grey)[|dialoguebox>[You don’t tell him, but he doesn’t seem that bothered.]]
+")
+
+(dialog: _message, "OK")
+(goto: "WEATHERSTATION")
+
+
+:: LAB {"position":"1000,800","size":"100,100"}
+{
+<div class="container">
+(if: $tankOpen)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc13_LAB_freed.png"/>
+]
+(else:)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc13_LAB.png"/>
+]
+	[[<img class="up" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Up.png">->HATCH]]
+    
+(if: $tankOpen)[
+]
+(else:)[
+	[[<img class="leftside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Left.png">->TANK]]  
+]
+</div>
+}
+{
+(display: "Inventory")
+}
+
+<div class="text-content">
+At the end of the ladder is what could only be described as a ridiculously sinister laboratory. Worse is, it feels very familiar to you. Wall to wall are dozens of tanks, not dissimilar to a jellyfish exhibit, containing what look to be people.
+
+
+(if: $tankOpen)[
+    (link: "Talk to man:")[
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box3_FREEDTALK.png' 
+|dialoguebox>[  
+
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “You gonna stay here?”
+
+
+“For now, I’m tired. I hope you can get home Paul.”
+]
+")
+(dialog: _message, "Dismiss")
+(go-to: "LAB")
+]
+]
+</div>
+
+
+:: OFFICEBUILDING {"position":"700,525","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc3_OFFICEBUILDING.png"/>
+
+(if: $inventory contains "Jim")[
+(link: "<img class='forward' src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png'>")[
+(set: _message to "|dialoguebox>[“Are you going in there? Uh, I’ll wait out here. I’m sort of… not allowed inside anymore.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]")
+(set: $inventory to it - (a: "Jim"))
+(set: $jimWait to true)
+(dialog: _message, "Dismiss")
+
+(go-to: "RECEPTION")]
+]
+
+(else:)[
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->RECEPTION]]
+]
+    
+	[[<img class="rightside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Right.png">->PHONEBOOTH]]    
+    
+</div>
+}
+(display: "Inventory")
+An enormous office building looms before you, “Gracen & Gracen” reads overhead the entrance.
+
+
+:: OFFICES {"position":"700,200","size":"100,100"}
+{
+<div class="container">
+(if: $maxwellLeft is true)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc12_OFFICES_empty.png"/>
+]
+(else:)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc12_OFFICES.png"/>
+]
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->ELEVATOR]]
+    
+(if: $maxwellLeft and not ($inventory contains "Key"))[    
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->BOSSOFFICE]] 
+ ]
+</div>
+}
+(display: "Inventory")
+(if: $maxwellLeft)[
+A sizable office space. There’s a fountain in the center of the room.
+]
+(else:)[
+A sizable office space. There’s a fountain in the center of the room and sifting around in it is a woman, she seems to be looking for something.
+
+(link: "Talk to woman:")[
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box4_WMTALK.png'style='display: block; margin: 0 auto;'>    
+She looks up, disregarding your greeting. 
+
+“I’m waiting on my appointment- do you have a quarter? I wanna make a wish”.
+")
+
+	(dialog: _message, "Dismiss")
+    (go-to: "OFFICES")
+    ]]
+
+
+
+:: OPEN TANK {"position":"850,700","size":"100,100"}
+(set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box10_GIVEJACKET.png'style='display: block; margin: 0 auto;'> 
+        
+The tank drains and unsheathes him. He steps out awkwardly. “Please don’t look at my penis.” 
+
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Sorry.” 
+
+(text-colour:grey)[You take off your jacket and hand it to him.]
+
+“Oh hey, after they took you, when one of them was in here earlier, I saw him write something down on a piece of paper: (text-color: red)[64482] . I bet it’s important.”
+")
+(dialog: _message, "Dismiss")
+(set: $tankOpen to true)
+(go-to: "LAB")
+]
+
+
+:: PHONEBOOTH {"position":"975,425","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc1_PHONEBOOTH.png"/>
+
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->POOL]]
+
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->FAIRGROUND]]
+    
+	[[<img class="rightside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Right.png">->WEATHERSTATION]] 
+    
+	[[<img class="leftside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Left.png">->OFFICEBUILDING]]    
+    
+</div>
+}
+(display: "Inventory")
+There’s only a phone booth all on it’s lonesome, just like you.
+
+(if: $inventory contains "Jim") [
+|dialoguebox>[“Hey, what about me?” <img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif"> ]]
+
+
+:: PHONECALL {"position":"1050,300","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc9_PHONECALL.png"/>
+
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->POOL]]
+    
+</div>
+}
+
+"Hello? Who is this?"
+
+{
+(button:)[
+	(link-repeat: "Pretend to be the pizza guy")
+    [
+    (set: _message to "\"What?! I didn't order a pizza! I was thinking about it though, damn you guys are good! Can't you just deliver it here?\"
+
+\"You have to sign for it sir.\"
+
+\"Alright, alright I'll come get it\"")
+    	(dialog: _message, "Dismiss")
+        (set: $bossLeft to true)
+        (go-to: "PHONEBOOTH") 
+    ]
+]
+}
+{
+(button:)[
+	(link-repeat: "Pretend to be his mother")
+    [
+    	(dialog: "\"Mom?! Didn't you die?\"
+
+\"Uh, I changed my mind. Would you come meet me? As far away from your office as possible?\"
+
+\"Well I guess I can't say no to my dead mother...\"", "Dismiss")
+        (set: $bossLeft to true)
+        (go-to: "PHONEBOOTH") 
+    ]
+]
+}
+{
+(button:)[
+	(link-repeat: "Pretend to be police")
+    [
+    	(dialog: "\"Parking ticket?! Well it's not my fault my car takes up four spaces! I'm coming down there right now! You don't know who you're messing with pal!\"", "Dismiss")
+        (set: $bossLeft to true)
+        (go-to: "PHONEBOOTH") 
+    ]
+]
+}
+
+
+:: POOL {"position":"1000,600","size":"100,100"}
+{
+<div class="container">
+(if: $hatchOpen)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc4_POOL_open.png"/>
+]
+(else:)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc4_POOL.png"/>
+]
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->PHONEBOOTH]]
+    
+	[[<img class="down" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Down.png">->HATCH]]  
+        
+</div>
+}
+{
+(display: "Inventory")
+}
+It's an empty pool. It’s nice enough out for it, if there was only any water. There’s a hatch at the bottom.
+
+
+:: PROLOGUE {"position":"875,275","size":"100,100"}
+<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc0_PROLOGUE.png"/>
+
+[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Invisible.png">->PROLOGUE]]
+
+<div class="text-contentP">
+Somewhere in an unnamed county in the rust belt...
+A young(-ish) man wakes up in an empty field without a clue of how he got there.
+
+
+(text-colour:orange)[Would you like a quick tutorial before you begin?]
+
+[[Go to tutorial |TUTORIAL]]
+
+[[No thanks, proceed |PHONEBOOTH]]
+</div>
+
+
+:: RECEPTION {"position":"700,400","size":"100,100"}
+{
+<div class="container">
+(if: $lucyLeft is true)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc10_RECEPTION_empty.png"/>
+]
+(else:)[
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc10_RECEPTION.png"/>
+]
+
+(if: $jimWait is true)[
+(link: "<img class='back' src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png'>")[
+(set: _message to "Jim rejoins you outside.")
+(set: $inventory to $inventory + (a: "Jim"))
+(set: $jimWait to false)
+(dialog: _message, "Dismiss")
+
+(go-to: "OFFICEBUILDING")]
+]
+(else:)[
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->OFFICEBUILDING]]
+]
+
+(if: $lucyLeft)[
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->ELEVATOR]]  
+]    
+</div>
+}
+(display: "Inventory")
+{
+(if: $lucyLeft is true)[
+A reception desk in the front of the building, it's receptionist is currently preoccupied. The way to the elevator is open.
+]
+(else:)[
+A receptionist blocks your way, her nametag reads “Lucy”, 
+
+“I’m sorry sir I can’t let you in, Mr. Gracen is not taking any more appointments today”.
+]
+}
+
+
+:: RIDE {"position":"1000,0","size":"100,100"}
+(if: $inventory contains "Jim")[
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box8_RIDEwJIM.png'style='display: block; margin: 0 auto;'> 
+        
+“You haven't done this since you were a little kid. It makes you feel a little sick.”
+  ")
+  	(dialog: _message, "Dismiss")
+		(if: $hasEaten is true)[
+
+    		(go-to: "THROWUP")
+    	]
+        (else:)[
+        	(go-to: "FAIRGROUND")
+        ]
+]
+
+(else:)[
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box8_RIDE.png'style='display: block; margin: 0 auto;'> 
+        
+“You haven't done this sicne you were a little kid. It makes you feel a little sick.”
+  ")
+  	(dialog: _message, "Dismiss")
+    (go-to: "FAIRGROUND")
+]
+
+
+:: Setup [startup] {"position":"1600,100","size":"100,100"}
+(set: $inventory to (a:))
+
+(set: $cardData to (dm:
+    "name", "Card",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png"
+))
+(set: $keyData to (dm:
+    "name", "Key",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_hKey.png"
+))
+(set: $jimData to (dm:
+    "name", "Jim",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_jim.png"
+))
+(set: $coinsData to (dm:
+    "name", "Coins",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_coins.png"
+))
+(set: $ringData to (dm:
+    "name", "Ring",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_ring.png"
+))
+(set: $items to (dm: 
+    "Card", $cardData,
+    "Key", $keyData,
+    "Jim", $jimData,
+    "Coins", $coinsData,
+    "Ring", $ringData
+))
+
+(set: $hasCard to false)
+(set: $hatchOpen to false)
+(set: $lucyLeft to false)
+(set: $louieLeft to false)
+(set: $maxwellLeft to false)
+(set: $bossLeft to false)
+(set: $hasEaten to false)
+(set: $speakJim to false)
+(set: $tankOpen to false)
+(set: $jimWait to false)
+
+
+:: TANK {"position":"850,800","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc14_TANK.png"/>
+
+	[[<img class="rightside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Right.png">->LAB]]  
+        
+</div>
+}
+(display: "Inventory")
+One of the specimens in the tanks looks more awake than the others. His eyes follow you. He taps the glass gingerly, pointing downwards towards a button on the console.
+
+    (link: "Press button")[
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box3_TANKTALK.png' style='display: block; margin: 0 auto;'> 
+        
+There’s microphone static, and then you hear the man from inside the tank speak. “Hey Paul. How’d you get out?”
+
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Me? How do you know my name?” 
+
+“Oh thats your name”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>
+
+
+“You don’t remember? Well that’s okay, nothin’ good happened. Can you let me out? Its the big green button on the left”
+")
+(dialog: _message, "Press button")
+(go-to: "OPEN TANK")
+]
+
+
+:: THROWAWAY TEST SHEET {"position":"1700,100","size":"100,100"}
+How to add a item:
+
+(set: $inventory to $inventory + (a: (dm:
+    "name", "Card",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_card.png"
+)))
+
+(set: $inventory to $inventory + (a: (dm:
+    "name", "Key",
+    "image", "https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_hKey.png"
+)))
+
+Some useful macros:
+This (link-repeat: "bird")[(dialog: "The bird has black and white feathers and glowing red eyes.", "Dismiss")] is strange.
+
+This (link-repeat: "bird")[(dialog: "<img src='https://thumbs.dreamstime.com/b/shock-6260616.jpg' >The bird has black and white feathers and glowing red eyes.", "Dismiss")] is strange.
+
+THIS ONE TAKES YOU TO PASSAGE AFTER POP-UP: what we need
+(link-reveal-goto: "Fight the King of England", "POOL")[(dialog:"You asked for it!")] 
+
+
+TEST TO MAKE DIFF POPUPS DEPENDING ON BOOL
+(set: $hasItem to true)
+
+{
+(if: $hasItem)[
+    (link-reveal: "<img src='
+https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_ring.png'>")[
+        (dialog: "HAS IT", "Dismiss")]
+]
+(else:)[
+    (link-reveal: "<img src='
+https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/TWEE_ring.png'>")[
+        (dialog: "DOESN'T HAVE IT", "Dismiss")]
+]
+}
+
+POPUP that both lead back to same passage, AKA different dialogue but nothing changes
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+
+(if: _passageOrigin is "PHONEBOOTH")[
+    (set: $inventory to it - (a: "Card"))
+    (set: $hasCard to false)
+    (set: _message to "You dial the number on the card...")
+]
+(else:)[
+    (set: _message to "You pull out the card, but calling the number here won't help you.")
+]
+
+(dialog: _message, "OK")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _passageOrigin)
+]
+}
+
+
+:: THROWUP {"position":"900,0","size":"100,100"}
+(set: $louieLeft to true)
+(set: $inventory to $inventory + (a: "Ring"))
+
+(set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box7_THROWUP.png'style='display: block; margin: 0 auto;'>
+
+That hot dog wasn’t sitting well to begin with, but the spinning sure did you in! Blargh! You throw up the rest of it on the ground.
+
+
+“Holy smokes! There’s my keys!” You hear the ride attendant say.“Must’ve dropped them in there when we were…” he doesn’t finish. 
+
+He plucks the keys out of your puke Pollock and claps you on the back. “Hey thanks kid you’re a life saver you know, I was worried I’d be late for my date with Lucy!”. He saunters off, but you notice a small box on the ground that’s tumbled out of his pocket. 
+
+It’s an engagement ring. He’s already gone, so you take it with you.
+
+")
+
+(dialog: _message, "OK")
+(goto: "FAIRGROUND")
+
+
+:: TO HANGAR {"position":"500,400","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc16_TOHANGAR.png"/>
+
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->HANGAR]]
+    
+	[[<img class="back" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Back.png">->ELEVATOR]]    
+    
+</div>
+}
+
+The elevator opens to a long, long stretch of hallway, like an indoor airstrip.
+
+
+:: TUTORIAL {"position":"825,125","size":"100,100"}
+
+
+Navigate by clicking on the directional arrows: 
+<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Right.png"/>
+
+
+When you obtain an item, it will appear below your screen like this: 
+<img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/tutorial_inventory.PNG"/>
+
+To use an item, click on it's icon in the inventory when inside the room you'd like to use it in.
+
+
+
+Note: Some interactions that are not a part of your inventory will be displayed as text
+(link: "Like this:")[
+(dialog: "Nothing happened. Its just a tutorial", "OK")
+(go-to: "TUTORIAL")
+]
+
+Good luck!
+
+
+:: USE_Card {"position":"1500,300","size":"100,100"}
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+(set: _nextPassage to _passageOrigin)
+
+(if: _passageOrigin is "PHONEBOOTH")[
+    (set: $inventory to it - (a: "Card"))
+    (set: $hasCard to true)
+    (set: _message to "You dial the boss' number on the card.")
+    (set: _nextPassage to "PHONECALL")
+]
+(else:)[
+    (set: _message to "Your(?) boss' card. It's got his phone number on it. Doesn't do you much good here")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(dialog: _message, "OK")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _nextPassage)
+]
+}
+
+
+:: USE_Coins {"position":"1500,400","size":"100,100"}
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+(set: _nextPassage to _passageOrigin)
+
+(if: _passageOrigin is "OFFICES")[
+    (set: $inventory to it - (a: "Coins"))
+    (set: $maxwellLeft to true)
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box5_GIVECOIN.png'style='display: block; margin: 0 auto;'> 
+    
+You offer a quarter to the woman, which she takes and promptly drops onto the ground. The woman picks up your coin and presents it back at you. 
+
+“Look I just found one”. 
+
+She tosses it into the fountain.
+
+“Well to tell you the truth that was all I really wanted to do here, if you don’t have an appointment just take mine- See you around!” 
+
+She gets down on all fours and crawls away into the elevator, trailing water behind her from the fountain.
+
+You didn’t really want her appointment, but a name is called over the intercom and you hear the door at the end of the hall unlock. 
+
+")
+    (set: _nextPassage to _passageOrigin)
+]
+(else:)[
+    (set: _message to "It's about the least your spare change has ever done for you")
+    (set: _nextPassage to _passageOrigin)
+]
+(dialog: _message, "OK")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _nextPassage)
+]
+}
+
+
+:: USE_Jim {"position":"1700,300","size":"100,100"}
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+(set: _nextPassage to _passageOrigin)
+
+(if: _passageOrigin is "PHONEBOOTH")[
+    (set: _message to "|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Hey why is this out here?”] 
+
+|dialoguebox>[“To make calls.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“Nevermind…”]
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(else-if: _passageOrigin is "CARNSTAND")[
+	(set: $hasEaten to true)
+    (set: _message to "
+|dialoguebox>[“Huh? You want me to pay for it? Sure.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+")
+    (set: _nextPassage to "EATFOOD")
+]
+
+(else-if: _passageOrigin is "POOL")[
+    (set: _message to "|dialoguebox>[“Do you know how to swim?” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“Well there's no water.”]
+
+|dialoguebox>[“Should be easy for you then.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(else-if: _passageOrigin is "HATCH")[
+    (set: _message to "|dialoguebox>[“I can’t get it open either if that makes you feel better.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(else-if: _passageOrigin is "LAB")[
+    (set: _message to "|dialoguebox>[“Holy shit… What is this place?” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“Don’t ask me.”]
+
+|dialoguebox>[“Do you think this is where they experimented on you?” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“That’s not funny”]
+
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(else-if: _passageOrigin is "TANK")[
+    (set: _message to "|dialoguebox>[“What’d they do him?” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“Maybe they’re into pickling.”]
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(else-if: _passageOrigin is "FAIRGROUND")[
+    (set: _message to "|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “You like this sorta stuff? Going the fair?”] 
+
+|dialoguebox>[“Ha ha, uh not this one.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(else-if: _passageOrigin is "WEATHERSTATION")[
+    (set: _message to "|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Does this place still work?”] 
+
+|dialoguebox>[“Only for me nowadays. Did you know that the atmospheric temperature in the air reportedly drops by 5 degrees during extraterrestrial unidentified flying aircraft incidents?” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “If you say so.”] 
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(else-if: _passageOrigin is "INSIDESTATION")[
+    (set: _message to "|dialoguebox>[“Home sweet home. Please don’t touch anything.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“Its okay I dont think I can.”]
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(else-if: _passageOrigin is "OFFICEBUILDING")[
+    (set: _message to "|dialoguebox>[“Gracen & Gracen. I used to work here y’know.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“You got fired huh?”]
+
+|dialoguebox>[“C'mon man why’s that gotta be your first assumption” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'>“Did you?”]
+
+|dialoguebox>[“I mean yeah.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+")
+    (set: _nextPassage to _passageOrigin)
+]
+
+(dialog: _message, "Dismiss")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _nextPassage)
+]
+}
+
+
+:: USE_Key {"position":"1600,300","size":"100,100"}
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+(set: _nextPassage to _passageOrigin)
+
+(if: _passageOrigin is "HATCH")[
+    (set: $inventory to it - (a: "Key"))
+    (set: $hatchOpen to true)
+    (set: _message to "The key fits into the top of the hatch... And opens.")
+    (set: _nextPassage to _passageOrigin)
+]
+(else:)[
+    (set: _message to "Well it's not going to unlock anything here. But don't feel bad for trying.")
+    (set: _nextPassage to _passageOrigin)
+]
+(dialog: _message, "OK")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _nextPassage)
+]
+}
+
+
+:: USE_Ring {"position":"1700,400","size":"100,100"}
+{
+(set: _passageOrigin to (history:)'s last)
+(set: _message to "")
+(set: _nextPassage to _passageOrigin)
+
+(if: _passageOrigin is "RECEPTION")[
+    (set: $inventory to it - (a: "Ring"))
+    (set: $lucyLeft to true)
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/placeholder_tweescene.png'     
+    
+Her eyes light up, you weren’t exactly trying to propose with it but you’re not sure how else she could have interpreted that. 
+
+“Oh what the heck- if Louie hasn’t proposed at this rate then maybe I can at least teach him a lesson! Yes- I do! I do!” 
+
+She tears off down the office hall, to celebrate, you assume. The coast is clear.
+")
+    (set: _nextPassage to _passageOrigin)
+]
+(else:)[
+    (set: _message to "It sparkles, but that's about all it does here.")
+    (set: _nextPassage to _passageOrigin)
+]
+(dialog: _message, "OK")
+
+(live: 0.1s)[
+    (stop:)
+    (goto: _nextPassage)
+]
+}
+
+
+:: WEATHERSTATION {"position":"1200,400","size":"100,100"}
+{
+<div class="container">
+	<img class="scene" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc7_WEATHERSTATION.png"/>
+
+	[[<img class="forward" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Forward.png">->INSIDESTATION]]
+    
+	[[<img class="leftside" src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Left.png">->PHONEBOOTH]]    
+    
+</div>
+}
+(display: "Inventory")
+An old weatherstation, it looks like it’s seen better days. Seems to be picking up more bird poop than forecast data.
+
+
+:: StoryScript [script]
+$(document).on(':passagedisplay', function (ev) {
+    $('.inventory-bar').appendTo('tw-story');
+});
+
+:: StoryStylesheet [stylesheet]
+tw-story{
+  	position: relative;
+    line-height: 1.7;
+	padding-top: 0; 
+    margin-top: 0;
+}
+
+tw-hook[name="dialoguebox"] {
+  display: flex;
+}
+
+tw-dialog {
+    overflow-y: auto;
+  	max-height: 90vh;
+    line-height: 1.2;
+}
+
+tw-collapsed {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+tw-passage {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+body {
+ background-color: white;
+ color: darkgrey;
+ font-family: Futura,Impact,Helvetica,sans-serif;
+ font-size: 90%;
+}
+
+.inventory-bar {
+    position: relative;
+    margin-top: -50px;
+  	margin-bottom: -50px;
+    left: 0;
+    width: 70%;
+    padding: 5px;
+    box-sizing: border-box;
+    z-index: 1000;
+    text-align: left;
+  	display: flex;
+  	gap: 2px;
+}
+
+.inventory-bar > * {
+    display: contents;
+}
+
+.inventory-bar tw-link {
+    display: inline-block;
+}
+
+.inventory-item {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 2px solid #666;
+    padding: 5px;
+    background: #222;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
+.inventory-bar tw-link,
+
+.inventory-bar tw-expression {
+    display: inline-block;
+}
+
+.container {
+    position: relative;
+    min-height: 450px;
+    margin: 0;
+    padding: 0;
+}
+
+.scene {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.text-content {
+    margin-top: 0px; 
+  	top: 0px;
+}
+
+.text-contentP {
+    margin-top: -200px; 
+  	top: -50px;  
+}  
+
+.leftside {
+    position: absolute;
+    z-index: 10;
+    top: 230px;
+    left: -80px;
+}
+
+.rightside {
+    position: absolute;
+    z-index: 10;
+    top: 230px;
+    left: 810px;
+}
+
+.forward {
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    left: 350px;
+}
+
+.back {
+    position: absolute;
+    z-index: 10;
+    top: 350px;
+    left: 350px;
+}
+
+.down {
+    position: absolute;
+    z-index: 10;
+    top: 5px;
+    left: 750px;
+}
+
+.up {
+    position: absolute;
+    z-index: 10;
+    top: 5px;
+    left: 750px;
+}
