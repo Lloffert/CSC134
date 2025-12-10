@@ -57,7 +57,7 @@ Inside is a man holding up a newspaper large enough that you can’t make out an
 “Well he can’t have gone far. Very well, take my card then- call me if anything comes up.”
 
 
-He reaches from under the newspaper to pass you a business card, never lowering it.")
+(text-colour: grey)[He reaches from under the newspaper to pass you a business card, never lowering it.]")
 	(set: $speakBoss to true)
     (set: $inventory to $inventory + (a: "Card"))
     (dialog: _message, "Dismiss")
@@ -101,7 +101,7 @@ A bored looking woman greets you “Hey. Wanna buy a funnel cake? Maybe a hot do
 (text-colour:grey)[You sure feel like you got dropped out of the sky, but you’re not sure you buy his theory for it.]
 
 “Yeah no problem.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>
-
+<br>
 (text-colour:grey)[The carnival stand woman closes up shop. Jim lets you keep his change.]
 ")
 
@@ -142,7 +142,7 @@ You slowly lift your shirt and stare at your reflection. Jim might not be crazy.
 :: END {"position":"500,0","size":"100,100"}
 <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Sc20_END.png' 
 
-(text-colour:red)[(text_size:3)[Thank you for playing!]]
+(text-colour:grey)[(text_size:3)[Thank you for playing!]]
 
 
 :: FAIRGROUND {"position":"1000,100","size":"100,100"}
@@ -162,12 +162,12 @@ You slowly lift your shirt and stare at your reflection. Jim might not be crazy.
  
 </div>
 }
-(display: "Inventory")
 {
+(display: "Inventory")
 (if: $louieLeft is true)[
 Looks like there’s a carnival in town. But everyone’s already left.
 ]
-
+}
 (else:)[
 Looks like there’s a carnival in town. There’s not many people here though, except that attendant eyeballing you.
 
@@ -177,7 +177,6 @@ Looks like there’s a carnival in town. There’s not many people here though, 
     (go-to: "RIDE")
 	]
 ]
-}
 
 
 :: GOODBYE {"position":"500,75","size":"100,100"}
@@ -274,31 +273,29 @@ The weather station doesn’t look much better on the inside. There’s a man at
 |dialoguebox>[
 <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “I really am lost though, can I use your phone?”]
 
-|dialoguebox>[“Huh? I don’t got one, there’s a phone booth some ways west of here but it only does local calls, sorry. It’s free though”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+|dialoguebox>[“Huh? I don’t got one, there’s a phone booth some ways west of here but it only does local calls, sorry. It’s free though”]
 ")
-
 	(dialog: _message, "Dismiss")
     (go-to: "INSIDESTATION")
-    ]]
-    
+    ]]    
     (else:)[
 	(link: "Talk to man:")[
     (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box1_JIMTALK.png'style='display: block; margin: 0 auto;'>    
 |dialoguebox>[        
-“H-hey- it’s you! I just saw you up there!”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+“H-hey- it’s you! I just saw you up there!”]
 
 |dialoguebox>[
 <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Excuse me?”]
 
 
-|dialoguebox>[“They dropped you from the sky- I saw it!”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+|dialoguebox>[“They dropped you from the sky- I saw it!”] 
 
 
 |dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Who did? I don’t even know where I am.”]
 
 (text-colour:grey)[|dialoguebox>[The man urges you frantically towards some of his equipment and points at it like it should mean something to you.]]
 
-|dialoguebox>[“Yeah I’d think not! The aliens took you!”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>] 
+|dialoguebox>[“Yeah I’d think not! The aliens took you!”] 
 
 (text-colour:grey)[You don’t think this guy’s going to be much help… You try to explain your situation to him but it only seems to convince him further.]
 
@@ -408,11 +405,11 @@ You enter your address and the ship takes off.
 
 (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box2_JIMJOINS.png'style='display: block; margin: 0 auto;'>
 
-|dialoguebox>[“You’re leaving? Hey I’ll come with you, I’m telling you they abducted you man- you’ll see, c’mon.”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+|dialoguebox>[“You’re leaving? Hey I’ll come with you, I’m telling you they abducted you man- you’ll see, c’mon.”]
 
 (text-colour:grey)[|dialoguebox>[Great.]]
 
-|dialoguebox>[“I’m Jim by the way, what’s your name?”<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
+|dialoguebox>[“I’m Jim by the way, what’s your name?”]
 
 (text-colour:grey)[|dialoguebox>[You don’t tell him, but he doesn’t seem that bothered.]]
 ")
@@ -513,25 +510,28 @@ An enormous office building looms before you, “Gracen & Gracen” reads overhe
 A sizable office space. There’s a fountain in the center of the room.
 ]
 (else:)[
-A sizable office space. There’s a fountain in the center of the room and sifting around in it is a woman, she seems to be looking for something.
+A sizable office space. There’s a fountain in the center of the room and sifting around in it is a woman, 
+she seems to be looking for something.
 
 (link: "Talk to woman:")[
-    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box4_WMTALK.png'style='display: block; margin: 0 auto;'>    
-She looks up, disregarding your greeting. 
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box4_WMTALK.png'style='display: block; margin: 0 auto;'>
+    
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Hello.”]
 
+(text-colour:grey)[She looks up, disregarding your greeting.] 
+
+<br>
 “I’m waiting on my appointment- do you have a quarter? I wanna make a wish”.
 ")
-
 	(dialog: _message, "Dismiss")
     (go-to: "OFFICES")
     ]]
 
 
-
 :: OPEN TANK {"position":"850,700","size":"100,100"}
 (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box10_GIVEJACKET.png'style='display: block; margin: 0 auto;'> 
         
-The tank drains and unsheathes him. He steps out awkwardly. “Please don’t look at my penis.” 
+The tank drains and unsheathes him. He steps out awkwardly.“Please don’t look at my penis.” 
 
 <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Sorry.” 
 
@@ -585,7 +585,8 @@ There’s only a phone booth all on it’s lonesome, just like you.
     [
     (set: _message to "\"What?! I didn't order a pizza! I was thinking about it though, damn you guys are good! Can't you just deliver it here?\"
 
-\"You have to sign for it sir.\"
+|dialoguebox>[
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “You have to sign for it sir.”]
 
 \"Alright, alright I'll come get it\"")
     	(dialog: _message, "Dismiss")
@@ -600,7 +601,8 @@ There’s only a phone booth all on it’s lonesome, just like you.
     [
     	(dialog: "\"Mom?! Didn't you die?\"
 
-\"Uh, I changed my mind. Would you come meet me? As far away from your office as possible?\"
+|dialoguebox>[
+<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Uh, I changed my mind. Would you come meet me? As far away from your office as possible?”]
 
 \"Well I guess I can't say no to my dead mother...\"", "Dismiss")
         (set: $bossLeft to true)
@@ -693,9 +695,11 @@ A young(-ish) man wakes up in an empty field without a clue of how he got there.
 A reception desk in the front of the building, it's receptionist is currently preoccupied. The way to the elevator is open.
 ]
 (else:)[
-A receptionist blocks your way, her nametag reads “Lucy”, 
+(set: _message = 
+"A receptionist blocks your way, her nametag reads “Lucy”, 
 
-“I’m sorry sir I can’t let you in, Mr. Gracen is not taking any more appointments today”.
+“I’m sorry sir I can’t let you in, Mr. Gracen is not taking any more appointments today”.")
+_message
 ]
 }
 
@@ -719,7 +723,7 @@ A receptionist blocks your way, her nametag reads “Lucy”,
 (else:)[
     (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box8_RIDE.png'style='display: block; margin: 0 auto;'> 
         
-“You haven't done this sicne you were a little kid. It makes you feel a little sick.”
+You haven't done this since you were a little kid. It makes you feel a little sick.
   ")
   	(dialog: _message, "Dismiss")
     (go-to: "FAIRGROUND")
@@ -865,14 +869,16 @@ POPUP that both lead back to same passage, AKA different dialogue but nothing ch
 
 (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box7_THROWUP.png'style='display: block; margin: 0 auto;'>
 
-That hot dog wasn’t sitting well to begin with, but the spinning sure did you in! Blargh! You throw up the rest of it on the ground.
+(text-colour:grey)[That hot dog wasn’t sitting well to begin with, but the spinning sure did you in! Blargh! You throw up the rest of it on the ground in front of the attendant.]
 
 
-“Holy smokes! There’s my keys!” You hear the ride attendant say.“Must’ve dropped them in there when we were…” he doesn’t finish. 
+“Holy smokes! There’s my keys! Must’ve dropped them in there when we were…” he doesn’t finish. 
 
-He plucks the keys out of your puke Pollock and claps you on the back. “Hey thanks kid you’re a life saver you know, I was worried I’d be late for my date with Lucy!”. He saunters off, but you notice a small box on the ground that’s tumbled out of his pocket. 
+(text-colour:grey)[He plucks the keys out of your puke Pollock and claps you on the back.]
 
-It’s an engagement ring. He’s already gone, so you take it with you.
+“Hey thanks kid you’re a life saver you know, I was worried I’d be late for my date with Lucy!”. He saunters off, but you notice a small box on the ground that’s tumbled out of his pocket. 
+
+(text-colour:grey)[It’s an engagement ring. He’s already gone, so you take it with you.]
 
 ")
 
@@ -896,8 +902,6 @@ The elevator opens to a long, long stretch of hallway, like an indoor airstrip.
 
 
 :: TUTORIAL {"position":"825,125","size":"100,100"}
-
-
 Navigate by clicking on the directional arrows: 
 <img src="https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/ARROW_Right.png"/>
 
@@ -955,17 +959,20 @@ Good luck!
     (set: $maxwellLeft to true)
     (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box5_GIVECOIN.png'style='display: block; margin: 0 auto;'> 
     
-You offer a quarter to the woman, which she takes and promptly drops onto the ground. The woman picks up your coin and presents it back at you. 
+(text-colour:grey)[You offer a quarter to the woman, which she takes and promptly drops onto the ground. The woman picks up your coin and presents it back at you.] 
 
 “Look I just found one”. 
 
-She tosses it into the fountain.
+(text-colour:grey)[She tosses it into the fountain.]
 
 “Well to tell you the truth that was all I really wanted to do here, if you don’t have an appointment just take mine- See you around!” 
 
-She gets down on all fours and crawls away into the elevator, trailing water behind her from the fountain.
+(text-colour:grey)[She gets down on all fours and crawls away into the elevator, trailing water behind her from the fountain.]
 
-You didn’t really want her appointment, but a name is called over the intercom and you hear the door at the end of the hall unlock. 
+
+|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “Um. Thank you.”]
+
+(text-colour:grey)[You didn’t really want her appointment, but a name is called over the intercom and you hear the door at the end of the hall unlock.] 
 
 ")
     (set: _nextPassage to _passageOrigin)
@@ -1045,7 +1052,7 @@ You didn’t really want her appointment, but a name is called over the intercom
 ]
 
 (else-if: _passageOrigin is "FAIRGROUND")[
-    (set: _message to "|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “You like this sorta stuff? Going the fair?”] 
+    (set: _message to "|dialoguebox>[<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/PaulChat.gif'> “You like this sorta stuff? Going to the fair?”] 
 
 |dialoguebox>[“Ha ha, uh not this one.” <img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/JimChat.gif'>]
 ")
@@ -1127,13 +1134,13 @@ You didn’t really want her appointment, but a name is called over the intercom
 (if: _passageOrigin is "RECEPTION")[
     (set: $inventory to it - (a: "Ring"))
     (set: $lucyLeft to true)
-    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/placeholder_tweescene.png'     
+    (set: _message to "<img src='https://raw.githubusercontent.com/Lloffert/Lloffert.github.io/refs/heads/main/Box10_PROPOSE.png' style='display: block; margin: 0 auto;'>     
     
-Her eyes light up, you weren’t exactly trying to propose with it but you’re not sure how else she could have interpreted that. 
+(text-colour:grey)[Her eyes light up, you weren’t exactly trying to propose with it but you’re not sure how else she could have interpreted that.] 
 
 “Oh what the heck- if Louie hasn’t proposed at this rate then maybe I can at least teach him a lesson! Yes- I do! I do!” 
 
-She tears off down the office hall, to celebrate, you assume. The coast is clear.
+(text-colour:grey)[She tears off down the office hall, to celebrate, you assume. The coast is clear.]
 ")
     (set: _nextPassage to _passageOrigin)
 ]
@@ -1197,8 +1204,9 @@ tw-collapsed {
 tw-passage {
     padding-top: 0 !important;
     margin-top: 0 !important;
+    font-family: Sitka Heading;
 }
-
+  
 body {
  background-color: white;
  color: darkgrey;
